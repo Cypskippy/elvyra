@@ -6,107 +6,129 @@
   <title>Elv'yra Compare pour Toi</title>
   <style>
     body {
-      background-color: #0a0a0a;
-      color: #ffffff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f1a;
+      color: #fff;
       text-align: center;
-      padding: 1rem;
+      padding: 0 1rem;
     }
     h1 {
       font-size: 2rem;
-      color: #ff4081;
-      margin-bottom: 0.5rem;
-    }
-    .subtitle {
-      font-style: italic;
-      color: #ccc;
-      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+      color: #ff5ec4;
     }
     .elvyra-img {
-      width: 240px;
+      max-width: 250px;
+      height: auto;
       margin: 1rem auto;
-      display: block;
     }
-    .button-container {
+    .speech {
+      background: #1e1e2f;
+      display: inline-block;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #ff5ec4;
+    }
+    .categories-container {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 1rem;
-      margin-top: 2rem;
+      align-items: center;
     }
-    .button-container button {
-      background-color: #222;
-      color: #ff4081;
-      padding: 1rem 1.5rem;
-      border: 1px solid #ff4081;
+    .dropdown {
+      background-color: #1e1e2f;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      color: white;
+      width: 80%;
+      max-width: 400px;
+      text-align: left;
+    }
+    select {
+      background-color: #1e1e2f;
+      border: none;
+      color: #fff;
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+    .button {
+      background-color: #ff5ec4;
+      border: none;
+      color: white;
+      padding: 0.7rem 1.2rem;
       border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
     }
-    .button-container button:hover {
-      background-color: #ff4081;
-      color: black;
-    }
-    .category-menu {
-      margin-top: 1.5rem;
-      display: none;
-    }
-    .category-menu.active {
-      display: block;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .button:hover {
+      background-color: #e64aad;
     }
   </style>
 </head>
 <body>
-  <h1>Elv'yra compare pour toi</h1>
-  <p class="subtitle">Choisis une catégorie, puis le type de produit. Elv'yra travaille pour toi !</p>
-  <img src="assets/Elvyra_accueil.png" alt="Elv'yra" class="elvyra-img" />
+  <h1>Elv’Yra compare pour toi 🤖💜</h1>
 
-  <div class="button-container">
-    <button onclick="toggleMenu('hightech')">High-Tech</button>
-    <button onclick="toggleMenu('maison')">Maison</button>
-    <button onclick="toggleMenu('sport')">Sport</button>
-    <button onclick="toggleMenu('autres')">Autres catégories</button>
+  <img src="Elvyra_accueil.png" alt="Elv'yra" class="elvyra-img" />
+
+  <div class="speech">
+    <p>Choisis une catégorie, puis un type de produit… Je travaille pour toi ✨</p>
   </div>
 
-  <div id="hightech" class="category-menu">
-    <input type="text" placeholder="Rechercher..." onkeyup="filterList(this, 'list-hightech')">
-    <ul id="list-hightech">
-      <li><a href="chargeurs.html">Chargeurs rapides</a></li>
-      <li><a href="coques.html">Coques iPhone</a></li>
-      <li><a href="supports.html">Supports voiture</a></li>
-      <li><a href="batteries.html">Batteries externes</a></li>
-    </ul>
-  </div>
-  <div id="maison" class="category-menu">
-    <p>(Ajoute des produits ici)</p>
-  </div>
-  <div id="sport" class="category-menu">
-    <p>(Ajoute des produits ici)</p>
-  </div>
-  <div id="autres" class="category-menu">
-    <p>(Ajoute des catégories ici)</p>
+  <div class="categories-container">
+    <div class="dropdown">
+      <label for="categorie">Catégories vedettes :</label>
+      <select id="categorie" onchange="afficherProduits(this.value)">
+        <option value="">Sélectionner...</option>
+        <option value="high-tech">High-Tech</option>
+        <option value="maison">Maison</option>
+        <option value="sport">Sport</option>
+      </select>
+    </div>
+
+    <div class="dropdown" id="produits-container" style="display: none;">
+      <label for="produits">Types de produits :</label>
+      <select id="produits" onchange="rediriger(this.value)">
+        <option value="">Sélectionner...</option>
+      </select>
+    </div>
   </div>
 
   <script>
-    function toggleMenu(id) {
-      const menus = document.querySelectorAll('.category-menu');
-      menus.forEach(menu => {
-        if (menu.id === id) menu.classList.toggle('active');
-        else menu.classList.remove('active');
-      });
+    const produitsParCategorie = {
+      "high-tech": {
+        "chargeurs": "comparatifs/chargeurs.html",
+        "coques": "comparatifs/coques.html",
+        "supports": "comparatifs/supports.html",
+        "batteries": "comparatifs/batteries.html"
+      },
+      "maison": {},
+      "sport": {}
+    };
+
+    function afficherProduits(categorie) {
+      const selectProduits = document.getElementById('produits');
+      const container = document.getElementById('produits-container');
+      selectProduits.innerHTML = '<option value="">Sélectionner...</option>';
+      if (categorie && produitsParCategorie[categorie]) {
+        const produits = produitsParCategorie[categorie];
+        for (let produit in produits) {
+          const option = document.createElement('option');
+          option.value = produits[produit];
+          option.textContent = produit.charAt(0).toUpperCase() + produit.slice(1);
+          selectProduits.appendChild(option);
+        }
+        container.style.display = 'block';
+      } else {
+        container.style.display = 'none';
+      }
     }
 
-    function filterList(input, listId) {
-      const filter = input.value.toLowerCase();
-      const items = document.querySelectorAll(`#${listId} li`);
-      items.forEach(item => {
-        item.style.display = item.textContent.toLowerCase().includes(filter) ? '' : 'none';
-      });
+    function rediriger(lien) {
+      if (lien) window.location.href = lien;
     }
   </script>
 </body>
