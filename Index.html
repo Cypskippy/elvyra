@@ -1,128 +1,112 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elv'yra Compare pour Toi</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
-      margin: 0;
+      background-color: #0a0a0a;
+      color: #ffffff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0e0e0e;
-      color: #f2f2f2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
       padding: 1rem;
     }
     h1 {
       font-size: 2rem;
-      color: #ff4fa7;
+      color: #ff4081;
       margin-bottom: 0.5rem;
     }
-    .elvyra-speech {
-      background: #1c1c1c;
-      border-left: 5px solid #ff4fa7;
-      padding: 1rem;
-      margin-bottom: 2rem;
+    .subtitle {
       font-style: italic;
+      color: #ccc;
+      margin-bottom: 1.5rem;
     }
-    .categories {
+    .elvyra-img {
+      width: 240px;
+      margin: 1rem auto;
+      display: block;
+    }
+    .button-container {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
+      margin-top: 2rem;
     }
-    .category {
-      background: #1c1c1c;
-      border: 1px solid #333;
+    .button-container button {
+      background-color: #222;
+      color: #ff4081;
+      padding: 1rem 1.5rem;
+      border: 1px solid #ff4081;
       border-radius: 8px;
-      padding: 1rem 2rem;
+      font-size: 1rem;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
-    .category:hover {
-      background: #ff4fa7;
-      color: #fff;
+    .button-container button:hover {
+      background-color: #ff4081;
+      color: black;
     }
-    .dropdown {
+    .category-menu {
+      margin-top: 1.5rem;
       display: none;
-      margin-top: 0.5rem;
     }
-    .dropdown.active {
+    .category-menu.active {
       display: block;
+      animation: fadeIn 0.4s ease-in-out;
     }
-    .dropdown input {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .dropdown a {
-      display: block;
-      padding: 0.3rem;
-      text-decoration: none;
-      color: #f2f2f2;
-      border-bottom: 1px solid #333;
-    }
-    .dropdown a:hover {
-      background: #ff4fa7;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <h1><i class="fa-solid fa-robot"></i> Elv'yra compare pour toi</h1>
-  <div class="elvyra-speech">
-    Choisis une catégorie, puis le type de produit que tu recherches. Je m'occupe du reste 💪
+  <h1>Elv'yra compare pour toi</h1>
+  <p class="subtitle">Choisis une catégorie, puis le type de produit. Elv'yra travaille pour toi !</p>
+  <img src="assets/Elvyra_accueil.png" alt="Elv'yra" class="elvyra-img" />
+
+  <div class="button-container">
+    <button onclick="toggleMenu('hightech')">High-Tech</button>
+    <button onclick="toggleMenu('maison')">Maison</button>
+    <button onclick="toggleMenu('sport')">Sport</button>
+    <button onclick="toggleMenu('autres')">Autres catégories</button>
   </div>
 
-  <div class="categories">
-    <div class="category" onclick="toggleDropdown('hightech')">High-Tech</div>
-    <div class="category" onclick="toggleDropdown('maison')">Maison</div>
-    <div class="category" onclick="toggleDropdown('sport')">Sport</div>
+  <div id="hightech" class="category-menu">
+    <input type="text" placeholder="Rechercher..." onkeyup="filterList(this, 'list-hightech')">
+    <ul id="list-hightech">
+      <li><a href="chargeurs.html">Chargeurs rapides</a></li>
+      <li><a href="coques.html">Coques iPhone</a></li>
+      <li><a href="supports.html">Supports voiture</a></li>
+      <li><a href="batteries.html">Batteries externes</a></li>
+    </ul>
   </div>
-
-  <div id="hightech" class="dropdown">
-    <input type="text" placeholder="Rechercher un produit..." onkeyup="filterList(this, 'list-hightech')">
-    <div id="list-hightech">
-      <a href="smartphones.html">Smartphones</a>
-      <a href="tablettes.html">Tablettes</a>
-      <a href="chargeurs.html">Chargeurs</a>
-      <a href="coques.html">Coques</a>
-      <a href="batteries.html">Batteries externes</a>
-      <a href="supports.html">Supports voiture</a>
-    </div>
+  <div id="maison" class="category-menu">
+    <p>(Ajoute des produits ici)</p>
   </div>
-
-  <div id="maison" class="dropdown">
-    <input type="text" placeholder="Rechercher un produit..." onkeyup="filterList(this, 'list-maison')">
-    <div id="list-maison">
-      <a href="#">Aspirateurs robots</a>
-      <a href="#">Purificateurs d'air</a>
-    </div>
+  <div id="sport" class="category-menu">
+    <p>(Ajoute des produits ici)</p>
   </div>
-
-  <div id="sport" class="dropdown">
-    <input type="text" placeholder="Rechercher un produit..." onkeyup="filterList(this, 'list-sport')">
-    <div id="list-sport">
-      <a href="#">Tapis de yoga</a>
-      <a href="#">Montres connectées sport</a>
-    </div>
+  <div id="autres" class="category-menu">
+    <p>(Ajoute des catégories ici)</p>
   </div>
 
   <script>
-    function toggleDropdown(id) {
-      document.querySelectorAll('.dropdown').forEach(el => el.classList.remove('active'));
-      document.getElementById(id).classList.toggle('active');
+    function toggleMenu(id) {
+      const menus = document.querySelectorAll('.category-menu');
+      menus.forEach(menu => {
+        if (menu.id === id) menu.classList.toggle('active');
+        else menu.classList.remove('active');
+      });
     }
+
     function filterList(input, listId) {
       const filter = input.value.toLowerCase();
-      const links = document.getElementById(listId).getElementsByTagName("a");
-      for (let i = 0; i < links.length; i++) {
-        const txt = links[i].innerText.toLowerCase();
-        links[i].style.display = txt.includes(filter) ? "block" : "none";
-      }
+      const items = document.querySelectorAll(`#${listId} li`);
+      items.forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(filter) ? '' : 'none';
+      });
     }
   </script>
 </body>
