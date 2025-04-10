@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elv'Yra Compare pour Toi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #00ffd5;
+    }
+
+    .elvyra-section {
+      text-align: center;
+      margin: 2rem auto;
+    }
+
+    .elvyra-bubble {
+      background-color: #1f1f1f;
+      border: 2px solid #00ffd5;
+      border-radius: 1rem;
+      padding: 1rem;
+      display: inline-block;
+      max-width: 80%;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .category-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem auto;
+    }
+
+    .category {
+      background: #121212;
+      border: 2px solid #00ffd5;
+      color: #00ffd5;
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .category:hover {
+      background: #00ffd5;
+      color: #0d0d0d;
+    }
+
+    .dropdown-container {
+      text-align: center;
+      margin: 1rem;
+    }
+
+    .dropdown {
+      margin-top: 1rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 300px;
+      overflow-y: auto;
+      background-color: #1a1a1a;
+      border: 1px solid #00ffd5;
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+
+    .dropdown input {
+      padding: 0.5rem;
+      width: 80%;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #00ffd5;
+      background: #0d0d0d;
+      color: #00ffd5;
+    }
+
+    .dropdown-item {
+      background-color: #121212;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      color: #e0e0e0;
+    }
+
+    .dropdown-item:hover {
+      background-color: #00ffd5;
+      color: #0d0d0d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Elv'Yra compare pour toi</h1>
+  </header>
+
+  <section class="elvyra-section">
+    <!-- Placeholder image -->
+    <img src="assets/img/elvyra-placeholder.png" alt="Elv'Yra" width="200"/>
+    <div class="elvyra-bubble">
+      Choisis une catégorie puis un type de produit, je m'occupe du reste...
+    </div>
+  </section>
+
+  <section class="category-buttons">
+    <div class="category" onclick="toggleDropdown('hightech')">High-Tech</div>
+    <div class="category" onclick="toggleDropdown('maison')">Maison</div>
+    <div class="category" onclick="toggleDropdown('sport')">Sport</div>
+  </section>
+
+  <div class="dropdown-container">
+    <div id="hightech" class="dropdown">
+      <input type="text" placeholder="Rechercher un produit..." onkeyup="filterItems(this, 'hightech')">
+      <div class="dropdown-item">Smartphone</div>
+      <div class="dropdown-item">Ordinateur portable</div>
+      <div class="dropdown-item">Casque audio</div>
+    </div>
+    <div id="maison" class="dropdown">
+      <input type="text" placeholder="Rechercher un produit..." onkeyup="filterItems(this, 'maison')">
+      <div class="dropdown-item">Aspirateur robot</div>
+      <div class="dropdown-item">Cafetière connectée</div>
+    </div>
+    <div id="sport" class="dropdown">
+      <input type="text" placeholder="Rechercher un produit..." onkeyup="filterItems(this, 'sport')">
+      <div class="dropdown-item">Tapis de yoga</div>
+      <div class="dropdown-item">Montre connectée</div>
+    </div>
+  </div>
+
+  <script>
+    function toggleDropdown(id) {
+      const dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach(d => d.style.display = 'none');
+      const selected = document.getElementById(id);
+      selected.style.display = 'flex';
+    }
+
+    function filterItems(input, id) {
+      const filter = input.value.toLowerCase();
+      const items = document.querySelectorAll(`#${id} .dropdown-item`);
+      items.forEach(item => {
+        if (item.textContent.toLowerCase().includes(filter)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
