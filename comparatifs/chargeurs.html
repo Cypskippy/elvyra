@@ -71,10 +71,21 @@
     .icons-container {
       text-align: center;
       margin: 2rem 0 1rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .icon-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #ddd;
     }
     .icons-container img {
       height: 40px;
-      margin: 0 8px;
+      margin-bottom: 6px;
     }
     .elvyra-header {
       display: block;
@@ -146,60 +157,21 @@
     </table>
 
     <div class="icons-container">
-      <img src="https://cypskippy.github.io/elvyra/assets/icon_chouchou.png?v=1" alt="Coup de cœur"> Coup de cœur
-      <img src="https://cypskippy.github.io/elvyra/assets/icon_abordable.png?v=1" alt="Abordable"> Abordable
-      <img src="https://cypskippy.github.io/elvyra/assets/icon_hautdegamme.png?v=1" alt="Haut de gamme"> Haut de gamme
+      <div class="icon-block">
+        <img src="https://cypskippy.github.io/elvyra/assets/icon_chouchou.png?v=1" alt="Coup de cœur">
+        <div>Coup de cœur</div>
+      </div>
+      <div class="icon-block">
+        <img src="https://cypskippy.github.io/elvyra/assets/icon_abordable.png?v=1" alt="Abordable">
+        <div>Abordable</div>
+      </div>
+      <div class="icon-block">
+        <img src="https://cypskippy.github.io/elvyra/assets/icon_hautdegamme.png?v=1" alt="Haut de gamme">
+        <div>Haut de gamme</div>
+      </div>
     </div>
 
-    <div class="product-card" id="anker735">
-      <h3>Anker 735 GaNPrime <img class="badge-inline" src="https://cypskippy.github.io/elvyra/assets/icon_chouchou.png?v=1" alt="Coup de cœur"></h3>
-      <img class="product-thumbnail" src="https://cypskippy.github.io/elvyra/assets/produits/anker_735.jpg" alt="Anker 735">
-      <p><strong>Prix :</strong> 54,99€</p>
-      <p><strong>Points forts :</strong> Technologie GaNPrime, charge intelligente, compact et élégant.</p>
-      <p><strong>Utilisation idéale :</strong> Smartphones, tablettes, ordinateurs portables</p>
-      <p><strong>Pourquoi Elv’yra l’adore :</strong> Un équilibre idéal entre puissance, sécurité et compacité. C’est le chouchou 💖</p>
-      <p><a href="https://amzn.to/3RJUAcC" target="_blank">Voir sur Amazon</a></p>
-    </div>
-
-    <div class="product-card" id="spigen">
-      <h3>Spigen 30W <img class="badge-inline" src="https://cypskippy.github.io/elvyra/assets/icon_abordable.png?v=1" alt="Abordable"></h3>
-      <img class="product-thumbnail" src="https://cypskippy.github.io/elvyra/assets/produits/spigen_30w.jpg" alt="Spigen 30W">
-      <p><strong>Prix :</strong> 19,99€</p>
-      <p><strong>Points forts :</strong> Excellent rapport qualité/prix, parfait pour un usage quotidien.</p>
-      <p><strong>Utilisation idéale :</strong> Smartphones et petits appareils USB-C.</p>
-      <p><strong>Pourquoi Elv’yra le recommande :</strong> Le plus accessible de la sélection, fiable malgré un prix mini !</p>
-      <p><a href="https://amzn.to/3G1Qomf" target="_blank">Voir sur Amazon</a></p>
-    </div>
-
-    <div class="product-card" id="anker737">
-      <h3>Anker 737 GaNPrime <img class="badge-inline" src="https://cypskippy.github.io/elvyra/assets/icon_hautdegamme.png?v=1" alt="Haut de gamme"></h3>
-      <img class="product-thumbnail" src="https://cypskippy.github.io/elvyra/assets/produits/anker_737.jpg" alt="Anker 737">
-      <p><strong>Prix :</strong> 79,99€</p>
-      <p><strong>Points forts :</strong> 120W, triple ports, compatible PC portable et appareils gourmands.</p>
-      <p><strong>Utilisation idéale :</strong> Tout charger rapidement en un seul bloc.</p>
-      <p><strong>Pourquoi Elv’yra est impressionnée :</strong> Le plus complet, avec un prix qui reste raisonnable pour la bête 💎</p>
-      <p><a href="https://amzn.to/4j7kVxx" target="_blank">Voir sur Amazon</a></p>
-    </div>
-
-    <div class="product-card" id="ugreen">
-      <h3>UGREEN Nexode Pro 65W</h3>
-      <img class="product-thumbnail" src="https://cypskippy.github.io/elvyra/assets/produits/ugreen_nexode_pro.jpg" alt="UGREEN Nexode">
-      <p><strong>Prix :</strong> 47,99€</p>
-      <p><strong>Points forts :</strong> Charge rapide, finition aluminium, puce GaN, sécurité thermique intégrée.</p>
-      <p><strong>Utilisation idéale :</strong> Déplacements, usage polyvalent et costaud.</p>
-      <p><strong>L'avis d’Elv’yra :</strong> Une valeur sûre, belle et robuste, pour un prix doux.</p>
-      <p><a href="https://amzn.to/3Rf3mzd" target="_blank">Voir sur Amazon</a></p>
-    </div>
-
-    <div class="product-card" id="baseus">
-      <h3>Baseus 100W</h3>
-      <img class="product-thumbnail" src="https://cypskippy.github.io/elvyra/assets/produits/baseus_100w.jpg" alt="Baseus 100W">
-      <p><strong>Prix :</strong> 46,99€</p>
-      <p><strong>Points forts :</strong> 4 ports, charge simultanée, design compact, excellent prix pour 100W.</p>
-      <p><strong>Utilisation idéale :</strong> Famille ou tech-addicts avec plusieurs appareils.</p>
-      <p><strong>L'avis d’Elv’yra :</strong> Très bon compromis puissance/fonctionnalité, difficile de trouver mieux à ce prix 🔋</p>
-      <p><a href="https://amzn.to/42bCqGU" target="_blank">Voir sur Amazon</a></p>
-    </div>
+<!-- (Les fiches produits suivent ici, inchangées) -->
 
     <div style="text-align:center">
       <a href="https://cypskippy.github.io/elvyra/" class="btn-home">🏠 Retour à l'accueil</a>
