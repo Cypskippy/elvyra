@@ -14,6 +14,11 @@
       padding: 0 1rem;
       line-height: 1.6;
     }
+    header img.hero {
+      display: block;
+      max-width: 160px;
+      margin: 1rem auto;
+    }
     h1 {
       font-size: 2rem;
       color: #ff5ec4;
@@ -148,6 +153,177 @@
       max-width: 80px;
       height: auto;
     }
+    .badge-inline {
+      width: 20px;
+      height: auto;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+    .icon-legend img {
+      width: 24px !important;
+      height: auto;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <img src="/elvyra/assets/elvyra_chargeurs.png" alt="Elv'yra" class="hero">
+    <h1>🔌 Top 5 des chargeurs rapides 2025</h1>
+  </header>
+
+  <section>
+  <h2 style="text-align:center; margin-top: 3rem">📊 Tableau comparatif</h2>
+  <div style="overflow-x:auto; position: relative;">
+    <div class="scroll-hint">⇆</div>
+    <table class="product-table" style="width: 100%; border-collapse: collapse; margin-top: 2rem;" style="min-width: 700px;">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Produit</th>
+          <th>Puissance</th>
+          <th style="min-width: 160px; white-space: nowrap;">Ports</th>
+          <th>Prix</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="#anker735"><img src="/elvyra/assets/produits/anker_735.jpg" alt="Anker 735" width="60"></a></td>
+          <td>Anker 735 GaNPrime</td>
+          <td>65W</td><td style="min-width: 160px; white-space: nowrap;">2 USB-C + 1 USB-A</td>
+          <td>49,99€</td>
+          <td>4.7</td>
+        </tr>
+        <tr>
+          <td><a href="#spigen"><img src="/elvyra/assets/produits/spigen_30w.jpg" alt="Spigen 30W" width="60"></a></td>
+          <td>Spigen 30W</td>
+          <td>30W</td>
+          <td>1 USB-C</td>
+          <td>19,99€</td>
+          <td>4.5</td>
+        </tr>
+        <tr>
+          <td><a href="#anker737"><img src="/elvyra/assets/produits/anker_737.jpg" alt="Anker 737" width="60"></a></td>
+          <td>Anker 737 GaNPrime</td>
+          <td>120W</td>
+          <td>2 USB-C + 1 USB-A</td>
+          <td>79,99€</td>
+          <td>4.8</td>
+        </tr>
+        <tr>
+          <td><a href="#ugreen"><img src="/elvyra/assets/produits/ugreen_nexode_pro.jpg" alt="UGREEN" width="60"></a></td>
+          <td>UGREEN Nexode Pro 65W</td>
+          <td>65W</td>
+          <td>2 USB-C + 1 USB-A</td>
+          <td>43,99€</td>
+          <td>4.6</td>
+        </tr>
+        <tr>
+          <td><a href="#baseus"><img src="/elvyra/assets/produits/baseus_100w.jpg" alt="Baseus" width="60"></a></td>
+          <td>Baseus 100W</td>
+          <td>100W</td>
+          <td>2 USB-C + 2 USB-A</td>
+          <td>35,99€</td>
+          <td>4.5</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </section>
+<section>
+  <div class="icons-container">
+  <div class="icon-block">
+    <img src="/elvyra/assets/icon_chouchou.png" alt="Coup de cœur">
+    <span>Coup de cœur Elv’yra</span>
+  </div>
+  <div class="icon-block">
+    <img src="/elvyra/assets/icon_abordable.png" alt="Meilleur prix">
+    <span>Meilleur prix</span>
+  </div>
+  <div class="icon-block">
+    <img src="/elvyra/assets/icon_hautdegamme.png" alt="Haut de gamme">
+    <span>Haut de gamme</span>
+  </div>
+</div>
+  <div class="carousel-wrapper">
+    <div class="carousel-buttons">
+      <button class="carousel-button" onclick="scrollCarousel(-1)">⬅️ Précédent</button>
+      <button class="carousel-button" onclick="scrollCarousel(1)">Suivant ➡️</button>
+    </div>
+    <div class="carousel-container" id="carousel">
+      <!-- Fiches produits intégrées -->
+      <div class="product-card" id="anker735">
+        <h3>Anker 735 GaNPrime <img class="badge-inline" src="/elvyra/assets/icon_chouchou.png" alt="Coup de cœur"></h3>
+        <img src="/elvyra/assets/produits/anker_735.jpg" alt="Anker 735" class="product-thumbnail">
+        <p><strong>Prix :</strong> 49,99€</p>
+        <p><strong>Points forts :</strong> technologie GaNPrime, charge intelligente, compact et élégant.</p>
+        <p><strong>Utilisation idéale :</strong> Parfait pour smartphones, tablettes et ordinateurs portables.</p>
+        <p><strong>Pourquoi Elv’yra l’adore :</strong> Un équilibre idéal entre puissance, sécurité et compacité. C’est le chouchou 💖</p>
+        <p><a href="https://www.amazon.fr/dp/B0B7HR9GYT" target="_blank">Voir sur Amazon</a></p>
+      </div>
+      <div class="product-card" id="spigen">
+        <h3>Spigen 30W <img class="badge-inline" src="/elvyra/assets/icon_abordable.png" alt="Abordable"></h3>
+        <img src="/elvyra/assets/produits/spigen_30w.jpg" alt="Spigen 30W" class="product-thumbnail">
+        <p><strong>Prix :</strong> 19,99€</p>
+        <p><strong>Points forts :</strong> excellent rapport qualité/prix, parfait pour un usage quotidien.</p>
+        <p><strong>Utilisation idéale :</strong> Smartphones et petits appareils USB-C.</p>
+        <p><strong>Pourquoi Elv’yra le recommande :</strong> Le plus accessible de la sélection, fiable malgré un prix mini !</p>
+        <p><a href="https://www.amazon.fr/dp/B09KJXXVVR" target="_blank">Voir sur Amazon</a></p>
+      </div>
+      <div class="product-card" id="anker737">
+        <h3>Anker 737 GaNPrime <img class="badge-inline" src="/elvyra/assets/icon_hautdegamme.png" alt="Haut de gamme"></h3>
+        <img src="/elvyra/assets/produits/anker_737.jpg" alt="Anker 737" class="product-thumbnail">
+        <p><strong>Prix :</strong> 79,99€</p>
+        <p><strong>Points forts :</strong> 120W, triple ports, compatible PC portable et appareils gourmands.</p>
+        <p><strong>Utilisation idéale :</strong> Pour ceux qui veulent tout charger rapidement en un seul bloc.</p>
+        <p><strong>Pourquoi Elv’yra est impressionnée :</strong> Le plus complet, avec un prix qui reste raisonnable pour la bête 💎</p>
+        <p><a href="https://www.amazon.fr/dp/B0B7HZ6C7D" target="_blank">Voir sur Amazon</a></p>
+      </div>
+      <div class="product-card" id="ugreen">
+        <h3>UGREEN Nexode Pro 65W</h3>
+        <img src="/elvyra/assets/produits/ugreen_nexode_pro.jpg" alt="UGREEN Nexode Pro" class="product-thumbnail">
+        <p><strong>Prix :</strong> 43,99€</p>
+        <p><strong>Points forts :</strong> Charge rapide, finition aluminium, puce GaN, sécurité thermique intégrée.</p>
+        <p><strong>Utilisation idéale :</strong> Parfait pour les déplacements, polyvalent et costaud.</p>
+        <p><strong>L'avis d’Elv’yra :</strong> Une valeur sûre, belle et robuste, pour un prix doux.</p>
+        <p><a href="https://www.amazon.fr/dp/B0CCXSMRPT" target="_blank">Voir sur Amazon</a></p>
+      </div>
+      <div class="product-card" id="baseus">
+        <h3>Baseus 100W</h3>
+        <img src="/elvyra/assets/produits/baseus_100w.jpg" alt="Baseus 100W" class="product-thumbnail">
+        <p><strong>Prix :</strong> 35,99€</p>
+        <p><strong>Points forts :</strong> 4 ports, charge simultanée, design compact, excellent prix pour 100W.</p>
+        <p><strong>Utilisation idéale :</strong> Idéal en famille ou pour les tech-addicts avec plusieurs appareils.</p>
+        <p><strong>L'avis d’Elv’yra :</strong> Très bon compromis puissance/fonctionnalité, difficile de trouver mieux à ce prix 🔋</p>
+        <p><a href="https://www.amazon.fr/dp/B09HXRSX21" target="_blank">Voir sur Amazon</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+
+  <script>
+function scrollCarousel(direction) {
+  const carousel = document.getElementById('carousel');
+  const cardWidth = carousel.children[0].offsetWidth + 16;
+  carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+}
+
+// Effet 3D dynamique sur scroll du carrousel
+if (document.getElementById('carousel')) {
+  document.getElementById('carousel').addEventListener('scroll', function () {
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const middle = window.innerWidth / 2;
+      const offset = Math.abs(rect.left + rect.width / 2 - middle);
+      const maxOffset = middle;
+      const rotateY = ((offset / maxOffset) * 20).toFixed(2);
+      card.style.transform = 'rotateY(' + (rect.left + rect.width / 2 < middle ? rotateY : -rotateY) + 'deg)';
+    });
+  });
+}
+</script>
+</body>
+</html>
