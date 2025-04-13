@@ -67,12 +67,16 @@
       border-radius: 8px;
     }
     .product-card {
+  
       background: #1e1e2f;
       border: 1px solid #444;
       border-radius: 12px;
       padding: 1rem;
       margin-bottom: 2rem;
-    }
+    
+  transform: rotateY(0deg);
+  transition: transform 0.6s ease;
+}
     .product-card h3 {
       margin-top: 0;
       color: #ff5ec4;
@@ -183,7 +187,18 @@
       const table = document.querySelector('.product-table');
       table.style.display = table.style.display === 'table' ? 'none' : 'table';
     }
-  </script>
+  document.getElementById('carousel').addEventListener('scroll', function () {
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    const middle = window.innerWidth / 2;
+    const offset = Math.abs(rect.left + rect.width / 2 - middle);
+    const maxOffset = middle;
+    const rotateY = ((offset / maxOffset) * 20).toFixed(2);
+    card.style.transform = 'rotateY(' + (rect.left + rect.width / 2 < middle ? rotateY : -rotateY) + 'deg)';
+  });
+});
+</script>
 </head>
 <body>
   <header>
