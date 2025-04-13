@@ -15,10 +15,10 @@
 }
 .product-table th:nth-child(1), .product-table td:nth-child(1) {
   left: 0;
-  width: var(--first-col-width);
+  /* width remains auto */
 }
 .product-table th:nth-child(2), .product-table td:nth-child(2) {
-  left: var(--first-col-width);
+  /* left will be set dynamically via JS */
   border-right: 1px solid #555;
   box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
   background-color: #1e1e2f;
@@ -214,9 +214,7 @@
   0%, 100% { transform: translateX(0); opacity: 0.6; }
   50% { transform: translateX(-6px); opacity: 1; }
 }
-:root {
-  --first-col-width: 82px;
-}
+
 </style>
   <script>
     function toggleTable() {
@@ -234,12 +232,15 @@
     card.style.transform = 'rotateY(' + (rect.left + rect.width / 2 < middle ? rotateY : -rotateY) + 'deg)';
   });
 });
-  // Ajustement dynamique de la largeur de la 2e colonne
+  // Ajustement dynamique des colonnes figées
   window.addEventListener('load', () => {
-    const firstCol = document.querySelector('.product-table td:first-child, .product-table th:first-child');
-    if (firstCol) {
-      const width = firstCol.offsetWidth + 'px';
-      document.documentElement.style.setProperty('--first-col-width', width);
+    const firstCol = document.querySelector('.product-table th:nth-child(1)');
+    const secondCol = document.querySelectorAll('.product-table th:nth-child(2), .product-table td:nth-child(2)');
+    if (firstCol && secondCol.length) {
+      const firstWidth = firstCol.getBoundingClientRect().width;
+      secondCol.forEach(cell => {
+        cell.style.left = firstWidth + 'px';
+      });
     }
   });
 </script>
