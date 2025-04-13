@@ -235,14 +235,17 @@
 });
   // Ajustement dynamique des colonnes figées
   window.addEventListener('load', () => {
-    const firstCol = document.querySelector('.product-table th:nth-child(1)');
-    const secondCol = document.querySelectorAll('.product-table th:nth-child(2), .product-table td:nth-child(2)');
-    if (firstCol && secondCol.length) {
-      const firstWidth = firstCol.getBoundingClientRect().width;
-      secondCol.forEach(cell => {
-        cell.style.left = firstWidth + 'px';
-        cell.style.position = 'sticky';
-      });
+  const firstCol = document.querySelector('.product-table th:nth-child(1)');
+  const secondCol = document.querySelectorAll('.product-table th:nth-child(2), .product-table td:nth-child(2)');
+  if (firstCol && secondCol.length) {
+    const firstWidth = firstCol.getBoundingClientRect().width;
+    secondCol.forEach(cell => {
+      cell.style.left = firstWidth + 'px';
+      cell.style.position = 'sticky';
+      void cell.offsetHeight; // force reflow
+    });
+  }
+});
     }
   });
 </script>
