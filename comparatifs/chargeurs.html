@@ -47,12 +47,11 @@
       text-align: center;
     }
     .product-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 1rem;
-      font-size: 0.8rem;
-      display: none;
-    }
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
     .product-table th, .product-table td {
       border: 1px solid #444;
       padding: 6px;
@@ -187,7 +186,7 @@
 </head>
 <body>
   <header>
-    <img src="/elvyra/assets/elvyra_header.png" alt="Elv'yra t'accueille" class="elvyra-header">
+    <img src="/assets/elvyra_chargeurs.png" alt="Elv'yra t'accueille" class="elvyra-header">
     <h1>🔌 Top 5 des chargeurs rapides 2025</h1>
     <p style="text-align:center; font-size: 1.2rem; max-width: 600px; margin: auto;">Elv’yra a comparé les meilleurs chargeurs du moment pour t’aider à faire le bon choix ⚡</p>
   </header>
@@ -322,5 +321,21 @@
       carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
     }
   </script>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      const carousel = document.getElementById('carousel');
+      if (target && carousel && carousel.contains(target)) {
+        e.preventDefault();
+        const scrollLeft = target.offsetLeft - carousel.offsetLeft;
+        carousel.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
