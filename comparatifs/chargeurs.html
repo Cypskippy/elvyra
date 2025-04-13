@@ -47,11 +47,12 @@
       text-align: center;
     }
     .product-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
-}
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      display: none;
+    }
     .product-table th, .product-table td {
       border: 1px solid #444;
       padding: 6px;
@@ -186,7 +187,7 @@
 </head>
 <body>
   <header>
-    <img src="/assets/Elvyra_chargeurs.png" alt="Elv'yra t'accueille" class="elvyra-header">
+    <img src="/elvyra/assets/elvyra_header.png" alt="Elv'yra t'accueille" class="elvyra-header">
     <h1>🔌 Top 5 des chargeurs rapides 2025</h1>
     <p style="text-align:center; font-size: 1.2rem; max-width: 600px; margin: auto;">Elv’yra a comparé les meilleurs chargeurs du moment pour t’aider à faire le bon choix ⚡</p>
   </header>
@@ -249,7 +250,21 @@
     </table>
   </section>
 <section>
-  <h2 style="text-align:center; margin-top:4rem;">🔄 Fiches Produits - Vue Carrousel</h2>
+  <h2 style="text-align:center; margin-top:4rem;">🔍 Légende des icônes</h2>
+<div class="icons-container">
+  <div class="icon-block">
+    <img src="/elvyra/assets/icon_chouchou.png" alt="Coup de cœur">
+    <span>Coup de cœur Elv’yra</span>
+  </div>
+  <div class="icon-block">
+    <img src="/elvyra/assets/icon_abordable.png" alt="Meilleur prix">
+    <span>Meilleur prix</span>
+  </div>
+  <div class="icon-block">
+    <img src="/elvyra/assets/icon_hautdegamme.png" alt="Haut de gamme">
+    <span>Haut de gamme</span>
+  </div>
+</div>
   <div class="carousel-wrapper">
     <div class="carousel-buttons">
       <button class="carousel-button" onclick="scrollCarousel(-1)">⬅️ Précédent</button>
@@ -305,69 +320,21 @@
     </div>
   </div>
 </section>
-
 <script>
   function scrollCarousel(direction) {
     const carousel = document.getElementById('carousel');
     const cardWidth = carousel.children[0].offsetWidth + 16;
     carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
   }
-
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      const carousel = document.getElementById('carousel');
-      if (target && carousel && carousel.contains(target)) {
-        e.preventDefault();
-        const scrollLeft = target.offsetLeft - carousel.offsetLeft;
-        carousel.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-        carousel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
 </script>
-
   
 
-  
-<script>
-  function scrollCarousel(direction) {
-    const carousel = document.getElementById('carousel');
-    const cardWidth = carousel.children[0].offsetWidth + 16;
-    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
+  <script>
+    function scrollCarousel(direction) {
       const carousel = document.getElementById('carousel');
-      if (target && carousel && carousel.contains(target)) {
-        e.preventDefault();
-        const scrollLeft = target.offsetLeft - carousel.offsetLeft;
-        carousel.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-        carousel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-</script>
-
-
-<script>
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      const carousel = document.getElementById('carousel');
-      if (target && carousel && carousel.contains(target)) {
-        e.preventDefault();
-        const scrollLeft = target.offsetLeft - carousel.offsetLeft;
-        carousel.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-      }
-    });
-  });
-</script>
-
+      const cardWidth = carousel.children[0].offsetWidth + 16;
+      carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
