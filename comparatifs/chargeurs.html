@@ -234,6 +234,14 @@
     card.style.transform = 'rotateY(' + (rect.left + rect.width / 2 < middle ? rotateY : -rotateY) + 'deg)';
   });
 });
+  // Ajustement dynamique de la largeur de la 2e colonne
+  window.addEventListener('load', () => {
+    const firstCol = document.querySelector('.product-table td:first-child, .product-table th:first-child');
+    if (firstCol) {
+      const width = firstCol.offsetWidth + 'px';
+      document.documentElement.style.setProperty('--first-col-width', width);
+    }
+  });
 </script>
 </head>
 <body>
