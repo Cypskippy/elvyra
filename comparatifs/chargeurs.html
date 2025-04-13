@@ -34,6 +34,7 @@
       font-size: 0.8rem;
       margin: 1rem 0;
       display: table;
+      table-layout: auto;
     }
     .product-table th, .product-table td {
       border: 1px solid #444;
@@ -59,7 +60,6 @@
     }
     .product-table th:nth-child(2),
     .product-table td:nth-child(2) {
-      position: sticky;
       left: 82px;
       z-index: 3;
       background-color: #1e1e2f;
@@ -83,7 +83,7 @@
       scroll-behavior: smooth;
     }
     .product-card {
-      flex: 0 0 90vw;
+      flex: 0 0 320px;
       scroll-snap-align: center;
       background: #1e1e2f;
       border: 1px solid #444;
@@ -92,6 +92,11 @@
       transition: transform 0.3s ease;
       transform-style: preserve-3d;
       perspective: 1000px;
+    }
+    .product-thumbnail {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
     .carousel-buttons {
       display: flex;
