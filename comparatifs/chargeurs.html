@@ -8,14 +8,19 @@
     .product-table th:nth-child(-n+2),
 .product-table td:nth-child(-n+2) {
   position: sticky;
-  background-color: #1e1e2f; backdrop-filter: blur(2px);
-  z-index: 1;
+  background-color: #1e1e2f;
+  backdrop-filter: blur(2px);
+  z-index: 2;
+  border-right: 1px solid #333;
 }
 .product-table th:nth-child(1), .product-table td:nth-child(1) {
   left: 0;
 }
 .product-table th:nth-child(2), .product-table td:nth-child(2) {
   left: 80px;
+  border-right: 1px solid #555;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
+  z-index: 3;
 }
     body {
       margin: 0;
