@@ -15,9 +15,10 @@
 }
 .product-table th:nth-child(1), .product-table td:nth-child(1) {
   left: 0;
+  width: var(--first-col-width);
 }
 .product-table th:nth-child(2), .product-table td:nth-child(2) {
-  left: 82px;
+  left: var(--first-col-width);
   border-right: 1px solid #555;
   box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
   background-color: #1e1e2f;
@@ -212,6 +213,9 @@
 @keyframes bounce {
   0%, 100% { transform: translateX(0); opacity: 0.6; }
   50% { transform: translateX(-6px); opacity: 1; }
+}
+:root {
+  --first-col-width: 82px;
 }
 </style>
   <script>
