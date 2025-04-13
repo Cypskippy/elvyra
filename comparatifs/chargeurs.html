@@ -305,22 +305,54 @@
     </div>
   </div>
 </section>
+
 <script>
   function scrollCarousel(direction) {
     const carousel = document.getElementById('carousel');
     const cardWidth = carousel.children[0].offsetWidth + 16;
     carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
   }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      const carousel = document.getElementById('carousel');
+      if (target && carousel && carousel.contains(target)) {
+        e.preventDefault();
+        const scrollLeft = target.offsetLeft - carousel.offsetLeft;
+        carousel.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        carousel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 </script>
+
   
 
-  <script>
-    function scrollCarousel(direction) {
+  
+<script>
+  function scrollCarousel(direction) {
+    const carousel = document.getElementById('carousel');
+    const cardWidth = carousel.children[0].offsetWidth + 16;
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
       const carousel = document.getElementById('carousel');
-      const cardWidth = carousel.children[0].offsetWidth + 16;
-      carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-    }
-  </script>
+      if (target && carousel && carousel.contains(target)) {
+        e.preventDefault();
+        const scrollLeft = target.offsetLeft - carousel.offsetLeft;
+        carousel.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        carousel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
 
 <script>
   document.querySelectorAll('a[href^="#"]').forEach(link => {
