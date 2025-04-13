@@ -130,11 +130,19 @@
     table.product-table th:nth-child(2),
     table.product-table td:nth-child(2) {
       position: sticky;
-      left: calc(var(--col1-width, 80px));
+      left: 0;
+      padding-left: 100px;
       background-color: #1e1e2f;
       z-index: 2;
       white-space: normal;
       word-break: break-word;
+    }
+    @media (max-width: 768px) {
+      table.product-table th:nth-child(2),
+      table.product-table td:nth-child(2) {
+        padding-left: 90px;
+        text-align: left;
+      }
     }
     img.product-img {
       max-width: 80px;
