@@ -8,7 +8,7 @@
     .product-table th:nth-child(-n+2),
 .product-table td:nth-child(-n+2) {
   position: sticky;
-  background-color: #1e1e2f;
+  background-color: #1e1e2f; backdrop-filter: blur(2px);
   z-index: 1;
 }
 .product-table th:nth-child(1), .product-table td:nth-child(1) {
@@ -193,6 +193,20 @@
   position: relative;
 }
 
+.scroll-hint {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 1.2rem;
+  color: #888;
+  animation: bounce 1.5s infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50% { transform: translateX(-6px); opacity: 1; }
+}
 </style>
   <script>
     function toggleTable() {
@@ -221,7 +235,8 @@
 
   <section>
   <h2 style="text-align:center; margin-top: 3rem">📊 Tableau comparatif</h2>
-  <div style="overflow-x:auto;">
+  <div style="overflow-x:auto; position: relative;">
+    <div class="scroll-hint">⇆</div>
     <table class="product-table" style="width: 100%; border-collapse: collapse; margin-top: 2rem;" style="min-width: 700px;">
       <thead>
         <tr>
