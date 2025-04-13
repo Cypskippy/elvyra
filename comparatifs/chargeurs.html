@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Top 5 Chargeurs Rapides - Elv'yra</title>
   <style>
-    .product-table th:first-child,
-    .product-table td:first-child {
-      position: sticky;
-      left: 0;
-      background-color: #1e1e2f;
-      z-index: 1;
-    }
+    .product-table th:nth-child(-n+2),
+.product-table td:nth-child(-n+2) {
+  position: sticky;
+  background-color: #1e1e2f;
+  z-index: 1;
+}
+.product-table th:nth-child(1), .product-table td:nth-child(1) {
+  left: 0;
+}
+.product-table th:nth-child(2), .product-table td:nth-child(2) {
+  left: 80px;
+}
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
