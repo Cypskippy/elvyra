@@ -79,6 +79,9 @@
       perspective: 1000px;
     }
     .product-card {
+  transform-origin: center center;
+  backface-visibility: hidden;
+
       flex: 0 0 300px;
       background: #1e1e2f;
       border-radius: 12px;
@@ -89,6 +92,9 @@
     }
     @media (max-width: 600px) {
       .product-card {
+  transform-origin: center center;
+  backface-visibility: hidden;
+
         flex: 0 0 280px;
       }
     }
@@ -179,7 +185,45 @@ function scrollToProduct(id) {
 }
 
 
-    function scrollCarousel(direction) {
+    
+let currentIndex = 0;
+function scrollCarousel(direction) {
+  const container = document.querySelector('.carousel-container');
+  const cards = container.querySelectorAll('.product-card');
+  const total = cards.length;
+  const cardWidth = cards[0].offsetWidth + 16;
+
+  currentIndex = (currentIndex + direction + total) % total;
+  const scrollLeft = cardWidth * currentIndex;
+  container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+
+  updateCardTransforms(cards, currentIndex);
+}
+
+function updateCardTransforms(cards, activeIndex) {
+  cards.forEach((card, index) => {
+    const offset = index - activeIndex;
+    const angle = offset * 30;
+    const scale = Math.max(0.8, 1 - Math.abs(offset) * 0.1);
+    const translateX = offset * 60;
+
+    card.style.transform = `
+      perspective(1000px)
+      translateX(${translateX}px)
+      rotateY(${angle}deg)
+      scale(${scale})
+    `;
+    card.style.zIndex = 100 - Math.abs(offset);
+    card.style.opacity = Math.max(0.3, 1 - Math.abs(offset) * 0.2);
+  });
+}
+
+// Initialiser la vue au chargement
+window.addEventListener('load', () => {
+  const cards = document.querySelectorAll('.product-card');
+  updateCardTransforms(cards, 0);
+});
+
       const container = document.querySelector('.carousel-container');
       const scrollAmount = container.firstElementChild.offsetWidth + 16;
       container.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
