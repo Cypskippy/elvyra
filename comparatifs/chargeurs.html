@@ -334,21 +334,30 @@
     </div>
   </div>
 </section>
-<script>
-  function scrollCarousel(direction) {
-    const carousel = document.getElementById('carousel');
-    const cardWidth = carousel.children[0].offsetWidth + 16;
-    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-  }
-</script>
+
   
 
   <script>
-    function scrollCarousel(direction) {
-      const carousel = document.getElementById('carousel');
-      const cardWidth = carousel.children[0].offsetWidth + 16;
-      carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-    }
-  </script>
+function scrollCarousel(direction) {
+  const carousel = document.getElementById('carousel');
+  const cardWidth = carousel.children[0].offsetWidth + 16;
+  carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+}
+
+// Effet 3D dynamique sur scroll du carrousel
+if (document.getElementById('carousel')) {
+  document.getElementById('carousel').addEventListener('scroll', function () {
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const middle = window.innerWidth / 2;
+      const offset = Math.abs(rect.left + rect.width / 2 - middle);
+      const maxOffset = middle;
+      const rotateY = ((offset / maxOffset) * 20).toFixed(2);
+      card.style.transform = 'rotateY(' + (rect.left + rect.width / 2 < middle ? rotateY : -rotateY) + 'deg)';
+    });
+  });
+}
+</script>
 </body>
 </html>
