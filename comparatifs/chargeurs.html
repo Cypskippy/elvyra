@@ -389,8 +389,19 @@
   <script>
 function scrollCarousel(direction) {
   const carousel = document.getElementById('carousel');
-  const cardWidth = carousel.children[0].offsetWidth + 16;
-  carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  const cards = carousel.children;
+  const cardWidth = cards[0].offsetWidth + 16;
+  const scrollAmount = direction * cardWidth;
+  const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+
+  if (direction > 0 && carousel.scrollLeft + cardWidth >= maxScrollLeft) {
+    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+  } else if (direction < 0 && carousel.scrollLeft <= 0) {
+    carousel.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+  } else {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+});
 }
 
 // Effet 3D dynamique sur scroll du carrousel
