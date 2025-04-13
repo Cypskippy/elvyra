@@ -73,6 +73,7 @@
     .carousel-wrapper {
       position: relative;
       margin-top: 2rem;
+      perspective: 1200px;
     }
     .carousel-container {
       overflow-x: auto;
@@ -81,6 +82,7 @@
       gap: 1rem;
       padding: 2rem 0;
       scroll-behavior: smooth;
+      transform-style: preserve-3d;
     }
     .product-card {
       flex: 0 0 320px;
@@ -89,9 +91,11 @@
       border: 1px solid #444;
       border-radius: 12px;
       padding: 1rem;
-      transition: transform 0.3s ease;
-      transform-style: preserve-3d;
-      perspective: 1000px;
+      transition: transform 0.6s ease;
+    }
+    .carousel-container:active .product-card,
+    .carousel-container:focus-within .product-card {
+      transform: rotateY(20deg);
     }
     .product-thumbnail {
       max-width: 100%;
