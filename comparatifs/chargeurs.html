@@ -158,6 +158,17 @@ th:nth-child(2), td:nth-child(2) {
     box-shadow: 0 0 14px rgba(255, 223, 87, 1);
   }
 }
+.badge-inline {
+  width: 36px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  animation: badge-bounce 2s infinite, halo-glow 3s infinite;
+  border-radius: 50%;
+}
+.product-info {
+  position: relative;
+}
 .carousel-buttons {
   display: flex;
   justify-content: center;
@@ -277,15 +288,14 @@ th:nth-child(2), td:nth-child(2) {
 <tr><th>Image</th><th>Produit</th><th>Puissance</th><th>Ports</th><th>Prix</th><th>Note</th></tr>
 </thead>
 <tbody>
-<tr><td><a href="#anker735" onclick="scrollToProduct('anker735')"><img src="/elvyra/assets/produits/anker_735.jpg" width="60"/></a></td><td>Anker 735 GaNPrime</td><td>65W</td><td>2 USB-C + 1 USB-A</td><td>49,99€</td><td>4.7</td></tr>
-<tr><td><a href="#spigen30w" onclick="scrollToProduct('spigen30w')"><img src="/elvyra/assets/produits/spigen_30w.jpg" width="60"/></a></td><td>Spigen 30W</td><td>30W</td><td>1 USB-C</td><td>19,99€</td><td>4.5</td></tr>
-<tr><td><a href="#anker737" onclick="scrollToProduct('anker737')"><img src="/elvyra/assets/produits/anker_737.jpg" width="60"/></a></td><td>Anker 737 GaNPrime</td><td>120W</td><td>2 USB-C + 1 USB-A</td><td>79,99€</td><td>4.8</td></tr>
-<tr><td><a href="#ugreen65w" onclick="scrollToProduct('ugreen65w')"><img src="/elvyra/assets/produits/ugreen_nexode_pro.jpg" width="60"/></a></td><td>UGREEN Nexode Pro 65W</td><td>65W</td><td>2 USB-C + 1 USB-A</td><td>43,99€</td><td>4.6</td></tr>
-<tr><td><a href="#baseus100w" onclick="scrollToProduct('baseus100w')"><img src="/elvyra/assets/produits/baseus_100w.jpg" width="60"/></a></td><td>Baseus 100W</td><td>100W</td><td>2 USB-C + 2 USB-A</td><td>35,99€</td><td>4.5</td></tr>
+<tr><td><a href="#anker735" onclick="scrollToProduct('anker735')"><img src="/elvyra/assets/produits/anker_735.jpg" width="60"/></a></td><td><div class="product-info">Anker 735 GaNPrime<img class="badge-inline" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou"/></div></td><td>65W</td><td>2 USB-C + 1 USB-A</td><td><span class="price-tag">49,99€</span></td><td>4.7</td></tr>
+<tr><td><a href="#spigen30w" onclick="scrollToProduct('spigen30w')"><img src="/elvyra/assets/produits/spigen_30w.jpg" width="60"/></a></td><td><div class="product-info">Spigen 30W<img class="badge-inline" src="/elvyra/assets/icon_abordable.png" alt="Abordable"/></div></td><td>30W</td><td>1 USB-C</td><td><span class="price-tag">19,99€</span></td><td>4.5</td></tr>
+<tr><td><a href="#anker737" onclick="scrollToProduct('anker737')"><img src="/elvyra/assets/produits/anker_737.jpg" width="60"/></a></td><td><div class="product-info">Anker 737 GaNPrime<img class="badge-inline" src="/elvyra/assets/icon_hautdegamme.png" alt="Haut de gamme"/></div></td><td>120W</td><td>2 USB-C + 1 USB-A</td><td><span class="price-tag">79,99€</span></td><td>4.8</td></tr>
+<tr><td><a href="#ugreen65w" onclick="scrollToProduct('ugreen65w')"><img src="/elvyra/assets/produits/ugreen_nexode_pro.jpg" width="60"/></a></td><td>UGREEN Nexode Pro 65W</td><td>65W</td><td>2 USB-C + 1 USB-A</td><td><span class="price-tag">43,99€</span></td><td>4.6</td></tr>
+<tr><td><a href="#baseus100w" onclick="scrollToProduct('baseus100w')"><img src="/elvyra/assets/produits/baseus_100w.jpg" width="60"/></a></td><td>Baseus 100W</td><td>100W</td><td>2 USB-C + 2 USB-A</td><td><span class="price-tag">35,99€</span></td><td>4.5</td></tr>
 </tbody>
 </table>
-</div>
-<div class="icon-legend">
+</div><div class="icon-legend">
 <div><img alt="Coup de cœur" src="/elvyra/assets/icon_chouchou.png"/><br/>Coup de cœur</div>
 <div><img alt="Abordable" src="/elvyra/assets/icon_abordable.png"/><br/>Abordable</div>
 <div><img alt="Haut de gamme" src="/elvyra/assets/icon_hautdegamme.png"/><br/>Haut de gamme</div>
