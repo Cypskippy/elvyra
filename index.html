@@ -91,9 +91,55 @@
     .dropdown a:hover {
       background-color: #444;
     }
+.burger-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+.burger-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ffa8de;
+  background-color: #1f1f2f;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ffa8de;
+}
+.main-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #1f1f2f;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #ffa8de;
+  font-size: 0.95rem;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+}
+.main-menu a {
+  color: #ffa8de;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main-menu a:hover {
+  background-color: #ffaad4;
+  color: #0f0f1a;
+}
   </style>
 </head>
 <body>
+<div class="burger-container">
+  <div class="burger-icon" onclick="toggleMenu()">☰</div>
+  <nav class="main-menu" id="mainMenu">
+    <a href="comparatifs/histoire.html">Histoire d’Elv’yra</a>
+    <a href="comparatifs/apropos.html">À propos</a>
+  </nav>
+</div>
   <header>
     <h1>Elv’Yra compare pour toi</h1>
   </header>
@@ -103,7 +149,7 @@
     <div class="speech">Choisis une catégorie, puis un type de produit… Je travaille pour toi ✨</div>
 
     <div class="buttons-container">
-      <button class="menu-btn" onclick="toggleMenu('menu-hightech')">High-Tech</button>
+      <button class="menu-btn" onclick="toggleDropdown('menu-hightech')">High-Tech</button>
       <div id="menu-hightech" class="dropdown">
         <input type="text" placeholder="Rechercher..." oninput="filterLinks(this, 'menu-hightech')">
         <a href="comparatifs/chargeurs.html">Chargeurs rapides</a>
@@ -112,13 +158,13 @@
         <a href="comparatifs/batteries.html">Batteries externes</a>
       </div>
 
-      <button class="menu-btn" onclick="toggleMenu('menu-maison')">Maison</button>
+      <button class="menu-btn" onclick="toggleDropdown('menu-maison')">Maison</button>
       <div id="menu-maison" class="dropdown">
         <input type="text" placeholder="Rechercher..." oninput="filterLinks(this, 'menu-maison')">
         <!-- Liens à ajouter -->
       </div>
 
-      <button class="menu-btn" onclick="toggleMenu('menu-sport')">Sport</button>
+      <button class="menu-btn" onclick="toggleDropdown('menu-sport')">Sport</button>
       <div id="menu-sport" class="dropdown">
         <input type="text" placeholder="Rechercher..." oninput="filterLinks(this, 'menu-sport')">
         <!-- Liens à ajouter -->
@@ -127,7 +173,7 @@
   </div>
 
   <script>
-    function toggleMenu(id) {
+    function toggleDropdown(id) {
       const menu = document.getElementById(id);
       menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
     }
@@ -140,5 +186,11 @@
       });
     }
   </script>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('mainMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+</script>
 </body>
 </html>
