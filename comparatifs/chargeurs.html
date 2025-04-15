@@ -298,6 +298,89 @@ a[href*="amzn"]:hover {
   background-color: #ffaad4;
   color: #0f0f1a;
 }
+.section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #ffa8de;
+  margin: 2rem 0;
+  animation: pulseTitle 3s infinite;
+  letter-spacing: 0.5px;
+}
+
+@keyframes pulseTitle {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 6px #ffaad4;
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 12px #ffaad4;
+  }
+}
+.section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #ffa8de;
+  margin: 2rem 0;
+  animation: pulseTitle 3s infinite;
+  letter-spacing: 0.5px;
+}
+
+.section-title::before {
+  content: '⬅️';
+  display: inline-block;
+  margin-right: 0.5rem;
+  animation: arrowBounce 1.8s infinite ease-in-out;
+}
+
+.section-title::after {
+  content: '➡️';
+  display: inline-block;
+  margin-left: 0.5rem;
+  animation: arrowBounce 1.8s infinite ease-in-out reverse;
+}
+
+@keyframes pulseTitle {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 6px #ffaad4;
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 12px #ffaad4;
+  }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+  }
+  .section-title::before,
+  .section-title::after {
+    font-size: 1rem;
+    margin: 0 0.25rem;
+  }
+}
+.table-container {
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    animation: scrollHint 2s ease-in-out 1s 2 alternate;
+  }
+}
+
+@keyframes scrollHint {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-10px); }
+  100% { transform: translateX(0); }
+}
 </style>
 </head>
 <body>
@@ -321,7 +404,7 @@ a[href*="amzn"]:hover {
 </header>
 <p class="intro">
   Pour t’aider à y voir clair dans la jungle des chargeurs rapides, Elv’yra a sélectionné les critères qui comptent vraiment : la <strong>puissance</strong> pour une recharge express, le <strong>nombre de ports</strong> pour brancher plusieurs appareils en même temps, le <strong>prix</strong> évidemment, et la <strong>note moyenne</strong> laissée par les utilisateurs. Bref, de quoi choisir sans surchauffer ton cerveau (ni ton téléphone) ⚡😉
-</p><h2>📊 Tableau comparatif <span class="scroll-hint">⇆</span></h2>
+<h2 class="section-title">Tableau comparatif</h2>
 <div class="table-container">
 <table>
 <thead>
@@ -338,10 +421,7 @@ a[href*="amzn"]:hover {
 <div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
 💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
 </div>
-<div class="carousel-buttons">
-<button onclick="scrollCarousel(-1)">⬅️ Précédent</button>
-<button onclick="scrollCarousel(1)">Suivant ➡️</button>
-</div>
+<h2 class="section-title">Fiches produits</h2>
 <div class="carousel-container">
 <div class="product-card" id="anker735"><h3>Anker 735 GaNPrime <img class="badge-inline" src="/elvyra/assets/icon_chouchou.png"/></h3><img class="product-thumbnail" src="/elvyra/assets/produits/anker_735.jpg"/><p><strong>Prix :</strong> <span class="price-tag">49,99€</span></p><p><strong>Points forts :</strong> Technologie GaNPrime, charge intelligente, design compact.</p><p><strong>Utilisation idéale :</strong> Smartphones, tablettes, ordinateurs portables.</p><p><strong>Pourquoi Elv’yra l’adore :</strong> Un équilibre parfait entre puissance, sécurité et compacité. C’est son chouchou 💖</p><p><a 3g1qomf"="" 3g3uwbw"="" 3rf3mzd"="" 3rjuacc"="" 4j7kvxx"="" href="https://amzn.to/42bCqGU">Voir sur Amazon</a></p></div>
 <div class="product-card" id="spigen30w"><h3>Spigen 30W <img class="badge-inline" src="/elvyra/assets/icon_abordable.png"/></h3><img class="product-thumbnail" src="/elvyra/assets/produits/spigen_30w.jpg"/><p><strong>Prix :</strong> <span class="price-tag">19,99€</span></p><p><strong>Points forts :</strong> Excellent rapport qualité/prix, format ultra-compact.</p><p><strong>Utilisation idéale :</strong> Smartphones, appareils USB-C simples.</p><p><strong>Pourquoi Elv’yra le recommande :</strong> Le plus abordable, parfait pour les petits budgets sans compromis 💸</p><p><a href="https://amzn.to/3G1Qomf">Voir sur Amazon</a></p></div>
