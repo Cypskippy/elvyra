@@ -381,62 +381,6 @@ a[href*="amzn"]:hover {
   50% { transform: translateX(-10px); }
   100% { transform: translateX(0); }
 }
-* Nouvelle section de cartes empilées pour tableau */
-.stack-cards-container {
-  display: none;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1rem auto;
-  max-width: 500px;
-}
-
-.stack-card {
-  background: #23233a;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 0 12px rgba(255, 172, 255, 0.1);
-}
-
-.stack-card h3 {
-  margin-top: 0;
-  color: #ffaad4;
-}
-
-.stack-card img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin: 0.5rem 0;
-}
-
-.stack-card .price-tag {
-  background: linear-gradient(145deg, #ffdf5a, #ffd700);
-  color: #1a1a1a;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
-
-.stack-card .note-star {
-  background-color: #ffd700;
-  color: #1f1f1f;
-  padding: 4px 8px;
-  border-radius: 50px;
-  font-weight: bold;
-  display: inline-block;
-  margin-left: 0.5rem;
-}
-
-/* Styles mobiles */
-@media (max-width: 768px) {
-  .table-container {
-    display: none;
-  }
-  .stack-cards-container {
-    display: flex;
-  }
-}
 </style>
 </head>
 <body>
@@ -460,45 +404,6 @@ a[href*="amzn"]:hover {
 </header>
 <p class="intro">
   Pour t’aider à y voir clair dans la jungle des chargeurs rapides, Elv’yra a sélectionné les critères qui comptent vraiment : la <strong>puissance</strong> pour une recharge express, le <strong>nombre de ports</strong> pour brancher plusieurs appareils en même temps, le <strong>prix</strong> évidemment, et la <strong>note moyenne</strong> laissée par les utilisateurs. Bref, de quoi choisir sans surchauffer ton cerveau (ni ton téléphone) ⚡😉
-</p>
-<h2 class="section-title">Comparatif mobile</h2>
-<div class="stack-cards-container">
-  <div class="stack-card">
-    <h3>Anker 735 GaNPrime <span class="note-star">4.7 ★</span></h3>
-    <img src="/elvyra/assets/produits/anker_735.jpg" alt="Anker 735"/>
-    <div class="price-tag">49,99€</div>
-    <p><strong>Puissance :</strong> 65W</p>
-    <p><strong>Ports :</strong> 2 USB-C + 1 USB-A</p>
-  </div>
-  <div class="stack-card">
-    <h3>Spigen 30W <span class="note-star">4.5 ★</span></h3>
-    <img src="/elvyra/assets/produits/spigen_30w.jpg" alt="Spigen 30W"/>
-    <div class="price-tag">19,99€</div>
-    <p><strong>Puissance :</strong> 30W</p>
-    <p><strong>Ports :</strong> 1 USB-C</p>
-  </div>
-  <div class="stack-card">
-    <h3>Anker 737 GaNPrime <span class="note-star">4.8 ★</span></h3>
-    <img src="/elvyra/assets/produits/anker_737.jpg" alt="Anker 737"/>
-    <div class="price-tag">79,99€</div>
-    <p><strong>Puissance :</strong> 120W</p>
-    <p><strong>Ports :</strong> 2 USB-C + 1 USB-A</p>
-  </div>
-  <div class="stack-card">
-    <h3>UGREEN Nexode Pro 65W <span class="note-star">4.6 ★</span></h3>
-    <img src="/elvyra/assets/produits/ugreen_nexode_pro.jpg" alt="UGREEN 65W"/>
-    <div class="price-tag">43,99€</div>
-    <p><strong>Puissance :</strong> 65W</p>
-    <p><strong>Ports :</strong> 2 USB-C + 1 USB-A</p>
-  </div>
-  <div class="stack-card">
-    <h3>Baseus 100W <span class="note-star">4.5 ★</span></h3>
-    <img src="/elvyra/assets/produits/baseus_100w.jpg" alt="Baseus 100W"/>
-    <div class="price-tag">35,99€</div>
-    <p><strong>Puissance :</strong> 100W</p>
-    <p><strong>Ports :</strong> 2 USB-C + 2 USB-A</p>
-  </div>
-</div>
 <h2 class="section-title">Tableau comparatif</h2>
 <div class="table-container">
 <table>
