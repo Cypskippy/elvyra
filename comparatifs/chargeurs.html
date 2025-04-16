@@ -277,6 +277,25 @@ a[href*="amzn"]:hover {
   border-radius: 8px;
   border: 1px solid #ffa8de;
 }
+.burger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+/* Affichage du menu burger */
+.burger-container.open .main-menu {
+  display: flex !important;
+}
+
+.burger-container.open .burger-overlay {
+  display: block;
+}
 .main-menu {
   display: none;
   flex-direction: column;
@@ -386,6 +405,7 @@ a[href*="amzn"]:hover {
 <body>
 <header>
 <div class="burger-container">
+<div class="burger-overlay" onclick="closeMenu()"></div>
 <div class="burger-icon" onclick="toggleMenu()">☰</div>
 <nav class="main-menu" id="mainMenu">
 <a href="../index.html">Accueil</a>
@@ -452,8 +472,12 @@ function scrollCarousel(direction) {
 }
 
 function toggleMenu() {
-  const menu = document.getElementById('mainMenu');
-  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+  const container = document.querySelector('.burger-container');
+  container.classList.toggle('open');
+}
+
+function closeMenu() {
+  document.querySelector('.burger-container').classList.remove('open');
 }
 </script>
 </body>
