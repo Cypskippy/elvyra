@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elv'yra Compare pour Toi</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elv'yra Compare pour Toi</title>
+<style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -152,39 +153,39 @@
 </head>
 <body>
 <div class="burger-container" id="burgerMenu">
-  <div class="burger-icon" onclick="toggleMenu()">☰</div>
-  <nav class="main-menu" id="mainMenu">
-    <a href="comparatifs/histoire.html">Histoire d’Elv’yra</a>
-    <a href="comparatifs/apropos.html">À propos</a>
-  </nav>
+<div class="burger-icon" onclick="toggleMenu()">☰</div>
+<nav class="main-menu" id="mainMenu">
+<a href="comparatifs/histoire.html">Histoire d’Elv’yra</a>
+<a href="comparatifs/apropos.html">À propos</a>
+</nav>
 </div>
 <div class="burger-overlay" onclick="closeMenu()"></div>
-  <header>
-    <h1>Elv’Yra compare... pour toi !</h1>
-  </header>
-  <div class="elvyra-container">
-    <img src="assets/Elvyra_accueil.png" alt="Elv'yra" class="elvyra-img" />
-    <div class="speech">Choisis une catégorie, puis un type de produit… Je travaille pour toi ✨</div>
-    <div class="buttons-container">
-      <button class="menu-btn" onclick="toggleDropdown('menu-hightech')">High-Tech</button>
-      <div id="menu-hightech" class="dropdown">
-        <input type="text" placeholder="Rechercher..." oninput="filterLinks(this, 'menu-hightech')">
-        <a href="comparatifs/chargeurs.html">Chargeurs rapides</a>
-        <a href="comparatifs/coques.html">Coques smartphone</a>
-        <a href="comparatifs/supports.html">Supports smartphone</a>
-        <a href="comparatifs/batteries.html">Batteries externes</a>
-      </div>
-      <button class="menu-btn" onclick="toggleDropdown('menu-maison')">Maison</button>
-      <div id="menu-maison" class="dropdown">
-        <input type="text" placeholder="Rechercher..." oninput="filterLinks(this, 'menu-maison')">
-      </div>
-      <button class="menu-btn" onclick="toggleDropdown('menu-sport')">Sport</button>
-      <div id="menu-sport" class="dropdown">
-        <input type="text" placeholder="Rechercher..." oninput="filterLinks(this, 'menu-sport')">
-      </div>
-    </div>
-  </div>
-  <script>
+<header>
+<h1>Elv’Yra compare... pour toi !</h1>
+</header>
+<div class="elvyra-container">
+<img alt="Elv'yra" class="elvyra-img" src="assets/Elvyra_accueil.png"/>
+<div class="speech">Choisis une catégorie, puis un type de produit… Je travaille pour toi ✨</div>
+<div class="buttons-container">
+<button class="menu-btn" onclick="toggleDropdown('menu-hightech')">High-Tech</button>
+<div class="dropdown" id="menu-hightech">
+<input oninput="filterLinks(this, 'menu-hightech')" placeholder="Rechercher..." type="text"/>
+<a href="comparatifs/chargeurs.html">Chargeurs rapides</a>
+<a href="comparatifs/coques.html">Coques smartphone</a>
+<a href="comparatifs/supports.html">Supports smartphone</a>
+<a href="comparatifs/batteries.html">Batteries externes</a>
+</div>
+<button class="menu-btn" onclick="toggleDropdown('menu-maison')">Maison</button>
+<div class="dropdown" id="menu-maison">
+<input oninput="filterLinks(this, 'menu-maison')" placeholder="Rechercher..." type="text"/>
+</div>
+<button class="menu-btn" onclick="toggleDropdown('menu-sport')">Sport</button>
+<div class="dropdown" id="menu-sport">
+<input oninput="filterLinks(this, 'menu-sport')" placeholder="Rechercher..." type="text"/>
+</div>
+<button class="menu-btn" onclick="toggleDropdown('menu-ordi')">Ordinateurs portables</button><div class="dropdown" id="menu-ordi"><input oninput="filterLinks(this, 'menu-ordi')" placeholder="Rechercher..." type="text"/><a href="comparatifs/pc_bureautique_2025_final.html">Bureautique</a><a href="#" style="opacity: 0.5; pointer-events: none; cursor: default;">Gamer</a><a href="#" style="opacity: 0.5; pointer-events: none; cursor: default;">Polyvalent</a></div></div>
+</div>
+<script>
     function toggleDropdown(id) {
       const menu = document.getElementById(id);
       menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
