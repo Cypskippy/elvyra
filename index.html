@@ -92,64 +92,79 @@
     .dropdown a:hover {
       background-color: #444;
     }
-.burger-container {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 100;
-}
-.burger-icon {
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #ffa8de;
-  background-color: #1f1f2f;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid #ffa8de;
-}
-.main-menu {
-  display: none;
-  flex-direction: column;
-  background-color: #1f1f2f;
-  padding: 0.5rem;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  border: 1px solid #ffa8de;
-  font-size: 0.95rem;
-  position: absolute;
-  top: 3rem;
-  right: 0;
-  min-width: 180px;
-}
-.main-menu a {
-  color: #ffa8de;
-  text-decoration: none;
-  padding: 6px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-.main-menu a:hover {
-  background-color: #ffaad4;
-  color: #0f0f1a;
-}
+    .burger-container {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+    }
+    .burger-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ffa8de;
+      background-color: #1f1f2f;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #ffa8de;
+    }
+    .main-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #1f1f2f;
+      padding: 0.5rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      border: 1px solid #ffa8de;
+      font-size: 0.95rem;
+      position: absolute;
+      top: 3rem;
+      right: 0;
+      min-width: 180px;
+    }
+    .main-menu a {
+      color: #ffa8de;
+      text-decoration: none;
+      padding: 6px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .main-menu a:hover {
+      background-color: #ffaad4;
+      color: #0f0f1a;
+    }
+    .burger-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 99;
+      display: none;
+    }
+    .burger-container.open .main-menu {
+      display: flex !important;
+    }
+    .burger-container.open + .burger-overlay {
+      display: block;
+    }
   </style>
 </head>
 <body>
-<div class="burger-container">
+<div class="burger-container" id="burgerMenu">
   <div class="burger-icon" onclick="toggleMenu()">☰</div>
   <nav class="main-menu" id="mainMenu">
     <a href="comparatifs/histoire.html">Histoire d’Elv’yra</a>
     <a href="comparatifs/apropos.html">À propos</a>
   </nav>
 </div>
+<div class="burger-overlay" onclick="closeMenu()"></div>
   <header>
     <h1>Elv’Yra compare... pour toi !</h1>
   </header>
-
   <div class="elvyra-container">
     <img src="assets/Elvyra_accueil.png" alt="Elv'yra" class="elvyra-img" />
     <div class="speech">Choisis une catégorie, puis un type de produit… Je travaille pour toi ✨</div>
-
     <div class="buttons-container">
       <button class="menu-btn" onclick="toggleDropdown('menu-hightech')">High-Tech</button>
       <div id="menu-hightech" class="dropdown">
@@ -159,21 +174,16 @@
         <a href="comparatifs/supports.html">Supports smartphone</a>
         <a href="comparatifs/batteries.html">Batteries externes</a>
       </div>
-
       <button class="menu-btn" onclick="toggleDropdown('menu-maison')">Maison</button>
       <div id="menu-maison" class="dropdown">
         <input type="text" placeholder="Rechercher..." oninput="filterLinks(this, 'menu-maison')">
-        <!-- Liens à ajouter -->
       </div>
-
       <button class="menu-btn" onclick="toggleDropdown('menu-sport')">Sport</button>
       <div id="menu-sport" class="dropdown">
         <input type="text" placeholder="Rechercher..." oninput="filterLinks(this, 'menu-sport')">
-        <!-- Liens à ajouter -->
       </div>
     </div>
   </div>
-
   <script>
     function toggleDropdown(id) {
       const menu = document.getElementById(id);
@@ -187,12 +197,16 @@
         link.style.display = link.textContent.toLowerCase().includes(filter) ? 'block' : 'none';
       });
     }
+
+    function toggleMenu() {
+      const container = document.getElementById('burgerMenu');
+      container.classList.toggle('open');
+    }
+
+    function closeMenu() {
+      const container = document.getElementById('burgerMenu');
+      container.classList.remove('open');
+    }
   </script>
-<script>
-function toggleMenu() {
-  const menu = document.getElementById('mainMenu');
-  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-}
-</script>
 </body>
 </html>
