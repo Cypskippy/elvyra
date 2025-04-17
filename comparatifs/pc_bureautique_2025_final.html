@@ -490,33 +490,32 @@ a[href*="amzn"]:hover {
 <a class="btn-home" href="../index.html">🏠 Retour à l'accueil</a>
 </footer>
 <script>
-function scrollToProduct(id) {
-  const card = document.getElementById(id);
-  const container = document.querySelector('.carousel-container');
-
-  if (!card || !container) return;
-
-  const carouselY = container.getBoundingClientRect().top + window.scrollY - 100;
-  window.scrollTo({ top: carouselY, behavior: 'smooth' });
-
-  const offsetLeft = card.offsetLeft - container.offsetLeft;
-  container.scrollTo({ left: offsetLeft, behavior: 'smooth' });
+function toggleDropdown(id) {
+  const menu = document.getElementById(id);
+  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
 }
 
-
-function scrollCarousel(direction) {
-  const container = document.querySelector('.carousel-container');
-  const scrollAmount = container.firstElementChild.offsetWidth + 16;
-  container.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+function filterLinks(input, menuId) {
+  const filter = input.value.toLowerCase();
+  const links = document.querySelectorAll(`#${menuId} a`);
+  links.forEach(link => {
+    link.style.display = link.textContent.toLowerCase().includes(filter) ? 'block' : 'none';
+  });
 }
 
 function toggleMenu() {
-  const container = document.querySelector('.burger-container');
+  const container = document.getElementById('burgerMenu');
   container.classList.toggle('open');
 }
 
-function closeMenu() {
-  document.querySelector('.burger-container').classList.remove('open');
+function closeMenu(e) {
+  if (!e.target.closest('.main-menu')) {
+    const container = document.getElementById('burgerMenu');
+    container.classList.remove('open');
+  }
 }
+
+// Ferme le menu seulement si on clique hors du menu (et pas sur un lien)
+document.querySelector('.burger-overlay').addEventListener('click', closeMenu);
 </script></body>
 </html>
