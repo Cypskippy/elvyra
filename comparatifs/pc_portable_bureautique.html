@@ -596,5 +596,23 @@
   <a class="amazon-link" href="https://www.amazon.fr/dp/B0CH162WZW" target="_blank">Voir sur Amazon</a>
 </div>
   </div>
+<script>
+  function toggleMenu() {
+    const container = document.querySelector('.burger-container');
+    if (container.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+  function openMenu() {
+    document.querySelector('.burger-container').classList.add('open');
+    document.querySelector('.burger-overlay').style.display = 'block';
+  }
+  function closeMenu() {
+    document.querySelector('.burger-container').classList.remove('open');
+    document.querySelector('.burger-overlay').style.display = 'none';
+  }
+</script>
 </body>
 </html>
