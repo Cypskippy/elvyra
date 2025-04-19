@@ -12,12 +12,19 @@
       background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
       color: #e8e8f5;
       padding: 1rem;
+      overflow-x: hidden;
     }
     .header-image {
       display: block;
       margin: 0 auto 1.5rem;
       max-width: 220px;
       border-radius: 12px;
+      animation: blink-eyes 6s infinite;
+    }
+    @keyframes blink-eyes {
+      0%, 97%, 100% { filter: brightness(1); }
+      98% { filter: brightness(0.5); }
+      99% { filter: brightness(0.2); }
     }
     h1, h2 {
       text-align: center;
@@ -33,6 +40,14 @@
     .scroll-table {
       overflow-x: auto;
       margin-top: 2rem;
+      padding-bottom: 1rem;
+    }
+    .scroll-table::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-table::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
     }
     .scroll-table table {
       min-width: 900px;
@@ -67,6 +82,7 @@
       font-weight: bold;
       padding: 0.2rem 0.5rem;
       border-radius: 6px;
+      display: inline-block;
     }
     a.amazon-link {
       color: #ffc2e6;
@@ -137,6 +153,13 @@
       font-size: 0.9rem;
       color: #ccc;
     }
+    .carousel-card .price-tag {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .amazon-link {
+      margin-top: 0.8rem;
+    }
   </style>
 </head>
 <body>
@@ -146,6 +169,7 @@
   <h1>💻 Top 5 des Ordinateurs Bureautique 2025</h1>
   <p class="intro">Elv’yra a sélectionné les portables les plus fiables pour t’accompagner dans tes tâches du quotidien : bureautique, visio, navigation web. Ici, pas de bling-bling inutile : du solide, du rapide, du pratique ⚙️💡</p>
 
+ <div class="scroll-table">
   <table>
     <thead>
       <tr>
