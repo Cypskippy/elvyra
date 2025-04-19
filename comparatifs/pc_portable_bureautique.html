@@ -183,9 +183,294 @@
       0%, 100% { opacity: 0.4; }
       50% { opacity: 0.8; }
     }
-  </style>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 Ordinateurs Bureautique - Elv'yra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
+      color: #e8e8f5;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+    .header-image {
+      display: block;
+      margin: 0 auto 1.5rem;
+      max-width: 220px;
+      border-radius: 12px;
+      animation: blink-eyes 6s infinite;
+    }
+    @keyframes blink-eyes {
+      0%, 97%, 100% { filter: brightness(1); }
+      98% { filter: brightness(0.5); }
+      99% { filter: brightness(0.2); }
+    }
+    h1, h2 {
+      text-align: center;
+      color: #ff71c3;
+    }
+    .intro {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 1rem;
+      color: #ccccdd;
+    }
+    .scroll-table {
+      overflow-x: auto;
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+    }
+    .scroll-table::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-table::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+    .scroll-table table {
+      min-width: 900px;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    table th, table td {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    table th {
+      background-color: #2c2c44;
+      color: #ffa8de;
+    }
+    table tr:nth-child(even) {
+      background-color: #1f1f2f;
+    }
+    .badge {
+      font-size: 1.2rem;
+      animation: badge-glow 2s infinite alternate;
+    }
+    @keyframes badge-glow {
+      from { text-shadow: 0 0 5px #ffaad4; }
+      to { text-shadow: 0 0 12px #ffaad4; }
+    }
+    .price-tag {
+      background: #ffd700;
+      color: #1f1f1f;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    a.amazon-link {
+      color: #ffc2e6;
+      font-weight: bold;
+      text-decoration: none;
+      background: #2a2a3a;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: 0.3s ease;
+    }
+    a.amazon-link:hover {
+      background: #ffaad4;
+      color: #0f0f1a;
+    }
+    img.thumbnail {
+      width: 60px;
+      border-radius: 6px;
+    }
+    .carousel {
+      margin-top: 3rem;
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem;
+      scroll-snap-type: x mandatory;
+      position: relative;
+    }
+    .carousel::after {
+      content: '⇠⇢';
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: #aaa;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .carousel-card {
+      flex: 0 0 300px;
+      background-color: #1c1c2e;
+      border-radius: 12px;
+      padding: 1rem;
+      scroll-snap-align: center;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+    .carousel-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card h3 {
+      margin: 0.5rem 0 0;
+      color: #ffb3e6;
+    }
+    .carousel-card .meta {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .badge-icon {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .carousel-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .carousel-card .price-tag {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .amazon-link {
+      margin-top: 0.8rem;
+    }
+  .scroll-table::after {
+      content: '⇠⇢';
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 1.3rem;
+      color: #ffa8de;
+      opacity: 0.4;
+      animation: arrow-blink 2s infinite;
+    }
+    .carousel::before {
+      content: '⇠⇢';
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 1.3rem;
+      color: #ffa8de;
+      opacity: 0.4;
+      animation: arrow-blink 2s infinite;
+    }
+    @keyframes arrow-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+  .menu {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+    }
+    .menu-icon {
+      font-size: 1.8rem;
+      color: #ffaad4;
+      cursor: pointer;
+    }
+    #menu-toggle {
+      display: none;
+    }
+    .menu-items {
+      display: none;
+      list-style: none;
+      background: #1f1f2f;
+      padding: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+    }
+    .menu-items li {
+      margin: 0.3rem 0;
+    }
+    .menu-items a {
+      text-decoration: none;
+      color: #ffa8de;
+      font-weight: 500;
+    }
+    #menu-toggle:checked + .menu-icon + .menu-items {
+      display: block;
+    }  
+  .burger-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+.burger-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ffa8de;
+  background-color: #1f1f2f;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ffa8de;
+}
+.burger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+.burger-container.open .main-menu {
+  display: flex !important;
+}
+.burger-container.open .burger-overlay {
+  display: block;
+}
+.main-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #1f1f2f;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #ffa8de;
+  min-width: 180px;
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  z-index: 101;
+}
+.main-menu a {
+  color: #ffa8de;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main-menu a:hover {
+  background-color: #ffaad4;
+  color: #0f0f1a;
+}
+</style>
 </head>
 <body>
+  <div class="burger-container">
+  <div class="burger-overlay" onclick="closeMenu()"></div>
+  <div class="burger-icon" onclick="toggleMenu()">☰</div>
+  <nav class="main-menu" id="mainMenu">
+    <a href="../index.html">Accueil</a>
+    <a href="histoire.html">Histoire d’Elv’yra</a>
+    <a href="apropos.html">À propos</a>
+  </nav>
+</div>
   <img src="Elvyra _pcportable.png" alt="Elv’yra" class="header-image">
   <h1>💻 Top 5 des Ordinateurs Bureautique 2025</h1>
   <p class="intro">Elv’yra a sélectionné les portables les plus fiables pour t’accompagner dans tes tâches du quotidien : bureautique, visio, navigation web. Ici, pas de bling-bling inutile : du solide, du rapide, du pratique ⚙️💡</p>
