@@ -106,17 +106,6 @@
       scroll-snap-type: x mandatory;
       position: relative;
     }
-    .carousel::after {
-      content: '⇠⇢';
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      font-size: 1.5rem;
-      color: #aaa;
-      opacity: 0.3;
-      pointer-events: none;
-    }
     .carousel-card {
       flex: 0 0 300px;
       background-color: #1c1c2e;
@@ -397,45 +386,45 @@
   <div class="carousel-arrow" onclick="scrollCarousel(1)">→</div>
 </div>
     <div class="carousel-card" id="carte-1">
-  <img src="https://m.media-amazon.com/images/I/81R23WHQRnL._AC_SX679_.jpg" alt="DREAMFYRE">
-  <h3><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">DREAMFYRE ANL5-2.5K</h3>
-  <div class="price-tag">222,99 €</div>
-  <div class="meta">16 Go / 512 Go · Mobile CPU · 16"</div>
-  <p>Un excellent rapport qualité/prix, une RAM généreuse, un SSD rapide et un écran 16'' parfait pour travailler confortablement. Si tu veux un PC fluide sans te ruiner, c’est celui qu’il te faut !</p>
-  <a class="amazon-link" href="https://www.amazon.fr/dp/B0DHZL7NZM" target="_blank">Voir sur Amazon</a>
-</div>
-<!-- 🟦 HTML ajouté dans le carrousel -->
- <div class="carousel-card" id="carte-2">
-  <img src="https://m.media-amazon.com/images/I/71MMLy3yHQL._AC_SX679_.jpg" alt="Zonatrix">
-  <h3>Zonatrix 2-en-1</h3>
-  <div class="price-tag">329,99 €</div>
-  <div class="meta">16 Go / 512 Go · Ryzen 3 3200U · 15,6"</div>
-  <p>Polyvalent et tactile, ce modèle 2-en-1 est parfait pour ceux qui aiment jongler entre clavier et écran tactile. Idéal pour les prises de notes, le télétravail et la navigation rapide !</p>
-  <a class="amazon-link" href="https://www.amazon.fr/dp/B0DTTJ2VQ4" target="_blank">Voir sur Amazon</a>
-</div>
-<div class="carousel-card" id="carte-3">
-  <img src="https://m.media-amazon.com/images/I/81mg8mgRllL._AC_SX679_.jpg" alt="Dell Inspiron">
-  <h3>Dell Inspiron 15</h3>
-  <div class="price-tag">569,00 €</div>
-  <div class="meta">16 Go / 512 Go · Core i5 · 15,6"</div>
-  <p>Solide et sobre, ce Dell propose un i5 performant et une fiabilité reconnue. Pour un usage bureautique pro, avec une petite touche premium, tu peux y aller les yeux fermés !</p>
-  <a class="amazon-link" href="https://www.amazon.fr/dp/B0CW2315M7" target="_blank">Voir sur Amazon</a>
-</div>
-<div class="carousel-card" id="carte-4">
-  <img src="https://m.media-amazon.com/images/I/71fduDGyj4L._AC_SX679_.jpg" alt="KUMNOSAL">
-  <h3>KUMNOSAL 16"</h3>
-  <div class="price-tag">319,99 €</div>
-  <div class="meta">16 Go / 512 Go · Core i5 · 16"</div>
-  <p>Grand écran, Core i5 et design compact : il coche toutes les cases pour la bureautique nomade. Son prix en fait un très bon outsider pour ceux qui veulent de l’efficacité à budget maîtrisé.</p>
-  <a class="amazon-link" href="https://www.amazon.fr/dp/B0DS8PNF5T" target="_blank">Voir sur Amazon</a>
-</div>
-<div class="carousel-card" id="carte-5">
-  <img src="https://m.media-amazon.com/images/I/81G3dVtsrrL._AC_SX679_.jpg" alt="HP Laptop">
-  <h3><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium">HP Laptop 92R24EA</h3>
-  <div class="price-tag">609,00 €</div>
-  <div class="meta">16 Go / 512 Go · Core i7 · 15,6"</div>
-  <p>Un Core i7 pour ceux qui veulent de la réserve sous le capot. Parfait si tu ouvres mille onglets, fais du multitâche ou veux juste que tout roule, tout le temps. Elv’yra valide 💎</p>
-  <a class="amazon-link" href="https://www.amazon.fr/dp/B0CH162WZW" target="_blank">Voir sur Amazon</a>
+    <img src="https://m.media-amazon.com/images/I/81R23WHQRnL._AC_SX679_.jpg" alt="DREAMFYRE">
+    <h3><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Abordable">DREAMFYRE ANL5-2.5K</h3>
+    <div class="price-tag">222,99 €</div>
+    <div class="meta">16 Go / 512 Go · Mobile CPU · 16"</div>
+    <p>Un excellent rapport qualité/prix, une RAM généreuse, un SSD rapide et un écran 16'' parfait pour travailler confortablement. Si tu veux un PC fluide sans te ruiner, c’est celui qu’il te faut !</p>
+    <a class="amazon-link" href="https://www.amazon.fr/dp/B0DHZL7NZM" target="_blank">Voir sur Amazon</a>
+  </div>
+  <div class="carousel-card" id="carte-2">
+    <img src="https://m.media-amazon.com/images/I/71MMLy3yHQL._AC_SX679_.jpg" alt="Zonatrix">
+    <h3><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">Zonatrix 2-en-1</h3>
+    <div class="price-tag">329,99 €</div>
+    <div class="meta">16 Go / 512 Go · Ryzen 3 3200U · 15,6"</div>
+    <p>Polyvalent et tactile, ce modèle 2-en-1 est parfait pour ceux qui aiment jongler entre clavier et écran tactile. Idéal pour les prises de notes, le télétravail et la navigation rapide !</p>
+    <a class="amazon-link" href="https://www.amazon.fr/dp/B0DTTJ2VQ4" target="_blank">Voir sur Amazon</a>
+  </div>
+  <div class="carousel-card" id="carte-3">
+    <img src="https://m.media-amazon.com/images/I/81mg8mgRllL._AC_SX679_.jpg" alt="Dell Inspiron">
+    <h3>Dell Inspiron 15</h3>
+    <div class="price-tag">569,00 €</div>
+    <div class="meta">16 Go / 512 Go · Core i5 · 15,6"</div>
+    <p>Solide et sobre, ce Dell propose un i5 performant et une fiabilité reconnue. Pour un usage bureautique pro, avec une petite touche premium, tu peux y aller les yeux fermés !</p>
+    <a class="amazon-link" href="https://www.amazon.fr/dp/B0CW2315M7" target="_blank">Voir sur Amazon</a>
+  </div>
+  <div class="carousel-card" id="carte-4">
+    <img src="https://m.media-amazon.com/images/I/71fduDGyj4L._AC_SX679_.jpg" alt="KUMNOSAL">
+    <h3>KUMNOSAL 16"</h3>
+    <div class="price-tag">319,99 €</div>
+    <div class="meta">16 Go / 512 Go · Core i5 · 16"</div>
+    <p>Grand écran, Core i5 et design compact : il coche toutes les cases pour la bureautique nomade. Son prix en fait un très bon outsider pour ceux qui veulent de l’efficacité à budget maîtrisé.</p>
+    <a class="amazon-link" href="https://www.amazon.fr/dp/B0DS8PNF5T" target="_blank">Voir sur Amazon</a>
+  </div>
+  <div class="carousel-card" id="carte-5">
+    <img src="https://m.media-amazon.com/images/I/81G3dVtsrrL._AC_SX679_.jpg" alt="HP Laptop">
+    <h3><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium">HP Laptop 92R24EA</h3>
+    <div class="price-tag">609,00 €</div>
+    <div class="meta">16 Go / 512 Go · Core i7 · 15,6"</div>
+    <p>Un Core i7 pour ceux qui veulent de la réserve sous le capot. Parfait si tu ouvres mille onglets, fais du multitâche ou veux juste que tout roule, tout le temps. Elv’yra valide 💎</p>
+    <a class="amazon-link" href="https://www.amazon.fr/dp/B0CH162WZW" target="_blank">Voir sur Amazon</a>
+  </div>
 </div>
 <div class="carousel-nav">
       <div class="carousel-arrow" onclick="scrollCarousel(-1)">←</div>
