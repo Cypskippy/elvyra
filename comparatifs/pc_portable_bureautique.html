@@ -239,15 +239,15 @@
   color: #0f0f1a;
 }
 .carousel-nav {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 0;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
   pointer-events: none;
-  z-index: 999;
+  z-index: 100;
 }
 .carousel-arrow {
   font-size: 2rem;
@@ -260,7 +260,7 @@
   user-select: none;
   background: none;
   border: none;
-  position: fixed;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1000;
@@ -273,7 +273,6 @@
 }
 .carousel-arrow:hover {
   opacity: 0.7;
-}
 }
 @keyframes halo-glow {
   0%, 100% {
