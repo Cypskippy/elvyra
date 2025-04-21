@@ -269,42 +269,6 @@
   font-size: 0.95rem;
   margin-left: 4px;
 }
-.carousel-nav {
-  position: absolute;
-  top: 60%;
-  left: 0;
-  width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  pointer-events: none;
-  z-index: 1000;
-}
-.carousel-arrow {
-  font-size: 2rem;
-  color: #ffffff;
-  opacity: 0.4;
-  padding: 0.5rem 0.8rem;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-  pointer-events: all;
-  user-select: none;
-  background: none;
-  border: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1000;
-}
-.carousel-arrow:first-child {
-  left: 10px;
-}
-.carousel-arrow:last-child {
-  right: 10px;
-}
-.carousel-arrow:hover {
-  opacity: 0.7;
-}
 </style>
 </head>
 <body>
@@ -320,10 +284,6 @@
   <img src="/elvyra/assets/Elvyra _pcportable.png" alt="Elv’yra" class="header-image">
   <h1>💻 Top 5 des Ordinateurs Bureautique 2025</h1>
   <p class="intro">Elv’yra a sélectionné les portables les plus fiables pour t’accompagner dans tes tâches du quotidien : bureautique, visio, navigation web. Ici, pas de bling-bling inutile : du solide, du rapide, du pratique ⚙️💡</p>
-<div class="carousel-nav">
-  <div class="carousel-arrow" onclick="scrollCarousel(-1)">←</div>
-  <div class="carousel-arrow" onclick="scrollCarousel(1)">→</div>
-</div>
   <div class="scroll-table">
     <table>
       <thead>
@@ -415,10 +375,6 @@
 </div>
   <h2>📚 Les conseils d'Elv’yra 💬</h2>
   <div class="carousel" id="carousel">
-<div class="carousel-nav">
-  <div class="carousel-arrow" onclick="scrollCarousel(-1)">←</div>
-  <div class="carousel-arrow" onclick="scrollCarousel(1)">→</div>
-</div>
     <div class="carousel-card" id="carte-1">
     <img src="https://m.media-amazon.com/images/I/81R23WHQRnL._AC_SX679_.jpg" alt="DREAMFYRE">
    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Abordable">
@@ -471,10 +427,6 @@
     <a class="amazon-link" href="https://www.amazon.fr/dp/B0CH162WZW" target="_blank">Voir sur Amazon</a>
   </div>
 </div>
-<div class="carousel-nav">
-      <div class="carousel-arrow" onclick="scrollCarousel(-1)">←</div>
-      <div class="carousel-arrow" onclick="scrollCarousel(1)">→</div>
-    </div>
   </div>
 <script>
   function toggleMenu() {
