@@ -19,187 +19,6 @@
       margin: 0 auto 1.5rem;
       max-width: 220px;
       border-radius: 12px;
-       }
-   
-    h1, h2 {
-      text-align: center;
-      color: #ff71c3;
-    }
-    .intro {
-      max-width: 700px;
-      margin: auto;
-      text-align: center;
-      font-size: 1rem;
-      color: #ccccdd;
-    }
-    .scroll-table {
-      overflow-x: auto;
-      margin-top: 2rem;
-      padding-bottom: 1rem;
-    }
-    .scroll-table::-webkit-scrollbar {
-      height: 8px;
-    }
-    .scroll-table::-webkit-scrollbar-thumb {
-      background: #444;
-      border-radius: 4px;
-    }
-    .scroll-table table {
-      min-width: 900px;
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.95rem;
-    }
-    table th, table td {
-      border: 1px solid #444;
-      padding: 0.8rem;
-      text-align: center;
-      white-space: nowrap;
-    }
-    table th {
-      background-color: #2c2c44;
-      color: #ffa8de;
-    }
-    table tr:nth-child(even) {
-      background-color: #1f1f2f;
-    }
-    .badge {
-      font-size: 1.2rem;
-      animation: badge-glow 2s infinite alternate;
-    }
-    @keyframes badge-glow {
-      from { text-shadow: 0 0 5px #ffaad4; }
-      to { text-shadow: 0 0 12px #ffaad4; }
-    }
-    .price-tag {
-      background: #ffd700;
-      color: #1f1f1f;
-      font-weight: bold;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      display: inline-block;
-    }
-    a.amazon-link {
-      color: #ffc2e6;
-      font-weight: bold;
-      text-decoration: none;
-      background: #2a2a3a;
-      padding: 6px 10px;
-      border-radius: 8px;
-      display: inline-block;
-      transition: 0.3s ease;
-    }
-    a.amazon-link:hover {
-      background: #ffaad4;
-      color: #0f0f1a;
-    }
-    img.thumbnail {
-      width: 60px;
-      border-radius: 6px;
-    }
-    .carousel {
-      margin-top: 3rem;
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 1rem;
-      scroll-snap-type: x mandatory;
-      position: relative;
-    }
-    .carousel::after {
-      content: '⇠⇢';
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      font-size: 1.5rem;
-      color: #aaa;
-      opacity: 0.3;
-      pointer-events: none;
-    }
-    .carousel-card {
-      flex: 0 0 300px;
-      background-color: #1c1c2e;
-      border-radius: 12px;
-      padding: 1rem;
-      scroll-snap-align: center;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-    }
-    .carousel-card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 0.5rem;
-    }
-    .carousel-card h3 {
-      margin: 0.5rem 0 0;
-      color: #ffb3e6;
-    }
-    .carousel-card .meta {
-      font-size: 0.85rem;
-      color: #aaa;
-      margin-bottom: 0.5rem;
-    }
-    .carousel-card .badge-icon {
-      width: 24px;
-      vertical-align: middle;
-      margin-right: 6px;
-    }
-    .carousel-card p {
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-    .carousel-card .price-tag {
-      display: inline-block;
-      margin-bottom: 0.5rem;
-    }
-    .carousel-card .amazon-link {
-      margin-top: 0.8rem;
-    }
- .scroll-table::after {
-      content: '⇠⇢';
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      font-size: 1.3rem;
-      color: #ffa8de;
-      opacity: 0.4;
-      animation: arrow-blink 2s infinite;
-    }
-    .carousel::before {
-      content: '⇠⇢';
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      font-size: 1.3rem;
-      color: #ffa8de;
-      opacity: 0.4;
-      animation: arrow-blink 2s infinite;
-    }
-    @keyframes arrow-blink {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 0.8; }
-    }
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top 5 Ordinateurs Bureautique - Elv'yra</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
-      color: #e8e8f5;
-      padding: 1rem;
-      overflow-x: hidden;
-    }
-    .header-image {
-      display: block;
-      margin: 0 auto 1.5rem;
-      max-width: 220px;
-      border-radius: 12px;
     }
     
     h1, h2 {
@@ -346,16 +165,7 @@
       opacity: 0.4;
       animation: arrow-blink 2s infinite;
     }
-    .carousel::before {
-      content: '⇠⇢';
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      font-size: 1.3rem;
-      color: #ffa8de;
-      opacity: 0.4;
-      animation: arrow-blink 2s infinite;
-    }
+  
     @keyframes arrow-blink {
       0%, 100% { opacity: 0.4; }
       50% { opacity: 0.8; }
@@ -449,6 +259,32 @@
 .main-menu a:hover {
   background-color: #ffaad4;
   color: #0f0f1a;
+}
+<!-- 🟦 CSS ajoutées dans le <style> -->
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  pointer-events: none;
+}
+.carousel-arrow {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffaad4;
+  color: #ffaad4;
+  font-size: 1.5rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  pointer-events: all;
+}
+.carousel-arrow:hover {
+  background-color: #ffaad4;
+  color: #1a1a2f;
 }
 </style>
 </head>
@@ -560,8 +396,13 @@
   <h3><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">DREAMFYRE ANL5-2.5K</h3>
   <div class="price-tag">222,99 €</div>
   <div class="meta">16 Go / 512 Go · Mobile CPU · 16"</div>
-  <p>Un excellent rapport qualité/prix, une RAM généreuse, un SSD rapide et un écran 16'' parfait pour travailler confortablement. Si tu veux un PC fluide sans te ruiner, c’est lui qu’il te faut !</p>
+  <p>Un excellent rapport qualité/prix, une RAM généreuse, un SSD rapide et un écran 16'' parfait pour travailler confortablement. Si tu veux un PC fluide sans te ruiner, c’est celui qu’il te faut !</p>
   <a class="amazon-link" href="https://www.amazon.fr/dp/B0DHZL7NZM" target="_blank">Voir sur Amazon</a>
+</div>
+<!-- 🟦 HTML ajouté dans le carrousel -->
+<div class="carousel-nav">
+  <div class="carousel-arrow" onclick="scrollCarousel(-1)">←</div>
+  <div class="carousel-arrow" onclick="scrollCarousel(1)">→</div>
 </div>
 <div class="carousel-card">
   <img src="https://m.media-amazon.com/images/I/71MMLy3yHQL._AC_SX679_.jpg" alt="Zonatrix">
@@ -612,6 +453,11 @@
   function closeMenu() {
     document.querySelector('.burger-container').classList.remove('open');
     document.querySelector('.burger-overlay').style.display = 'none';
+  }
+function scrollCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const cardWidth = carousel.querySelector('.carousel-card').offsetWidth + 16;
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
   }
 </script>
 </body>
