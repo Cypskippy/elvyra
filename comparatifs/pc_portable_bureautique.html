@@ -249,7 +249,6 @@
   background-color: #ffaad4;
   color: #0f0f1a;
 }
-<!-- 🟦 CSS ajoutées dans le <style> -->
 .carousel-nav {
   position: fixed;
   top: 50%;
@@ -276,6 +275,29 @@
 .carousel-arrow:hover {
   opacity: 0.7;
 }
+@keyframes halo-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px 2px rgba(255, 172, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(255, 172, 255, 0.6);
+  }
+}
+@keyframes badge-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.carousel-card .badge-icon,
+.table-container img.badge-icon {
+  width: 36px;
+  vertical-align: middle;
+  margin-right: 6px;
+  animation: badge-bounce 2s infinite, halo-glow 3s infinite;
+  border-radius: 50%;}
 </style>
 </head>
 <body>
@@ -313,7 +335,7 @@
         <tr>
   <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/81R23WHQRnL._AC_SX679_.jpg" alt="DREAMFYRE"></a></td>
   <td>DREAMFYRE ANL5-2.5K</td>
-  <td><img src="/elvyra/assets/icon_chouchou.png" alt="Chouchou" style="height: 24px;"></td>
+  <td><img src="/elvyra/assets/icon_abordable.png" alt="Prix bas" style="height: 24px;"></td>
   <td><span class="price-tag">222,99 €</span></td>
   <td>4,4 / 5</td>
   <td>16 Go</td>
@@ -326,7 +348,7 @@
 <tr>
   <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71MMLy3yHQL._AC_SX679_.jpg" alt="Zonatrix"></a></td>
   <td>Zonatrix 2-en-1</td>
-  <td></td>
+  <td><img src="/elvyra/assets/icon_chouchou.png" alt="Chouchou" style="height: 24px;"></td></td>
   <td><span class="price-tag">329,99 €</span></td>
   <td>4,5 / 5</td>
   <td>16 Go</td>
@@ -378,7 +400,9 @@
       </tbody>
     </table>
   </div>
-
+<div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
+💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
+</div>
   <h2>📚 Les conseils d'Elv’yra 💬</h2>
   <div class="carousel" id="carousel">
 <div class="carousel-nav">
