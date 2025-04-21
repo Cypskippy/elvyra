@@ -262,16 +262,23 @@
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(255, 172, 255, 0.5);
 }
+.badge-label {
+  display: inline-block;
+  font-weight: bold;
+  color: #ffaad4;
+  font-size: 0.95rem;
+  margin-left: 4px;
+}
 .carousel-nav {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 0;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
   pointer-events: none;
-  z-index: 100;
+  z-index: 1000;
 }
 .carousel-arrow {
   font-size: 2rem;
@@ -313,7 +320,10 @@
   <img src="/elvyra/assets/Elvyra _pcportable.png" alt="Elv’yra" class="header-image">
   <h1>💻 Top 5 des Ordinateurs Bureautique 2025</h1>
   <p class="intro">Elv’yra a sélectionné les portables les plus fiables pour t’accompagner dans tes tâches du quotidien : bureautique, visio, navigation web. Ici, pas de bling-bling inutile : du solide, du rapide, du pratique ⚙️💡</p>
-
+<div class="carousel-nav">
+  <div class="carousel-arrow" onclick="scrollCarousel(-1)">←</div>
+  <div class="carousel-arrow" onclick="scrollCarousel(1)">→</div>
+</div>
   <div class="scroll-table">
     <table>
       <thead>
