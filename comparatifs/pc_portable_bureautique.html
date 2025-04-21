@@ -238,6 +238,30 @@
   background-color: #ffaad4;
   color: #0f0f1a;
 }
+@keyframes halo-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px 2px rgba(255, 172, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(255, 172, 255, 0.6);
+  }
+}
+@keyframes badge-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.badge-icon {
+  width: 44px;
+  vertical-align: middle;
+  margin-right: 6px;
+  animation: badge-bounce 2s infinite, halo-glow 3s infinite;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 172, 255, 0.5);
+}
 .carousel-nav {
   position: absolute;
   top: 50%;
@@ -274,29 +298,6 @@
 .carousel-arrow:hover {
   opacity: 0.7;
 }
-@keyframes halo-glow {
-  0%, 100% {
-    box-shadow: 0 0 6px 2px rgba(255, 172, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 12px 4px rgba(255, 172, 255, 0.6);
-  }
-}
-@keyframes badge-bounce {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
-}
-.carousel-card .badge-icon,
-.table-container img.badge-icon {
-  width: 36px;
-  vertical-align: middle;
-  margin-right: 6px;
-  animation: badge-bounce 2s infinite, halo-glow 3s infinite;
-  border-radius: 50%;}
 </style>
 </head>
 <body>
