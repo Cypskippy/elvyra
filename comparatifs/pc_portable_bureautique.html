@@ -144,18 +144,7 @@
     .carousel-card .amazon-link {
       margin-top: 0.8rem;
     }
-  .scroll-table::after {
-      content: '⇠⇢';
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      font-size: 1.3rem;
-      color: #ffa8de;
-      opacity: 0.4;
-      animation: arrow-blink 2s infinite;
-    }
-  
-    @keyframes arrow-blink {
+     @keyframes arrow-blink {
       0%, 100% { opacity: 0.4; }
       50% { opacity: 0.8; }
     }
@@ -271,9 +260,20 @@
   user-select: none;
   background: none;
   border: none;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+.carousel-arrow:first-child {
+  left: 10px;
+}
+.carousel-arrow:last-child {
+  right: 10px;
 }
 .carousel-arrow:hover {
   opacity: 0.7;
+}
 }
 @keyframes halo-glow {
   0%, 100% {
