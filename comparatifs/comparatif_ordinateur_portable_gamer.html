@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 des Ordinateur portable gamer - Elv'yra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
+      color: #e8e8f5;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+    .header-image {
+      display: block;
+      margin: 0 auto 1.5rem;
+      max-width: 220px;
+      border-radius: 12px;
+    }
+    
+    h1, h2 {
+      text-align: center;
+      color: #ff71c3;
+    }
+    .intro {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 1rem;
+      color: #ccccdd;
+    }
+    .scroll-table {
+      overflow-x: auto;
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+    }
+    .scroll-table::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-table::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+    .scroll-table table {
+      min-width: 900px;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    table th, table td {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    table th {
+      background-color: #2c2c44;
+      color: #ffa8de;
+    }
+    table tr:nth-child(even) {
+      background-color: #1f1f2f;
+    }
+    .badge {
+      font-size: 1.2rem;
+      animation: badge-glow 2s infinite alternate;
+    }
+    @keyframes badge-glow {
+      from { text-shadow: 0 0 5px #ffaad4; }
+      to { text-shadow: 0 0 12px #ffaad4; }
+    }
+    .price-tag {
+      background: #ffd700;
+      color: #1f1f1f;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    a.amazon-link {
+      color: #ffc2e6;
+      font-weight: bold;
+      text-decoration: none;
+      background: #2a2a3a;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: 0.3s ease;
+    }
+    a.amazon-link:hover {
+      background: #ffaad4;
+      color: #0f0f1a;
+    }
+    img.thumbnail {
+      width: 60px;
+      border-radius: 6px;
+    }
+    .carousel {
+      margin-top: 3rem;
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem;
+      scroll-snap-type: x mandatory;
+      position: relative;
+    }
+    .carousel-card {
+      flex: 0 0 300px;
+      background-color: #1c1c2e;
+      border-radius: 12px;
+      padding: 1rem;
+      scroll-snap-align: center;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+    .carousel-card img {
+      width: 100%;
+	max-width : 200px;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card h3 {
+      margin: 0.5rem 0 0;
+      color: #ffb3e6;
+    }
+    .carousel-card .meta {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .badge-icon {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .carousel-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .carousel-card .price-tag {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .amazon-link {
+      margin-top: 0.8rem;
+    }
+     @keyframes arrow-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+  .menu {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+    }
+    .menu-icon {
+      font-size: 1.8rem;
+      color: #ffaad4;
+      cursor: pointer;
+    }
+    #menu-toggle {
+      display: none;
+    }
+    .menu-items {
+      display: none;
+      list-style: none;
+      background: #1f1f2f;
+      padding: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+    }
+    .menu-items li {
+      margin: 0.3rem 0;
+    }
+    .menu-items a {
+      text-decoration: none;
+      color: #ffa8de;
+      font-weight: 500;
+    }
+    #menu-toggle:checked + .menu-icon + .menu-items {
+      display: block;
+    }  
+  .burger-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+.burger-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ffa8de;
+  background-color: #1f1f2f;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ffa8de;
+}
+.burger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+.burger-container.open .main-menu {
+  display: flex !important;
+}
+.burger-container.open .burger-overlay {
+  display: block;
+}
+.main-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #1f1f2f;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #ffa8de;
+  min-width: 180px;
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  z-index: 101;
+}
+.main-menu a {
+  color: #ffa8de;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main-menu a:hover {
+  background-color: #ffaad4;
+  color: #0f0f1a;
+}
+@keyframes halo-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px 2px rgba(255, 172, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(255, 172, 255, 0.6);
+  }
+}
+@keyframes badge-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.badge-icon {
+  width: 44px;
+  vertical-align: middle;
+  margin-right: 6px;
+  animation: badge-bounce 2s infinite, halo-glow 3s infinite;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 172, 255, 0.5);
+}
+.badge-label {
+  display: inline-block;
+  font-weight: bold;
+  color: #ffaad4;
+  font-size: 0.95rem;
+  margin-left: 4px;
+}
+</style>
+</head>
+<body>
+  <div class="burger-container">
+  <div class="burger-overlay" onclick="closeMenu()"></div>
+  <div class="burger-icon" onclick="toggleMenu()">☰</div>
+  <nav class="main-menu" id="mainMenu">
+    <a href="../index.html">Accueil</a>
+    <a href="histoire.html">Histoire d’Elv’yra</a>
+    <a href="apropos.html">À propos</a>
+  </nav>
+</div>
+  <img src="/elvyra/assets/Elvyra _pcportable.png" alt="Elv’yra" class="header-image">
+  <h1>💻 Top 5 des Ordinateur portable gamer 2025</h1>
+  <p class="intro"></p>
+  <div class="scroll-table">
+    <table>
+      <thead>
+        <tr>
+        <th>Image</th>
+        <th>Nom</th>
+        <th>Badge</th>
+        <th>Prix</th>
+        <th>Note</th>
+        <th>Processeur</th>
+        <th>Carte graphique (GPU)</th>
+        <th>RAM</th>
+        <th>Écran</th>
+        <th>Stockage</th>
+        <th>Amazon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+  <td><a href="#carte-1"><img class="thumbnail" src="https://a.media-amazon.com/images/I/51uFWGCm3GL._AC_SX425_.jpg" alt="Lenovo Legion 5 Pro 6600H"></a></td>
+  <td>Lenovo Legion 5 Pro 6600H</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="ID1"></td>
+  <td><span class="price-tag">1632.99</span></td>
+  <td>-</td>
+  <td>AMD Ryzen™ 5 6600H</td>
+  <td>NVIDIA® GeForce RTX™ 3050 Ti</td>
+  <td>16 GB DDR5</td>
+  <td>15.6″ FHD (1920 x 1080)</td>
+  <td>1 To</td>
+  <td><a class="amazon-link" href="https://amzn.to/4jNjTqp" target="_blank">Voir</a></td>
+</tr>
+<tr>
+  <td><a href="#carte-2"><img class="thumbnail" src="https://a.media-amazon.com/images/I/71SW6JZjswL._AC_SX425_.jpg" alt="ASUS ROG Zephyrus G14"></a></td>
+  <td>ASUS ROG Zephyrus G14</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="ID2"></td>
+  <td><span class="price-tag">1799.99</span></td>
+  <td>-</td>
+  <td>AMD Ryzen 7 8845HS</td>
+  <td>NVIDIA RTX 4060 </td>
+  <td>16 GB DDR5</td>
+  <td>14 Pouces 3K OLED 120Hz</td>
+  <td>1 To</td>
+  <td><a class="amazon-link" href="https://amzn.to/3EAx0wg" target="_blank">Voir</a></td>
+</tr>
+<tr>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://a.media-amazon.com/images/I/71yABzPcfcL._AC_SX679_.jpg" alt="MSI Raider GE78 HX"></a></td>
+  <td>MSI Raider GE78 HX</td>
+  <td></td>
+  <td><span class="price-tag">2450</span></td>
+  <td></td>
+  <td>Intel® Core™ i9 14900HX</td>
+  <td>GeForce RTX™ 4090</td>
+  <td>32 GB DDR5</td>
+  <td>Écran 17" QHD+ 240Hz</td>
+  <td>2 To</td>
+  <td><a class="amazon-link" href="https://amzn.to/443kL5H" target="_blank">Voir</a></td>
+</tr>
+<tr>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://a.media-amazon.com/images/I/814MWmHR66L._AC_SX425_.jpg" alt="Razer Blade 16 (2025)"></a></td>
+  <td>Razer Blade 16 (2025)</td>
+  <td></td>
+  <td><span class="price-tag">2999.99</span></td>
+  <td></td>
+  <td>Ryzen AI 9 365</td>
+  <td>Geforce RTX 5070 Ti</td>
+  <td>32GB LPDDR5</td>
+  <td>OLED 16" Ecran QHD+ 240Hz</td>
+  <td>1 To</td>
+  <td><a class="amazon-link" href="https://amzn.to/4lFwpdn" target="_blank">Voir</a></td>
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://a.media-amazon.com/images/I/711uuQAhKKL._AC_SX425_.jpg" alt="Alienware m16 R2"></a></td>
+  <td>Alienware m16 R2</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="ID5"></td>
+  <td><span class="price-tag">2509</span></td>
+  <td></td>
+  <td>Intel Core Ultra 9 Series 1</td>
+  <td>NVIDIA GeForce RTX 4070</td>
+  <td>32 GB DDR5</td>
+  <td>Écran 16" QHD+ (2 560 x 1 600) 240Hz, 3 ms</td>
+  <td>1 To</td>
+  <td><a class="amazon-link" href="https://amzn.to/4jrampc" target="_blank">Voir</a></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+<div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
+💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
+</div>
+  <h2>📚 Les conseils d'Elv’yra 💬</h2>
+<div class="carousel" id="carousel">
+   <div class="carousel-card" id="carte-1">
+    <img src="https://a.media-amazon.com/images/I/51uFWGCm3GL._AC_SX425_.jpg" alt="Lenovo Legion 5 Pro 6600H">
+    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="ID1">
+    <span class="badge-label">ID1</span>
+    <h3>Lenovo Legion 5 Pro 6600H</h3>
+    <div class="price-tag">1632.99</div>
+    <div class="meta">AMD Ryzen™ 5 6600H / NVIDIA® GeForce RTX™ 3050 Ti · 16 GB DDR5 · 15.6″ FHD (1920 x 1080)</div>
+    <ul>
+      <li>Écran QHD 165Hz</li>
+      <li>Ryzen 7 6800H performant</li>
+      <li>RTX 3070 Ti intégrée</li>
+    </ul>
+    <p>Le genre de machine qui fait tourner ton jeu et les têtes. Legion, fidèle au poste, même sous pression.</p>
+    <a class="amazon-link" href="https://amzn.to/4jNjTqp" target="_blank">Voir sur Amazon</a>
+  </div>
+
+  <div class="carousel-card" id="carte-2">
+    <img src="https://a.media-amazon.com/images/I/71SW6JZjswL._AC_SX425_.jpg" alt="ASUS ROG Zephyrus G14">
+    <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="ID2">
+    <span class="badge-label">ID2</span>
+    <h3>ASUS ROG Zephyrus G14</h3>
+    <div class="price-tag">1799.99</div>
+    <div class="meta">AMD Ryzen 7 8845HS / NVIDIA RTX 4060  · 16 GB DDR5 · 14 Pouces 3K OLED 120Hz</div>
+    <ul>
+      <li>Compact et léger</li>
+      <li>Écran 120Hz avec AMD Ryzen 9</li>
+      <li>Autonomie solide pour un gamer</li>
+    </ul>
+    <p>Petit format, grosses performances. Ce Zephyrus frappe fort sans prendre de place – Elv’yra adore les ninjas du gaming.</p>
+    <a class="amazon-link" href="https://amzn.to/3EAx0wg" target="_blank">Voir sur Amazon</a>
+  </div>
+
+  <div class="carousel-card" id="carte-3">
+    <img src="https://a.media-amazon.com/images/I/71yABzPcfcL._AC_SX679_.jpg" alt="MSI Raider GE78 HX">
+    <h3>MSI Raider GE78 HX</h3>
+    <div class="price-tag">2450</div>
+    <div class="meta">Intel® Core™ i9 14900HX / GeForce RTX™ 4090 · 32 GB DDR5 · Écran 17" QHD+ 240Hz</div>
+    <ul>
+      <li>i9 de 13e génération</li>
+      <li>GPU RTX 4090</li>
+      <li>Refroidissement avancé MSI Cooler Boost</li>
+    </ul>
+    <p>Une bête de course signée MSI : ça respire la puissance et le RGB assumé. Prépare-toi à décoller.</p>
+    <a class="amazon-link" href="https://amzn.to/443kL5H" target="_blank">Voir sur Amazon</a>
+  </div>
+
+  <div class="carousel-card" id="carte-4">
+    <img src="https://a.media-amazon.com/images/I/814MWmHR66L._AC_SX425_.jpg" alt="Razer Blade 16 (2025)">
+    <h3>Razer Blade 16 (2025)</h3>
+    <div class="price-tag">2999.99</div>
+    <div class="meta">Ryzen AI 9 365 / Geforce RTX 5070 Ti · 32GB LPDDR5 · OLED 16" Ecran QHD+ 240Hz</div>
+    <ul>
+      <li>Mini-LED 240Hz</li>
+      <li>RTX 4080 + Intel i9</li>
+      <li>Finition aluminium haut de gamme</li>
+    </ul>
+    <p>Un châssis affûté, des specs de titan : le Blade tranche dans le vif. Elv’yra approuve cette lame numérique.</p>
+    <a class="amazon-link" href="https://amzn.to/4lFwpdn" target="_blank">Voir sur Amazon</a>
+  </div>
+
+  <div class="carousel-card" id="carte-5">
+    <img src="https://a.media-amazon.com/images/I/711uuQAhKKL._AC_SX425_.jpg" alt="Alienware m16 R2">
+    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium">
+    <span class="badge-label">ID5</span>
+    <h3>Alienware m16 R2</h3>
+    <div class="price-tag">2509</div>
+    <div class="meta">Intel Core Ultra 9 Series 1 / NVIDIA GeForce RTX 4070 · 32 GB DDR5 · Écran 16" QHD+ (2 560 x 1 600) 240Hz, 3 ms</div>
+    <ul>
+      <li>AMD Ryzen 9 dernière gen</li>
+      <li>Écran 240Hz</li>
+      <li>Look spatial et design AlienFX</li>
+    </ul>
+    <p>Alienware balance du lourd avec finesse. Le m16, c’est un vaisseau de guerre dans un costume d’élite.</p>
+    <a class="amazon-link" href="https://amzn.to/4jrampc" target="_blank">Voir sur Amazon</a>
+  </div>
+</div>
+  </div>
+<script>
+  function toggleMenu() {
+    const container = document.querySelector('.burger-container');
+    if (container.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+  function openMenu() {
+    document.querySelector('.burger-container').classList.add('open');
+    document.querySelector('.burger-overlay').style.display = 'block';
+  }
+  function closeMenu() {
+    document.querySelector('.burger-container').classList.remove('open');
+    document.querySelector('.burger-overlay').style.display = 'none';
+  }
+function scrollCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const cardWidth = carousel.querySelector('.carousel-card').offsetWidth + 16;
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      const carousel = document.querySelector('.carousel');
+      const offsetLeft = target.offsetLeft;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      carousel.scrollTo({ left: offsetLeft - 20, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
