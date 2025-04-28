@@ -270,6 +270,86 @@
   font-size: 0.95rem;
   margin-left: 4px;
 }
+.affiliate-tag {
+      font-size: 0.8rem;
+      color: #ffa8de;
+      background: #2a2a3a;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 6px;
+    }
+    .popup-affiliate {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1f1f2f;
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: #ffa8de;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+      z-index: 1000;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+      position: fixed;
+    }
+    .popup-affiliate.show {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .popup-affiliate button.close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #ffa8de;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .popup-affiliate button.action-btn {
+      margin-top: 1rem;
+      background: #ffaad4;
+      color: #1f1f1f;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    @media (max-width: 480px) {
+      .popup-affiliate {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+      .popup-affiliate button.action-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+.amazon-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.info-btn {
+  background: none;
+  border: 1px solid #ffa8de;
+  border-radius: 50%;
+  color: #ffa8de;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -314,7 +394,10 @@
   <td>16 Go</td>
   <td>512 Go SSD</td>
   <td>15.6'' Full HD 144Hz</td>
-  <td><a class="amazon-link" href="https://www.amazon.fr/Acer-ANV15-41-R9NM-Ordinateur-Portable-GeForce/dp/B0D42DPCZ3/ref=sr_1_4_sspa?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2Q7LP0A31VI9H&dib=eyJ2IjoiMSJ9.icBLFshddabN2ziYbcSSDJi2lY0f_MWzHWiUdYr5s5qsgrNasjGFFhly3oDb5sIEOz0lCw55Oef9IyiBWmV_TaitW_yCKat37PH0xW_W2p1mASYFdBdnOq1FpELgySKeAOEx0Vc7nGSkTRzFNiQ3ByNP-gYNMt7Vum8_ETAWRbFpRzmvhfYNylH4-koMTa_SqTDxw-OY0e3jTgYzFbIPznhpKYvlapwjgPaXDRpzucyL_B1kcdO9S8PwOyalqMskpUI4TykyVc_Lz4UZec2uq1ud148vw36EqSp4tUsGPII.NgwN10wZni8aPYUJSa-r_Y1InZticfsl_AnzKytvdp0&dib_tag=se&keywords=Acer%2BNitro%2B5&qid=1745831497&sprefix=acer%2Bnitro%2B5%2Caps%2C86&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">Voir</a></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/Acer-ANV15-41-R9NM-Ordinateur-Portable-GeForce/dp/B0D42DPCZ3/ref=sr_1_4_sspa?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2Q7LP0A31VI9H&dib=eyJ2IjoiMSJ9.icBLFshddabN2ziYbcSSDJi2lY0f_MWzHWiUdYr5s5qsgrNasjGFFhly3oDb5sIEOz0lCw55Oef9IyiBWmV_TaitW_yCKat37PH0xW_W2p1mASYFdBdnOq1FpELgySKeAOEx0Vc7nGSkTRzFNiQ3ByNP-gYNMt7Vum8_ETAWRbFpRzmvhfYNylH4-koMTa_SqTDxw-OY0e3jTgYzFbIPznhpKYvlapwjgPaXDRpzucyL_B1kcdO9S8PwOyalqMskpUI4TykyVc_Lz4UZec2uq1ud148vw36EqSp4tUsGPII.NgwN10wZni8aPYUJSa-r_Y1InZticfsl_AnzKytvdp0&dib_tag=se&keywords=Acer%2BNitro%2B5&qid=1745831497&sprefix=acer%2Bnitro%2B5%2Caps%2C86&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
 </tr>
 <tr>
   <td><a href="#carte-2"><img class="thumbnail" src="https://a.media-amazon.com/images/I/519FtdNipOL._AC_SX425_.jpg" alt="MSI Thin GF63 12VE-009XES"></a></td>
@@ -327,38 +410,16 @@
   <td>16 Go</td>
   <td>512 Go SSD</td>
   <td>15,6" Full HD 144Hz</td>
-  <td><a class="amazon-link" href="https://www.amazon.fr/MSI-Thin-12VE-009XES-512Go-RTX4050/dp/B0C34J2DGZ/ref=sr_1_24?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3UTSS0G6QIBWU&dib=eyJ2IjoiMSJ9.tQrTtcjyxjBL2IsG4eDY_ui2UZWaZquFkebcRl68enw_xXDIt7VTG4nz8HwveQbBir-RATCVgJ6bhFsgnwGDnzFz2Cn_ItlsvKfEYRDwZDfHVAkHUp5PoID_N5WNu-kMln29oqswXezh9GGptpjP_KcwGOeKiSw2kIVGweWyvDaoWGtnQQujd4bqiN7cXEYPh9RIR_zdwPqv5dYrx9I26DIX5igJtbjasuYplFQN8EfeVikHfvuI2GFpf02Ylk7N8JzCGWedp0wVQ39ejHNi1RcQSBJ6QtOBUceLrKeBRZ8.brfqIEBGc1XP_9vhdPpYe13YM_5PcDu5DE312iEIa4s&dib_tag=se&keywords=MSI+Thin+GF63&qid=1745832905&sprefix=msi+thin+gf63%2Caps%2C118&sr=8-24" target="_blank">Voir</a></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/MSI-Thin-12VE-009XES-512Go-RTX4050/dp/B0C34J2DGZ/ref=sr_1_24?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3UTSS0G6QIBWU&dib=eyJ2IjoiMSJ9.tQrTtcjyxjBL2IsG4eDY_ui2UZWaZquFkebcRl68enw_xXDIt7VTG4nz8HwveQbBir-RATCVgJ6bhFsgnwGDnzFz2Cn_ItlsvKfEYRDwZDfHVAkHUp5PoID_N5WNu-kMln29oqswXezh9GGptpjP_KcwGOeKiSw2kIVGweWyvDaoWGtnQQujd4bqiN7cXEYPh9RIR_zdwPqv5dYrx9I26DIX5igJtbjasuYplFQN8EfeVikHfvuI2GFpf02Ylk7N8JzCGWedp0wVQ39ejHNi1RcQSBJ6QtOBUceLrKeBRZ8.brfqIEBGc1XP_9vhdPpYe13YM_5PcDu5DE312iEIa4s&dib_tag=se&keywords=MSI+Thin+GF63&qid=1745832905&sprefix=msi+thin+gf63%2Caps%2C118&sr=8-24" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
 </tr>
 <tr>
-  <td><a href="#carte-3"><img class="thumbnail" src="https://a.media-amazon.com/images/I/61bN69s+GUL._AC_SX425_.jpg" alt="ASUS TUF Gaming F15"></a></td>
-  <td>ASUS TUF Gaming F15</td>
-  <td></td>
-  <td><span class="price-tag">1449€</span></td>
-  <td>4</td>
-  <td>Intel Core i7-12700H</td>
-  <td>NVIDIA GeForce RTX 4070 Laptop GPU</td>
-  <td>16 Go</td>
-  <td>1 To SSD</td>
-  <td>15.6'' Full HD 144Hz</td>
-  <td><a class="amazon-link" href="https://www.amazon.fr/F15-TUF507ZI4-LP019W-Portable-Processeur-i7-12700H-3200MHz/dp/B0DDC7BWJH/ref=sr_1_5_mod_primary_new?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3IEXQ202B5ACM&dib=eyJ2IjoiMSJ9.qq8W61L4ljT_Qw8eQdp2Tvg4BvgNr32SjS_cQ2JlS0H3G320Q6Yz2i9ff0DKIVTgWu00BrrCXn0GmyoOG6ULQHUmjxPIhK3FdQ5NeQ9wSChYzYfiSlWUMp7xEubTz2_-61qAj0fKdH4dqsapfKt4To3tn_OZfn7MlcIm3sJcvt4gq7T5w6x679lLIET9CmT_G7X_G3x8f2Q0javf3mlPWXecEuS7VBJ5nNvXDb2LMTEuXeKgBc7H6KMekxtkslqki_jnD7z0BiUFcZraoB5X2S7x7Ts_7JbWuUNMBXjBC0M.LnkUFX4vZGKGckyWwlPqDaqKWdYCwa6xD2LMpeY1Wjs&dib_tag=se&keywords=ASUS%2BTUF%2BGaming%2BF15&qid=1745833642&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=asus%2Btuf%2Bgaming%2Bf15%2Caps%2C81&sr=8-5&th=1" target="_blank">Voir</a></td>
-</tr>
-<tr>
-  <td><a href="#carte-4"><img class="thumbnail" src="https://a.media-amazon.com/images/I/81BQNYLT90L._AC_SX425_.jpg" alt="Lenovo Legion Slim 5 16ARP9"></a></td>
-  <td>Lenovo Legion Slim 5 16ARP9</td>
-  <td></td>
-  <td><span class="price-tag">1199,90€</span></td>
-  <td>-</td>
-  <td>AMD Ryzen 7 7435HS</td>
-  <td>NVIDIA RTX 4060 8Go</td>
-  <td>16 Go</td>
-  <td>512 Go SSD</td>
-  <td>16'' QHD 165Hz</td>
-  <td><a class="amazon-link" href="https://www.amazon.fr/Lenovo-Legion-Slim-16ARP9-r%C3%A9tro%C3%A9clair%C3%A9/dp/B0DT75FX68/ref=sr_1_3?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3Q1BTTUBPY0JB&dib=eyJ2IjoiMSJ9.R58ENeTzE1rdLPefngw2TRO0qZLN-14li7E6BrsGpSOPKqHLRyOck75-5UcxtLu9gsovtbiDYUfct9EQsHMIJV9tRe5y0LwPN_WCPLgOZMRVQf979eInSCfDaUUEG6NjTCQ_kSGrCbjgBRbnTPR-EWkTrBo9GchGIpF7ApfzWfGO6H1UgPR9XFKIfQge_x-fMF1m2hkQqMXQJz03KPvJHvHjks87wL5jm2HTmFQ0ir0.xB42m3UUMIKezkY6wr1lVsn6E9tEcnHRuYctl9RQ1xk&dib_tag=se&keywords=Lenovo+Legion+5+qhd&qid=1745833877&sprefix=lenovo+legion+5+qhd%2Caps%2C84&sr=8-3" target="_blank">Voir</a></td>
-</tr>
-<tr>
-  <td><a href="#carte-5"><img class="thumbnail" src="https://a.media-amazon.com/images/I/51H5VPblVnL._AC_SX425_.jpg" alt="MSI Katana 15 B13VFK-2201FR"></a></td>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://a.media-amazon.com/images/I/51H5VPblVnL._AC_SX425_.jpg" alt="MSI Katana 15 B13VFK-2201FR"></a></td>
   <td>MSI Katana 15 B13VFK-2201FR</td>
-  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
+  <td></td>
   <td><span class="price-tag">1249€</span></td>
   <td>4.1</td>
   <td>Intel Core i7-13620H</td>
@@ -366,7 +427,45 @@
   <td>16 Go</td>
   <td>1 To SSD</td>
   <td>15.6'' Full HD 144Hz</td>
-  <td><a class="amazon-link" href="https://www.amazon.fr/MSI-Katana-15-B13VFK-2201FR-retroeclair%C3%A9/dp/B0D7W555M5/ref=sr_1_2_sspa?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1NDEZG42YJZ9H&dib=eyJ2IjoiMSJ9.bBCjvpaeCBN6czhNEn1nzV7JPKq3Ohyf17zW0hXARx55Y6pJCxmU1zSQdprMnjA8s-pjRj9scIrPWCAX8JeksaHK6s9UsDcnQqb-MwSY8sjNfUOB4gZ5qVgQtqqPSfJWbJV49VwuPpHMaF0N9Fb6NwRfVl2bpTn56wA5odKflN1bvIGyCRLJ1C9reIAIkg4XtVY7cPIkLJHV1r6I621ayd9x_06Q8Yh1jLCpZbAqtkz5zDuKsoaVImCQgIW3iuTzSJ1jVJ-TJiUP34HnozfL6ZMuv9t9LQpM0A6re9FSV28.ZQZFWlU7Q4d6NZEo_X_WIS3hP01FS4SbZupVkrU5eoQ&dib_tag=se&keywords=msi%2Bkatana%2B15&qid=1745834201&sprefix=msi%2Bkatana%2B15%2Caps%2C86&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">Voir</a></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/MSI-Katana-15-B13VFK-2201FR-retroeclair%C3%A9/dp/B0D7W555M5/ref=sr_1_2_sspa?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1NDEZG42YJZ9H&dib=eyJ2IjoiMSJ9.bBCjvpaeCBN6czhNEn1nzV7JPKq3Ohyf17zW0hXARx55Y6pJCxmU1zSQdprMnjA8s-pjRj9scIrPWCAX8JeksaHK6s9UsDcnQqb-MwSY8sjNfUOB4gZ5qVgQtqqPSfJWbJV49VwuPpHMaF0N9Fb6NwRfVl2bpTn56wA5odKflN1bvIGyCRLJ1C9reIAIkg4XtVY7cPIkLJHV1r6I621ayd9x_06Q8Yh1jLCpZbAqtkz5zDuKsoaVImCQgIW3iuTzSJ1jVJ-TJiUP34HnozfL6ZMuv9t9LQpM0A6re9FSV28.ZQZFWlU7Q4d6NZEo_X_WIS3hP01FS4SbZupVkrU5eoQ&dib_tag=se&keywords=msi%2Bkatana%2B15&qid=1745834201&sprefix=msi%2Bkatana%2B15%2Caps%2C86&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://a.media-amazon.com/images/I/81BQNYLT90L._AC_SX425_.jpg" alt="Lenovo Legion Slim 5 16ARP9"></a></td>
+  <td>Lenovo Legion Slim 5 16ARP9</td>
+  <td></td>
+  <td><span class="price-tag">1199.9€</span></td>
+  <td>-</td>
+  <td>AMD Ryzen 7 7435HS</td>
+  <td>NVIDIA RTX 4060 8Go</td>
+  <td>16 Go</td>
+  <td>512 Go SSD</td>
+  <td>16'' QHD 165Hz</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/Lenovo-Legion-Slim-16ARP9-r%C3%A9tro%C3%A9clair%C3%A9/dp/B0DT75FX68/ref=sr_1_3?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3Q1BTTUBPY0JB&dib=eyJ2IjoiMSJ9.R58ENeTzE1rdLPefngw2TRO0qZLN-14li7E6BrsGpSOPKqHLRyOck75-5UcxtLu9gsovtbiDYUfct9EQsHMIJV9tRe5y0LwPN_WCPLgOZMRVQf979eInSCfDaUUEG6NjTCQ_kSGrCbjgBRbnTPR-EWkTrBo9GchGIpF7ApfzWfGO6H1UgPR9XFKIfQge_x-fMF1m2hkQqMXQJz03KPvJHvHjks87wL5jm2HTmFQ0ir0.xB42m3UUMIKezkY6wr1lVsn6E9tEcnHRuYctl9RQ1xk&dib_tag=se&keywords=Lenovo+Legion+5+qhd&qid=1745833877&sprefix=lenovo+legion+5+qhd%2Caps%2C84&sr=8-3" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://a.media-amazon.com/images/I/61bN69s+GUL._AC_SX425_.jpg" alt="ASUS TUF Gaming F15"></a></td>
+  <td>ASUS TUF Gaming F15</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
+  <td><span class="price-tag">1449€</span></td>
+  <td>4</td>
+  <td>Intel Core i7-12700H</td>
+  <td>NVIDIA GeForce RTX 4070 Laptop GPU</td>
+  <td>16 Go</td>
+  <td>1 To SSD</td>
+  <td>15.6'' Full HD 144Hz</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/F15-TUF507ZI4-LP019W-Portable-Processeur-i7-12700H-3200MHz/dp/B0DDC7BWJH/ref=sr_1_5_mod_primary_new?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3IEXQ202B5ACM&dib=eyJ2IjoiMSJ9.qq8W61L4ljT_Qw8eQdp2Tvg4BvgNr32SjS_cQ2JlS0H3G320Q6Yz2i9ff0DKIVTgWu00BrrCXn0GmyoOG6ULQHUmjxPIhK3FdQ5NeQ9wSChYzYfiSlWUMp7xEubTz2_-61qAj0fKdH4dqsapfKt4To3tn_OZfn7MlcIm3sJcvt4gq7T5w6x679lLIET9CmT_G7X_G3x8f2Q0javf3mlPWXecEuS7VBJ5nNvXDb2LMTEuXeKgBc7H6KMekxtkslqki_jnD7z0BiUFcZraoB5X2S7x7Ts_7JbWuUNMBXjBC0M.LnkUFX4vZGKGckyWwlPqDaqKWdYCwa6xD2LMpeY1Wjs&dib_tag=se&keywords=ASUS%2BTUF%2BGaming%2BF15&qid=1745833642&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=asus%2Btuf%2Bgaming%2Bf15%2Caps%2C81&sr=8-5&th=1" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
 </tr>
       </tbody>
     </table>
@@ -374,6 +473,7 @@
 <div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
 💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
 </div>
+
   <h2>📚 Les conseils d'Elv’yra 💬</h2>
 <div class="carousel" id="carousel">
    <div class="carousel-card" id="carte-1">
@@ -389,7 +489,10 @@
       <li>Clavier rétroéclairé agréable</li>
     </ul>
     <p>Un allié solide pour gamer sans exploser son budget. Le Nitro 5 te propulse dans tes batailles épiques sans te ruiner. Elv'Yra valide, petit prix mais gros cran ! 🚀</p>
-    <a class="amazon-link" href="https://www.amazon.fr/Acer-ANV15-41-R9NM-Ordinateur-Portable-GeForce/dp/B0D42DPCZ3/ref=sr_1_4_sspa?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2Q7LP0A31VI9H&dib=eyJ2IjoiMSJ9.icBLFshddabN2ziYbcSSDJi2lY0f_MWzHWiUdYr5s5qsgrNasjGFFhly3oDb5sIEOz0lCw55Oef9IyiBWmV_TaitW_yCKat37PH0xW_W2p1mASYFdBdnOq1FpELgySKeAOEx0Vc7nGSkTRzFNiQ3ByNP-gYNMt7Vum8_ETAWRbFpRzmvhfYNylH4-koMTa_SqTDxw-OY0e3jTgYzFbIPznhpKYvlapwjgPaXDRpzucyL_B1kcdO9S8PwOyalqMskpUI4TykyVc_Lz4UZec2uq1ud148vw36EqSp4tUsGPII.NgwN10wZni8aPYUJSa-r_Y1InZticfsl_AnzKytvdp0&dib_tag=se&keywords=Acer%2BNitro%2B5&qid=1745831497&sprefix=acer%2Bnitro%2B5%2Caps%2C86&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">Voir sur Amazon</a>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/Acer-ANV15-41-R9NM-Ordinateur-Portable-GeForce/dp/B0D42DPCZ3/ref=sr_1_4_sspa?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2Q7LP0A31VI9H&dib=eyJ2IjoiMSJ9.icBLFshddabN2ziYbcSSDJi2lY0f_MWzHWiUdYr5s5qsgrNasjGFFhly3oDb5sIEOz0lCw55Oef9IyiBWmV_TaitW_yCKat37PH0xW_W2p1mASYFdBdnOq1FpELgySKeAOEx0Vc7nGSkTRzFNiQ3ByNP-gYNMt7Vum8_ETAWRbFpRzmvhfYNylH4-koMTa_SqTDxw-OY0e3jTgYzFbIPznhpKYvlapwjgPaXDRpzucyL_B1kcdO9S8PwOyalqMskpUI4TykyVc_Lz4UZec2uq1ud148vw36EqSp4tUsGPII.NgwN10wZni8aPYUJSa-r_Y1InZticfsl_AnzKytvdp0&dib_tag=se&keywords=Acer%2BNitro%2B5&qid=1745831497&sprefix=acer%2Bnitro%2B5%2Caps%2C86&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
   </div>
 
   <div class="carousel-card" id="carte-2">
@@ -405,41 +508,14 @@
       <li>Très bon refroidissement</li>
     </ul>
     <p>Le MSI Thin GF63 fait rimer finesse et puissance. Léger mais nerveux, il est taillé pour tes plus grandes batailles sans te plomber le dos. Elv'Yra le recommande chaudement ! ⚡</p>
-    <a class="amazon-link" href="https://www.amazon.fr/MSI-Thin-12VE-009XES-512Go-RTX4050/dp/B0C34J2DGZ/ref=sr_1_24?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3UTSS0G6QIBWU&dib=eyJ2IjoiMSJ9.tQrTtcjyxjBL2IsG4eDY_ui2UZWaZquFkebcRl68enw_xXDIt7VTG4nz8HwveQbBir-RATCVgJ6bhFsgnwGDnzFz2Cn_ItlsvKfEYRDwZDfHVAkHUp5PoID_N5WNu-kMln29oqswXezh9GGptpjP_KcwGOeKiSw2kIVGweWyvDaoWGtnQQujd4bqiN7cXEYPh9RIR_zdwPqv5dYrx9I26DIX5igJtbjasuYplFQN8EfeVikHfvuI2GFpf02Ylk7N8JzCGWedp0wVQ39ejHNi1RcQSBJ6QtOBUceLrKeBRZ8.brfqIEBGc1XP_9vhdPpYe13YM_5PcDu5DE312iEIa4s&dib_tag=se&keywords=MSI+Thin+GF63&qid=1745832905&sprefix=msi+thin+gf63%2Caps%2C118&sr=8-24" target="_blank">Voir sur Amazon</a>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/MSI-Thin-12VE-009XES-512Go-RTX4050/dp/B0C34J2DGZ/ref=sr_1_24?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3UTSS0G6QIBWU&dib=eyJ2IjoiMSJ9.tQrTtcjyxjBL2IsG4eDY_ui2UZWaZquFkebcRl68enw_xXDIt7VTG4nz8HwveQbBir-RATCVgJ6bhFsgnwGDnzFz2Cn_ItlsvKfEYRDwZDfHVAkHUp5PoID_N5WNu-kMln29oqswXezh9GGptpjP_KcwGOeKiSw2kIVGweWyvDaoWGtnQQujd4bqiN7cXEYPh9RIR_zdwPqv5dYrx9I26DIX5igJtbjasuYplFQN8EfeVikHfvuI2GFpf02Ylk7N8JzCGWedp0wVQ39ejHNi1RcQSBJ6QtOBUceLrKeBRZ8.brfqIEBGc1XP_9vhdPpYe13YM_5PcDu5DE312iEIa4s&dib_tag=se&keywords=MSI+Thin+GF63&qid=1745832905&sprefix=msi+thin+gf63%2Caps%2C118&sr=8-24" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
   </div>
 
   <div class="carousel-card" id="carte-3">
-    <img src="https://a.media-amazon.com/images/I/61bN69s+GUL._AC_SX425_.jpg" alt="ASUS TUF Gaming F15">
-    <h3>ASUS TUF Gaming F15</h3>
-    <div class="price-tag">1449€</div>
-    <div class="meta">Intel Core i7-12700H / NVIDIA GeForce RTX 4070 Laptop GPU · 16 Go · 1 To SSD</div>
-    <ul>
-      <li>RTX 4070 à prix contenu</li>
-      <li>Solide autonomie pour un gamer</li>
-      <li>Design sobre et robuste</li>
-    </ul>
-    <p>Un guerrier complet, taillé pour la performance sans compromis. L'arme ultime d’Elv'Yra pour conquérir tous les mondes, en jeu comme en travail. 🛡️</p>
-    <a class="amazon-link" href="https://www.amazon.fr/F15-TUF507ZI4-LP019W-Portable-Processeur-i7-12700H-3200MHz/dp/B0DDC7BWJH/ref=sr_1_5_mod_primary_new?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3IEXQ202B5ACM&dib=eyJ2IjoiMSJ9.qq8W61L4ljT_Qw8eQdp2Tvg4BvgNr32SjS_cQ2JlS0H3G320Q6Yz2i9ff0DKIVTgWu00BrrCXn0GmyoOG6ULQHUmjxPIhK3FdQ5NeQ9wSChYzYfiSlWUMp7xEubTz2_-61qAj0fKdH4dqsapfKt4To3tn_OZfn7MlcIm3sJcvt4gq7T5w6x679lLIET9CmT_G7X_G3x8f2Q0javf3mlPWXecEuS7VBJ5nNvXDb2LMTEuXeKgBc7H6KMekxtkslqki_jnD7z0BiUFcZraoB5X2S7x7Ts_7JbWuUNMBXjBC0M.LnkUFX4vZGKGckyWwlPqDaqKWdYCwa6xD2LMpeY1Wjs&dib_tag=se&keywords=ASUS%2BTUF%2BGaming%2BF15&qid=1745833642&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=asus%2Btuf%2Bgaming%2Bf15%2Caps%2C81&sr=8-5&th=1" target="_blank">Voir sur Amazon</a>
-  </div>
-
-  <div class="carousel-card" id="carte-4">
-    <img src="https://a.media-amazon.com/images/I/81BQNYLT90L._AC_SX425_.jpg" alt="Lenovo Legion Slim 5 16ARP9">
-    <h3>Lenovo Legion Slim 5 16ARP9</h3>
-    <div class="price-tag">1199,90€</div>
-    <div class="meta">AMD Ryzen 7 7435HS / NVIDIA RTX 4060 8Go · 16 Go · 512 Go SSD</div>
-    <ul>
-      <li>Écran QHD 165 Hz splendide</li>
-      <li>RTX 4060 performante</li>
-      <li>Design fin</li>
-    </ul>
-    <p>Le Lenovo Legion Slim 5, c’est la puissance qui sait rester discrète. Ultra-performant, léger pour sa catégorie, prêt à te propulser en 1440p sans broncher. Elv'Yra approuve, prêt pour la légende ! ⚔️</p>
-    <a class="amazon-link" href="https://www.amazon.fr/Lenovo-Legion-Slim-16ARP9-r%C3%A9tro%C3%A9clair%C3%A9/dp/B0DT75FX68/ref=sr_1_3?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3Q1BTTUBPY0JB&dib=eyJ2IjoiMSJ9.R58ENeTzE1rdLPefngw2TRO0qZLN-14li7E6BrsGpSOPKqHLRyOck75-5UcxtLu9gsovtbiDYUfct9EQsHMIJV9tRe5y0LwPN_WCPLgOZMRVQf979eInSCfDaUUEG6NjTCQ_kSGrCbjgBRbnTPR-EWkTrBo9GchGIpF7ApfzWfGO6H1UgPR9XFKIfQge_x-fMF1m2hkQqMXQJz03KPvJHvHjks87wL5jm2HTmFQ0ir0.xB42m3UUMIKezkY6wr1lVsn6E9tEcnHRuYctl9RQ1xk&dib_tag=se&keywords=Lenovo+Legion+5+qhd&qid=1745833877&sprefix=lenovo+legion+5+qhd%2Caps%2C84&sr=8-3" target="_blank">Voir sur Amazon</a>
-  </div>
-
-  <div class="carousel-card" id="carte-5">
     <img src="https://a.media-amazon.com/images/I/51H5VPblVnL._AC_SX425_.jpg" alt="MSI Katana 15 B13VFK-2201FR">
-    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium">
-    <span class="badge-label">Premium</span>
     <h3>MSI Katana 15 B13VFK-2201FR</h3>
     <div class="price-tag">1249€</div>
     <div class="meta">Intel Core i7-13620H / NVIDIA GeForce RTX 4060 Laptop GPU · 16 Go · 1 To SSD</div>
@@ -449,11 +525,56 @@
       <li>Refroidissement efficace</li>
     </ul>
     <p>Katana 15 tranche tout sur son passage : fluidité, puissance et élégance. Pour Elv'Yra, c’est le sabre laser ultime du gamer exigeant. 🔥</p>
-    <a class="amazon-link" href="https://www.amazon.fr/MSI-Katana-15-B13VFK-2201FR-retroeclair%C3%A9/dp/B0D7W555M5/ref=sr_1_2_sspa?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1NDEZG42YJZ9H&dib=eyJ2IjoiMSJ9.bBCjvpaeCBN6czhNEn1nzV7JPKq3Ohyf17zW0hXARx55Y6pJCxmU1zSQdprMnjA8s-pjRj9scIrPWCAX8JeksaHK6s9UsDcnQqb-MwSY8sjNfUOB4gZ5qVgQtqqPSfJWbJV49VwuPpHMaF0N9Fb6NwRfVl2bpTn56wA5odKflN1bvIGyCRLJ1C9reIAIkg4XtVY7cPIkLJHV1r6I621ayd9x_06Q8Yh1jLCpZbAqtkz5zDuKsoaVImCQgIW3iuTzSJ1jVJ-TJiUP34HnozfL6ZMuv9t9LQpM0A6re9FSV28.ZQZFWlU7Q4d6NZEo_X_WIS3hP01FS4SbZupVkrU5eoQ&dib_tag=se&keywords=msi%2Bkatana%2B15&qid=1745834201&sprefix=msi%2Bkatana%2B15%2Caps%2C86&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">Voir sur Amazon</a>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/MSI-Katana-15-B13VFK-2201FR-retroeclair%C3%A9/dp/B0D7W555M5/ref=sr_1_2_sspa?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1NDEZG42YJZ9H&dib=eyJ2IjoiMSJ9.bBCjvpaeCBN6czhNEn1nzV7JPKq3Ohyf17zW0hXARx55Y6pJCxmU1zSQdprMnjA8s-pjRj9scIrPWCAX8JeksaHK6s9UsDcnQqb-MwSY8sjNfUOB4gZ5qVgQtqqPSfJWbJV49VwuPpHMaF0N9Fb6NwRfVl2bpTn56wA5odKflN1bvIGyCRLJ1C9reIAIkg4XtVY7cPIkLJHV1r6I621ayd9x_06Q8Yh1jLCpZbAqtkz5zDuKsoaVImCQgIW3iuTzSJ1jVJ-TJiUP34HnozfL6ZMuv9t9LQpM0A6re9FSV28.ZQZFWlU7Q4d6NZEo_X_WIS3hP01FS4SbZupVkrU5eoQ&dib_tag=se&keywords=msi%2Bkatana%2B15&qid=1745834201&sprefix=msi%2Bkatana%2B15%2Caps%2C86&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-4">
+    <img src="https://a.media-amazon.com/images/I/81BQNYLT90L._AC_SX425_.jpg" alt="Lenovo Legion Slim 5 16ARP9">
+    <h3>Lenovo Legion Slim 5 16ARP9</h3>
+    <div class="price-tag">1199.9€</div>
+    <div class="meta">AMD Ryzen 7 7435HS / NVIDIA RTX 4060 8Go · 16 Go · 512 Go SSD</div>
+    <ul>
+      <li>Écran QHD 165 Hz splendide</li>
+      <li>RTX 4060 performante</li>
+      <li>Design fin</li>
+    </ul>
+    <p>Le Lenovo Legion Slim 5, c’est la puissance qui sait rester discrète. Ultra-performant, léger pour sa catégorie, prêt à te propulser en 1440p sans broncher. Elv'Yra approuve, prêt pour la légende ! ⚔️</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/Lenovo-Legion-Slim-16ARP9-r%C3%A9tro%C3%A9clair%C3%A9/dp/B0DT75FX68/ref=sr_1_3?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3Q1BTTUBPY0JB&dib=eyJ2IjoiMSJ9.R58ENeTzE1rdLPefngw2TRO0qZLN-14li7E6BrsGpSOPKqHLRyOck75-5UcxtLu9gsovtbiDYUfct9EQsHMIJV9tRe5y0LwPN_WCPLgOZMRVQf979eInSCfDaUUEG6NjTCQ_kSGrCbjgBRbnTPR-EWkTrBo9GchGIpF7ApfzWfGO6H1UgPR9XFKIfQge_x-fMF1m2hkQqMXQJz03KPvJHvHjks87wL5jm2HTmFQ0ir0.xB42m3UUMIKezkY6wr1lVsn6E9tEcnHRuYctl9RQ1xk&dib_tag=se&keywords=Lenovo+Legion+5+qhd&qid=1745833877&sprefix=lenovo+legion+5+qhd%2Caps%2C84&sr=8-3" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-5">
+    <img src="https://a.media-amazon.com/images/I/61bN69s+GUL._AC_SX425_.jpg" alt="ASUS TUF Gaming F15">
+    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium">
+    <span class="badge-label">Premium</span>
+    <h3>ASUS TUF Gaming F15</h3>
+    <div class="price-tag">1449€</div>
+    <div class="meta">Intel Core i7-12700H / NVIDIA GeForce RTX 4070 Laptop GPU · 16 Go · 1 To SSD</div>
+    <ul>
+      <li>RTX 4070 à prix contenu</li>
+      <li>Solide autonomie pour un gamer</li>
+      <li>Design sobre et robuste</li>
+    </ul>
+    <p>Un guerrier complet, taillé pour la performance sans compromis. L'arme ultime d’Elv'Yra pour conquérir tous les mondes, en jeu comme en travail. 🛡️</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/F15-TUF507ZI4-LP019W-Portable-Processeur-i7-12700H-3200MHz/dp/B0DDC7BWJH/ref=sr_1_5_mod_primary_new?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3IEXQ202B5ACM&dib=eyJ2IjoiMSJ9.qq8W61L4ljT_Qw8eQdp2Tvg4BvgNr32SjS_cQ2JlS0H3G320Q6Yz2i9ff0DKIVTgWu00BrrCXn0GmyoOG6ULQHUmjxPIhK3FdQ5NeQ9wSChYzYfiSlWUMp7xEubTz2_-61qAj0fKdH4dqsapfKt4To3tn_OZfn7MlcIm3sJcvt4gq7T5w6x679lLIET9CmT_G7X_G3x8f2Q0javf3mlPWXecEuS7VBJ5nNvXDb2LMTEuXeKgBc7H6KMekxtkslqki_jnD7z0BiUFcZraoB5X2S7x7Ts_7JbWuUNMBXjBC0M.LnkUFX4vZGKGckyWwlPqDaqKWdYCwa6xD2LMpeY1Wjs&dib_tag=se&keywords=ASUS%2BTUF%2BGaming%2BF15&qid=1745833642&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=asus%2Btuf%2Bgaming%2Bf15%2Caps%2C81&sr=8-5&th=1" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
   </div>
 </div>
   </div>
 <script>
+function openAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.add('show');
+}
+function closeAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.remove('show');
+}
   function toggleMenu() {
     const container = document.querySelector('.burger-container');
     if (container.classList.contains('open')) {
@@ -486,5 +607,10 @@ document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
     });
   });
 </script>
+<div id="popupAffiliate" class="popup-affiliate">
+  <button class="close-btn" onclick="closeAffiliatePopup()">✖</button>
+  <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
+  <button class="action-btn" onclick="closeAffiliatePopup()">Fermer</button>
+</div>
 </body>
 </html>
