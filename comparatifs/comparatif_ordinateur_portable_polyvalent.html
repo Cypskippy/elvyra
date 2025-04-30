@@ -79,20 +79,40 @@
       border-radius: 6px;
       display: inline-block;
     }
-    a.amazon-link {
-      color: #ffc2e6;
-      font-weight: bold;
-      text-decoration: none;
-      background: #2a2a3a;
-      padding: 6px 10px;
-      border-radius: 8px;
+    /* Boutons Amazon et Retour */
+     a.amazon-link,
+    a.back-to-top {
       display: inline-block;
-      transition: 0.3s ease;
+      padding: 0.6rem 1rem;
+      background: #2a2a3a;
+      color: #ffc2e6;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 170, 212, 0.4);
+      transition: background 0.3s ease, color 0.3s ease;
+      /* position static to follow content flow */
+      position: static;
+      margin: 1rem;
     }
-    a.amazon-link:hover {
+    a.amazon-link:hover,
+    a.back-to-top:hover {
       background: #ffaad4;
       color: #0f0f1a;
     }
+    }
+  /* Positionnement des boutons retour */
+    .back-to-top {
+      position: fixed;
+      right: 1rem;
+    }
+    .back-to-top.top {
+      top: 1rem;
+    }
+    .back-to-top.bottom {
+      bottom: 1rem;
+    }
+
     img.thumbnail {
       width: 60px;
       border-radius: 6px;
@@ -350,9 +370,12 @@
   text-align: center;
   cursor: pointer;
 }
+.back-to-top { position: fixed; right: 1rem; z-index: 100;
+}
 </style>
 </head>
 <body>
+<a href="/" class="back-to-top" style="top:1rem;">← Retour à l'accueil</a>
   <div class="burger-container">
   <div class="burger-overlay" onclick="closeMenu()"></div>
   <div class="burger-icon" onclick="toggleMenu()">☰</div>
@@ -607,6 +630,7 @@ document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
     });
   });
 </script>
+<a href="/" class="back-to-top" style="bottom:1rem;">← Retour à l'accueil</a>
 <div id="popupAffiliate" class="popup-affiliate">
   <button class="close-btn" onclick="closeAffiliatePopup()">✖</button>
   <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
