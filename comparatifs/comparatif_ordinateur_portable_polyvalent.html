@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 des Ordinateur portable polyvalent - Elv'yra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
+      color: #e8e8f5;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+    .header-image {
+      display: block;
+      margin: 0 auto 1.5rem;
+      max-width: 220px;
+      border-radius: 12px;
+    }
+    
+    h1, h2 {
+      text-align: center;
+      color: #ff71c3;
+    }
+    .intro {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 1rem;
+      color: #ccccdd;
+    }
+    .scroll-table {
+      overflow-x: auto;
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+    }
+    .scroll-table::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-table::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+    .scroll-table table {
+      min-width: 900px;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    table th, table td {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    table th {
+      background-color: #2c2c44;
+      color: #ffa8de;
+    }
+    table tr:nth-child(even) {
+      background-color: #1f1f2f;
+    }
+    .badge {
+      font-size: 1.2rem;
+      animation: badge-glow 2s infinite alternate;
+    }
+    @keyframes badge-glow {
+      from { text-shadow: 0 0 5px #ffaad4; }
+      to { text-shadow: 0 0 12px #ffaad4; }
+    }
+    .price-tag {
+      background: #ffd700;
+      color: #1f1f1f;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    a.amazon-link {
+      color: #ffc2e6;
+      font-weight: bold;
+      text-decoration: none;
+      background: #2a2a3a;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: 0.3s ease;
+    }
+    a.amazon-link:hover {
+      background: #ffaad4;
+      color: #0f0f1a;
+    }
+    img.thumbnail {
+      width: 60px;
+      border-radius: 6px;
+    }
+    .carousel {
+      margin-top: 3rem;
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem;
+      scroll-snap-type: x mandatory;
+      position: relative;
+    }
+    .carousel-card {
+      flex: 0 0 300px;
+      background-color: #1c1c2e;
+      border-radius: 12px;
+      padding: 1rem;
+      scroll-snap-align: center;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+    .carousel-card img {
+      width: 100%;
+	max-width : 200px;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card h3 {
+      margin: 0.5rem 0 0;
+      color: #ffb3e6;
+    }
+    .carousel-card .meta {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .badge-icon {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .carousel-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .carousel-card .price-tag {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .amazon-link {
+      margin-top: 0.8rem;
+    }
+     @keyframes arrow-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+  .menu {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+    }
+    .menu-icon {
+      font-size: 1.8rem;
+      color: #ffaad4;
+      cursor: pointer;
+    }
+    #menu-toggle {
+      display: none;
+    }
+    .menu-items {
+      display: none;
+      list-style: none;
+      background: #1f1f2f;
+      padding: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+    }
+    .menu-items li {
+      margin: 0.3rem 0;
+    }
+    .menu-items a {
+      text-decoration: none;
+      color: #ffa8de;
+      font-weight: 500;
+    }
+    #menu-toggle:checked + .menu-icon + .menu-items {
+      display: block;
+    }  
+  .burger-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+.burger-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ffa8de;
+  background-color: #1f1f2f;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ffa8de;
+}
+.burger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+.burger-container.open .main-menu {
+  display: flex !important;
+}
+.burger-container.open .burger-overlay {
+  display: block;
+}
+.main-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #1f1f2f;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #ffa8de;
+  min-width: 180px;
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  z-index: 101;
+}
+.main-menu a {
+  color: #ffa8de;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main-menu a:hover {
+  background-color: #ffaad4;
+  color: #0f0f1a;
+}
+@keyframes halo-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px 2px rgba(255, 172, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(255, 172, 255, 0.6);
+  }
+}
+@keyframes badge-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.badge-icon {
+  width: 44px;
+  vertical-align: middle;
+  margin-right: 6px;
+  animation: badge-bounce 2s infinite, halo-glow 3s infinite;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 172, 255, 0.5);
+}
+.badge-label {
+  display: inline-block;
+  font-weight: bold;
+  color: #ffaad4;
+  font-size: 0.95rem;
+  margin-left: 4px;
+}
+.affiliate-tag {
+      font-size: 0.8rem;
+      color: #ffa8de;
+      background: #2a2a3a;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 6px;
+    }
+    .popup-affiliate {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1f1f2f;
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: #ffa8de;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+      z-index: 1000;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+      position: fixed;
+    }
+    .popup-affiliate.show {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .popup-affiliate button.close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #ffa8de;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .popup-affiliate button.action-btn {
+      margin-top: 1rem;
+      background: #ffaad4;
+      color: #1f1f1f;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    @media (max-width: 480px) {
+      .popup-affiliate {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+      .popup-affiliate button.action-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+.amazon-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.info-btn {
+  background: none;
+  border: 1px solid #ffa8de;
+  border-radius: 50%;
+  color: #ffa8de;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+  <div class="burger-container">
+  <div class="burger-overlay" onclick="closeMenu()"></div>
+  <div class="burger-icon" onclick="toggleMenu()">☰</div>
+  <nav class="main-menu" id="mainMenu">
+    <a href="../index.html">Accueil</a>
+    <a href="histoire.html">Histoire d’Elv’yra</a>
+    <a href="apropos.html">À propos</a>
+  </nav>
+</div>
+  <img src="/elvyra/assets/Elvyra _pcportable.png" alt="Elv’yra" class="header-image">
+  <h1>💻 Top 5 des Ordinateur portable polyvalent 2025</h1>
+  <p class="intro">Prêt·e pour un tour d’horizon à la fois pointu et piquant ? Voici ton comparatif “Elv’Yra Approved” de 5 portables polyvalents : du modèle « Bas prix » qui dépanne sans faillir, au « Premium » taillé pour les pros, en passant par le « Coup de cœur » aux atouts irrésistibles et deux challengers prêts à tirer leur épingle du jeu. Chaque fiche met en lumière les forces clés (CPU, mémoire, stockage, écran ou design), pour que tu choisis ton allié digital sans perdre une minute. Allez, en route vers le meilleur du portable !</p>
+  <div class="scroll-table">
+    <table>
+      <thead>
+        <tr>
+        <th>Image</th>
+        <th>Nom</th>
+        <th>Badge</th>
+        <th>Prix</th>
+        <th>Note</th>
+        <th>Ecran</th>
+        <th>Processeur</th>
+        <th>Mémoire vive (RAM)</th>
+        <th>Stockage</th>
+        <th>Autonomie annoncée</th>
+        <th>Amazon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71E2qZw2xuL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="PINSTONE PC Portable"></a></td>
+  <td>PINSTONE PC Portable</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Bas prix"></td>
+  <td><span class="price-tag">218.5€</span></td>
+  <td>4.3</td>
+  <td>15,6 Pouces 1920 x 1080 pixels</td>
+  <td>CPU Celeron N5095</td>
+  <td>16 Go</td>
+  <td>512 Go</td>
+  <td>-</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3ExEXSZ" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+</tr>
+<tr>
+  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/51Qp61i1xZL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="Acer Aspire 3 A317-55P-36YL"></a></td>
+  <td>Acer Aspire 3 A317-55P-36YL</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Coup de coeur"></td>
+  <td><span class="price-tag">449€</span></td>
+  <td>4.4</td>
+  <td>17,3 Pouces 1920 x 1080 pixels</td>
+  <td>Intel Core i3-N305</td>
+  <td>8 Go</td>
+  <td>512 Go</td>
+  <td>Intel UHD Graphics</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/44B7vFN" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71AYkUyhzHL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Monovate Yepbook-N95"></a></td>
+  <td>Monovate Yepbook-N95</td>
+  <td></td>
+  <td><span class="price-tag">269.99€</span></td>
+  <td>4.4</td>
+  <td>15,6 Pouces 1920 x 1080 pixels</td>
+  <td>Intel® Celeron N95</td>
+  <td>16 Go</td>
+  <td>512 Go</td>
+  <td>-</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4k1uOgn" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/51HPh+MK7-L._AC_SX300_SY300_.jpg" alt="Lenovo FullHD 15,6 Zoll"></a></td>
+  <td>Lenovo FullHD 15,6 Zoll</td>
+  <td></td>
+  <td><span class="price-tag">466€</span></td>
+  <td>4.2</td>
+  <td>15,6 Pouces 1920 x 1080 pixels</td>
+  <td>AMD® Ryzen5 7520U 8 Threads, 4.30 GHz</td>
+  <td>16 Go</td>
+  <td>512 Go</td>
+  <td>Radeon™ 610M</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4cUVz3L" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/51Ou5y5mRdL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="Lenovo i7 (17,3 Zoll IPS FHD) "></a></td>
+  <td>Lenovo i7 (17,3 Zoll IPS FHD) </td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
+  <td><span class="price-tag">849€</span></td>
+  <td>4.2</td>
+  <td>17,3 Pouces 1920 x 1080 pixels</td>
+  <td>Intel® Core™ i7 1355U, 10 cœurs, 5.00 GHz</td>
+  <td>24 Go</td>
+  <td>1 To</td>
+  <td>Intel® Iris® XE</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jSAwkl" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+      </tbody>
+    </table>
+  </div>
+<div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
+💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
+</div>
+
+  <h2>📚 Les conseils d'Elv’yra 💬</h2>
+<div class="carousel" id="carousel">
+   <div class="carousel-card" id="carte-1">
+    <img src="https://m.media-amazon.com/images/I/71E2qZw2xuL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="PINSTONE PC Portable">
+    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Bas prix">
+    <span class="badge-label">Bas prix</span>
+    <h3>PINSTONE PC Portable</h3>
+    <div class="price-tag">218.5€</div>
+    <div class="meta">15,6 Pouces 1920 x 1080 pixels / CPU Celeron N5095 · 16 Go · 512 Go</div>
+    <ul>
+      <li>Design professionnel et châssis soigné</li>
+      <li>🖼️ GPU intégré (-), suffisant pour la bureautique</li>
+      <li>🖥️ Chipset graphique intégré fiable pour tâches basiques</li>
+    </ul>
+    <p>Solide et accessible, ce modèle intègre - pour l’essentiel. #ElvYraApproved</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3ExEXSZ" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-2">
+    <img src="https://m.media-amazon.com/images/I/51Qp61i1xZL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="Acer Aspire 3 A317-55P-36YL">
+    <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Coup de coeur">
+    <span class="badge-label">Coup de coeur</span>
+    <h3>Acer Aspire 3 A317-55P-36YL</h3>
+    <div class="price-tag">449€</div>
+    <div class="meta">17,3 Pouces 1920 x 1080 pixels / Intel Core i3-N305 · 8 Go · 512 Go</div>
+    <ul>
+      <li>Performance CPU : 3,06 GHz</li>
+      <li>Poids : 2,1 kg</li>
+      <li>Design professionnel et châssis soigné</li>
+    </ul>
+    <p>Mon coup de cœur : CPU, RAM et intel uhd graphics délivrent un combo gagnant. #ElvYraApproved</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/44B7vFN" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-3">
+    <img src="https://m.media-amazon.com/images/I/71AYkUyhzHL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Monovate Yepbook-N95">
+    <h3>Monovate Yepbook-N95</h3>
+    <div class="price-tag">269.99€</div>
+    <div class="meta">15,6 Pouces 1920 x 1080 pixels / Intel® Celeron N95 · 16 Go · 512 Go</div>
+    <ul>
+      <li>Design professionnel et châssis soigné</li>
+      <li>🖼️ GPU intégré (-), suffisant pour la bureautique</li>
+      <li>🖥️ GPU intégré parfait pour Office et navigation</li>
+    </ul>
+    <p>Performances équilibrées, - inclus pour une expérience fluide. #ElvYraApproved</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4k1uOgn" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-4">
+    <img src="https://m.media-amazon.com/images/I/51HPh+MK7-L._AC_SX300_SY300_.jpg" alt="Lenovo FullHD 15,6 Zoll">
+    <h3>Lenovo FullHD 15,6 Zoll</h3>
+    <div class="price-tag">466€</div>
+    <div class="meta">15,6 Pouces 1920 x 1080 pixels / AMD® Ryzen5 7520U 8 Threads, 4.30 GHz · 16 Go · 512 Go</div>
+    <ul>
+      <li>Design professionnel et châssis soigné</li>
+      <li>🎮 Carte graphique dédiée Radeon™ 610M pour des visuels au top</li>
+      <li>🎨 GPU Radeon™ 610M : booste la vidéo et le graphisme</li>
+    </ul>
+    <p>Performances équilibrées, radeon™ 610m inclus pour une expérience fluide. #ElvYraApproved</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4cUVz3L" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-5">
+    <img src="https://m.media-amazon.com/images/I/51Ou5y5mRdL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="Lenovo i7 (17,3 Zoll IPS FHD) ">
+    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium">
+    <span class="badge-label">Premium</span>
+    <h3>Lenovo i7 (17,3 Zoll IPS FHD) </h3>
+    <div class="price-tag">849€</div>
+    <div class="meta">17,3 Pouces 1920 x 1080 pixels / Intel® Core™ i7 1355U, 10 cœurs, 5.00 GHz · 24 Go · 1 To</div>
+    <ul>
+      <li>Poids : 2,2 kg</li>
+      <li>Design professionnel et châssis soigné</li>
+      <li>🖼️ Graphismes intégrés pour la bureautique et la vidéo</li>
+    </ul>
+    <p>Un bijou polyvalent avec intel® iris® xe intégré, puissance et polyvalence au rendez-vous. #ElvYraApproved</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jSAwkl" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+</div>
+  </div>
+<script>
+function openAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.add('show');
+}
+function closeAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.remove('show');
+}
+  function toggleMenu() {
+    const container = document.querySelector('.burger-container');
+    if (container.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+  function openMenu() {
+    document.querySelector('.burger-container').classList.add('open');
+    document.querySelector('.burger-overlay').style.display = 'block';
+  }
+  function closeMenu() {
+    document.querySelector('.burger-container').classList.remove('open');
+    document.querySelector('.burger-overlay').style.display = 'none';
+  }
+function scrollCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const cardWidth = carousel.querySelector('.carousel-card').offsetWidth + 16;
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      const carousel = document.querySelector('.carousel');
+      const offsetLeft = target.offsetLeft;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      carousel.scrollTo({ left: offsetLeft - 20, behavior: 'smooth' });
+    });
+  });
+</script>
+<div id="popupAffiliate" class="popup-affiliate">
+  <button class="close-btn" onclick="closeAffiliatePopup()">✖</button>
+  <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
+  <button class="action-btn" onclick="closeAffiliatePopup()">Fermer</button>
+</div>
+</body>
+</html>
