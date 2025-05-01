@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 des Support smartphone voiture - Elv'yra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
+      color: #e8e8f5;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+    .header-image {
+      display: block;
+      margin: 0 auto 1.5rem;
+      max-width: 220px;
+      border-radius: 12px;
+    }
+    
+    h1, h2 {
+      text-align: center;
+      color: #ff71c3;
+    }
+    .intro {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 1rem;
+      color: #ccccdd;
+    }
+    .scroll-table {
+      overflow-x: auto;
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+    }
+    .scroll-table::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-table::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+    .scroll-table table {
+      min-width: 900px;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    table th, table td {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    table th {
+      background-color: #2c2c44;
+      color: #ffa8de;
+    }
+    table tr:nth-child(even) {
+      background-color: #1f1f2f;
+    }
+    .badge {
+      font-size: 1.2rem;
+      animation: badge-glow 2s infinite alternate;
+    }
+    @keyframes badge-glow {
+      from { text-shadow: 0 0 5px #ffaad4; }
+      to { text-shadow: 0 0 12px #ffaad4; }
+    }
+    .price-tag {
+      background: #ffd700;
+      color: #1f1f1f;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    /* Boutons Amazon et Retour */
+     a.amazon-link,
+    a.back-to-top {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: #2a2a3a;
+      color: #ffc2e6;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 170, 212, 0.4);
+      transition: background 0.3s ease, color 0.3s ease;
+      /* position static to follow content flow */
+      position: static;
+      margin: 1rem;
+    }
+    a.amazon-link:hover,
+    a.back-to-top:hover {
+      background: #ffaad4;
+      color: #0f0f1a;
+    }
+    }
+  /* Positionnement des boutons retour */
+    .back-to-top {
+      position: fixed;
+      right: 1rem;
+    }
+    .back-to-top.top {
+      top: 1rem;
+    }
+    .back-to-top.bottom {
+      bottom: 1rem;
+    }
+
+    img.thumbnail {
+      width: 60px;
+      border-radius: 6px;
+    }
+    .carousel {
+      margin-top: 3rem;
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem;
+      scroll-snap-type: x mandatory;
+      position: relative;
+    }
+    .carousel-card {
+      flex: 0 0 300px;
+      background-color: #1c1c2e;
+      border-radius: 12px;
+      padding: 1rem;
+      scroll-snap-align: center;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+    .carousel-card img {
+      width: 100%;
+	max-width : 200px;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card h3 {
+      margin: 0.5rem 0 0;
+      color: #ffb3e6;
+    }
+    .carousel-card .meta {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .badge-icon {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .carousel-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .carousel-card .price-tag {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .amazon-link {
+      margin-top: 0.8rem;
+    }
+     @keyframes arrow-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+  .menu {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+    }
+    .menu-icon {
+      font-size: 1.8rem;
+      color: #ffaad4;
+      cursor: pointer;
+    }
+    #menu-toggle {
+      display: none;
+    }
+    .menu-items {
+      display: none;
+      list-style: none;
+      background: #1f1f2f;
+      padding: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+    }
+    .menu-items li {
+      margin: 0.3rem 0;
+    }
+    .menu-items a {
+      text-decoration: none;
+      color: #ffa8de;
+      font-weight: 500;
+    }
+    #menu-toggle:checked + .menu-icon + .menu-items {
+      display: block;
+    }  
+  .burger-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+.burger-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ffa8de;
+  background-color: #1f1f2f;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ffa8de;
+}
+.burger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+.burger-container.open .main-menu {
+  display: flex !important;
+}
+.burger-container.open .burger-overlay {
+  display: block;
+}
+.main-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #1f1f2f;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #ffa8de;
+  min-width: 180px;
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  z-index: 101;
+}
+.main-menu a {
+  color: #ffa8de;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main-menu a:hover {
+  background-color: #ffaad4;
+  color: #0f0f1a;
+}
+@keyframes halo-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px 2px rgba(255, 172, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(255, 172, 255, 0.6);
+  }
+}
+@keyframes badge-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.badge-icon {
+  width: 44px;
+  vertical-align: middle;
+  margin-right: 6px;
+  animation: badge-bounce 2s infinite, halo-glow 3s infinite;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 172, 255, 0.5);
+}
+.badge-label {
+  display: inline-block;
+  font-weight: bold;
+  color: #ffaad4;
+  font-size: 0.95rem;
+  margin-left: 4px;
+}
+.affiliate-tag {
+      font-size: 0.8rem;
+      color: #ffa8de;
+      background: #2a2a3a;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 6px;
+    }
+    .popup-affiliate {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1f1f2f;
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: #ffa8de;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+      z-index: 1000;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+      position: fixed;
+    }
+    .popup-affiliate.show {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .popup-affiliate button.close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #ffa8de;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .popup-affiliate button.action-btn {
+      margin-top: 1rem;
+      background: #ffaad4;
+      color: #1f1f1f;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    @media (max-width: 480px) {
+      .popup-affiliate {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+      .popup-affiliate button.action-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+.amazon-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.info-btn {
+  background: none;
+  border: 1px solid #ffa8de;
+  border-radius: 50%;
+  color: #ffa8de;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+.back-to-top { position: fixed; right: 1rem; z-index: 100;
+}
+</style>
+</head>
+<body>
+<a href="/" class="back-to-top" style="top:1rem;">← Retour à l'accueil</a>
+  <div class="burger-container">
+  <div class="burger-overlay" onclick="closeMenu()"></div>
+  <div class="burger-icon" onclick="toggleMenu()">☰</div>
+  <nav class="main-menu" id="mainMenu">
+    <a href="../index.html">Accueil</a>
+    <a href="histoire.html">Histoire d’Elv’yra</a>
+    <a href="apropos.html">À propos</a>
+  </nav>
+</div>
+  <img src="/elvyra/assets/Elvyra _pcportable.png" alt="Elv’yra" class="header-image">
+  <h1>💻 Top 5 des Support smartphone voiture 2025</h1>
+  <p class="intro">🛣️ Envie d’une conduite connectée sans les yeux rivés sur ton écran ? Elv’Yra a enfilé son casque Bluetooth pour dénicher le Top 5 des supports smartphone pour voiture qui transformeront ton habitacle en cockpit high-tech ! Que tu préfères un clip discret sur la grille d’aération, une ventouse inébranlable sur ton pare-brise, ou un aimant ultra-pratique, tu trouveras ici le modèle idéal pour garder ton GPS à portée de main et tes playlists favorites à portée de vue.</p>
+  <div class="scroll-table">
+    <table>
+      <thead>
+        <tr>
+        <th>Image</th>
+        <th>Nom</th>
+        <th>Badge</th>
+        <th>Prix</th>
+        <th>Note</th>
+        <th>Type support (ventouse, grille)</th>
+        <th>Poids</th>
+        <th>Marque</th>
+        <th>Tailles compatibles (en pouces)</th>
+        <th>-</th>
+        <th>Amazon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/81Sgu1YB5OL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Estralia Support Telephone Voiture"></a></td>
+  <td>Estralia Support Telephone Voiture</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Bas prix"></td>
+  <td><span class="price-tag">7.34€</span></td>
+  <td>4,4 sur 5 étoiles</td>
+  <td>Grille d’aération</td>
+  <td>40g</td>
+  <td>Estralia</td>
+  <td>4.0''-7.0''</td>
+  <td></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3YO0uxF" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+</tr>
+<tr>
+  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61FgwBhvn0L.__AC_SX300_SY300_QL70_ML2_.jpg" alt="CIRYCASE Support Téléphone Voiture"></a></td>
+  <td>CIRYCASE Support Téléphone Voiture</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou"></td>
+  <td><span class="price-tag">15.99€</span></td>
+  <td>4,4 sur 5 étoiles</td>
+  <td>Ventouse</td>
+  <td>200 g</td>
+  <td>CIRYCASE</td>
+  <td>4.0''-7.0''</td>
+  <td></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jKDU19" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61wP2beMP0L.__AC_SX300_SY300_QL70_ML2_.jpg" alt="APPS2Car Support Téléphone Voiture"></a></td>
+  <td>APPS2Car Support Téléphone Voiture</td>
+  <td></td>
+  <td><span class="price-tag">19.99€</span></td>
+  <td>4,6 sur 5 étoiles</td>
+  <td>Ventouse</td>
+  <td>250g</td>
+  <td>APPS2Car</td>
+  <td>4.7''-7.0''</td>
+  <td></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/42ClxFC" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71RP7NGWDSL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="LISEN 2024 Support Telephone Voiture Magnetique"></a></td>
+  <td>LISEN 2024 Support Telephone Voiture Magnetique</td>
+  <td></td>
+  <td><span class="price-tag">11.99€</span></td>
+  <td>4,6 sur 5 étoiles</td>
+  <td>Clip grille+ aimant</td>
+  <td>90g</td>
+  <td>LISEN</td>
+  <td>Toutes</td>
+  <td></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jAon3N" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71PD-u4lfML.__AC_SX300_SY300_QL70_ML2_.jpg" alt="JOYROOM Support Téléphone Voiture pour Tableau de Bord"></a></td>
+  <td>JOYROOM Support Téléphone Voiture pour Tableau de Bord</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
+  <td><span class="price-tag">23.99€</span></td>
+  <td>4,5 sur 5 étoiles</td>
+  <td>Tableau de bord</td>
+  <td>170g</td>
+  <td>JOYROOM</td>
+  <td>4.7''-7.0''</td>
+  <td></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jxFwet" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+      </tbody>
+    </table>
+  </div>
+<div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
+💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
+</div>
+
+  <h2>📚 Les conseils d'Elv’yra 💬</h2>
+<div class="carousel" id="carousel">
+   <div class="carousel-card" id="carte-1">
+    <img src="https://m.media-amazon.com/images/I/81Sgu1YB5OL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Estralia Support Telephone Voiture">
+    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Bas prix">
+    <span class="badge-label">Bas prix</span>
+    <h3>Estralia Support Telephone Voiture</h3>
+    <div class="price-tag">7.34€</div>
+    <div class="meta">Grille d’aération / 40g · Estralia · 4.0''-7.0''</div>
+    <ul>
+      <li>Prix ultra-bas</li>
+      <li>Installation simple</li>
+      <li>Maintien stable</li>
+    </ul>
+    <p>Budget-friendly et stable, idéal pour un maintien solide sans se ruiner.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3YO0uxF" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-2">
+    <img src="https://m.media-amazon.com/images/I/61FgwBhvn0L.__AC_SX300_SY300_QL70_ML2_.jpg" alt="CIRYCASE Support Téléphone Voiture">
+    <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">
+    <span class="badge-label">Chouchou</span>
+    <h3>CIRYCASE Support Téléphone Voiture</h3>
+    <div class="price-tag">15.99€</div>
+    <div class="meta">Ventouse / 200 g · CIRYCASE · 4.0''-7.0''</div>
+    <ul>
+      <li>Ventouse améliorée</li>
+      <li>Libération rapide</li>
+      <li>Rotation 360°</li>
+    </ul>
+    <p>Design premium et fonctionnalité intuitive pour un usage quotidien sans prise de tête.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jKDU19" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-3">
+    <img src="https://m.media-amazon.com/images/I/61wP2beMP0L.__AC_SX300_SY300_QL70_ML2_.jpg" alt="APPS2Car Support Téléphone Voiture">
+    <h3>APPS2Car Support Téléphone Voiture</h3>
+    <div class="price-tag">19.99€</div>
+    <div class="meta">Ventouse / 250g · APPS2Car · 4.7''-7.0''</div>
+    <ul>
+      <li>Bras réglable</li>
+      <li>Maintien sécurisé</li>
+      <li>Polyvalent</li>
+    </ul>
+    <p>Flexibilité et robustesse, parfait pour varier les angles de vue.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/42ClxFC" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-4">
+    <img src="https://m.media-amazon.com/images/I/71RP7NGWDSL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="LISEN 2024 Support Telephone Voiture Magnetique">
+    <h3>LISEN 2024 Support Telephone Voiture Magnetique</h3>
+    <div class="price-tag">11.99€</div>
+    <div class="meta">Clip grille+ aimant / 90g · LISEN · Toutes</div>
+    <ul>
+      <li>Bras réglable</li>
+      <li>Maintien sécurisé</li>
+      <li>Polyvalent</li>
+    </ul>
+    <p>Flexibilité et robustesse, parfait pour varier les angles de vue.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jAon3N" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-5">
+    <img src="https://m.media-amazon.com/images/I/71PD-u4lfML.__AC_SX300_SY300_QL70_ML2_.jpg" alt="JOYROOM Support Téléphone Voiture pour Tableau de Bord">
+    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium">
+    <span class="badge-label">Premium</span>
+    <h3>JOYROOM Support Téléphone Voiture pour Tableau de Bord</h3>
+    <div class="price-tag">23.99€</div>
+    <div class="meta">Tableau de bord / 170g · JOYROOM · 4.7''-7.0''</div>
+    <ul>
+      <li>Compatibilité PopGrip</li>
+      <li>Construction premium</li>
+      <li>Maintien optimal</li>
+    </ul>
+    <p>Le choix haut de gamme pour une expérience mains-libres sans compromis.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jxFwet" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+</div>
+  </div>
+<script>
+function openAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.add('show');
+}
+function closeAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.remove('show');
+}
+  function toggleMenu() {
+    const container = document.querySelector('.burger-container');
+    if (container.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+  function openMenu() {
+    document.querySelector('.burger-container').classList.add('open');
+    document.querySelector('.burger-overlay').style.display = 'block';
+  }
+  function closeMenu() {
+    document.querySelector('.burger-container').classList.remove('open');
+    document.querySelector('.burger-overlay').style.display = 'none';
+  }
+function scrollCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const cardWidth = carousel.querySelector('.carousel-card').offsetWidth + 16;
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      const carousel = document.querySelector('.carousel');
+      const offsetLeft = target.offsetLeft;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      carousel.scrollTo({ left: offsetLeft - 20, behavior: 'smooth' });
+    });
+  });
+</script>
+<a href="/" class="back-to-top" style="bottom:1rem;">← Retour à l'accueil</a>
+<div id="popupAffiliate" class="popup-affiliate">
+  <button class="close-btn" onclick="closeAffiliatePopup()">✖</button>
+  <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
+  <button class="action-btn" onclick="closeAffiliatePopup()">Fermer</button>
+</div>
+</body>
+</html>
