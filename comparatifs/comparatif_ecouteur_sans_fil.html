@@ -357,7 +357,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .info-btn {
   background: none;
@@ -371,6 +371,17 @@
   cursor: pointer;
 }
 .back-to-top { position: fixed; right: 1rem; z-index: 100;
+}
+/* on laisse le lien rétrécir au besoin */
+.amazon-link{
+  flex:1 1 auto;    /* le lien peut rapetisser */
+  min-width:0;      /* …même plus petit que son contenu */
+  white-space:normal;/* le texte peut retourner à la ligne dans le lien */
+}
+
+/* le “?” garde sa taille fixe */
+.info-btn{
+  flex:0 0 24px;    /* 24 px et basta */
 }
 </style>
 </head>
@@ -407,85 +418,85 @@
       </thead>
       <tbody>
         <tr>
-  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61CY71zEC6L.__AC_SX300_SY300_QL70_ML2_.jpg" alt="SPORTS EARBUDS Écouteurs sans Fil"></a></td>
-  <td>SPORTS EARBUDS Écouteurs sans Fil</td>
-  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="💰 Meilleur qualité/prix"></td>
-  <td><span class="price-tag">7.99€</span></td>
-  <td>5,0 sur 5 étoiles</td>
+  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/6144jN3kowL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi Buds 6 Play"></a></td>
+  <td>Xiaomi Redmi Buds 6 Play</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas"></td>
+  <td><span class="price-tag">10.96€</span></td>
+  <td>4,4 sur 5 étoiles</td>
   <td>Intra-auriculaire</td>
-  <td>4-5h</td>
-  <td>IPX7 Écouteurs Étanches Sportifs</td>
-  <td>Oui</td>
-  <td>HFP, a2dp, HSP, avrcp</td>
+  <td>7,5h</td>
+  <td>IPX4</td>
+  <td>Bluetooth 5.4</td>
+  <td></td>
   <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4jEyepx" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <a class="amazon-link" href="https://amzn.to/4iQDJQF" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div></td>
 </tr>
 <tr>
-  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/51HZvlNRUEL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Soundcore by Anker P20i"></a></td>
+  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/51TUtS0sRSL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Soundcore by Anker P20i"></a></td>
   <td>Soundcore by Anker P20i</td>
-  <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="💎 Coup de cœur"></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou"></td>
   <td><span class="price-tag">18.99€</span></td>
   <td>4,4 sur 5 étoiles</td>
   <td>Intra-auriculaire</td>
   <td>10h</td>
   <td>IPX5</td>
-  <td>-</td>
   <td>Bluetooth 5.3</td>
-  <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4iIKrbc" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
-  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
-</div></td>
-
-</tr>
-<tr>
-  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61TgL72oNaL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="JBES Ecouteurs Bluetooth sans Fil"></a></td>
-  <td>JBES Ecouteurs Bluetooth sans Fil</td>
   <td></td>
-  <td><span class="price-tag">11.98€</span></td>
-  <td>5,0 sur 5 étoiles</td>
-  <td>Intra-auriculaire</td>
-  <td>6-7h</td>
-  <td>IP5</td>
-  <td>Oui</td>
-  <td>Bluetooth 5.4</td>
   <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4k3EwPl" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <a class="amazon-link" href="https://amzn.to/42ThDqM" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div></td>
 
 </tr>
 <tr>
-  <td><a href="#carte-4"><img class="thumbnail" src="https://a.media-amazon.com/images/I/61p1-gm4RwL._AC_SX679_.jpg" alt="JBL Wave Beam"></a></td>
-  <td>JBL Wave Beam</td>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/613TOoqAnjL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="HUAWEI FreeBuds SE 2"></a></td>
+  <td>HUAWEI FreeBuds SE 2</td>
   <td></td>
-  <td><span class="price-tag">45.5€</span></td>
-  <td>4,1 sur 5 étoiles</td>
-  <td>Intra-auriculaire</td>
-  <td>8h</td>
-  <td>IP54 - IPX2</td>
-  <td>Smart Ambient</td>
-  <td>Bluetooth 5.4</td>
-  <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/3Sfvqmv" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
-  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
-</div></td>
-
-</tr>
-<tr>
-  <td><a href="#carte-5"><img class="thumbnail" src="https://a.media-amazon.com/images/I/6141tPS2LKL._AC_SX679_.jpg" alt="JBL Wave Beam 2"></a></td>
-  <td>JBL Wave Beam 2</td>
-  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="🔥 Haut de gamme"></td>
-  <td><span class="price-tag">68.9€</span></td>
+  <td><span class="price-tag">29.99€</span></td>
   <td>4,4 sur 5 étoiles</td>
   <td>Intra-auriculaire</td>
-  <td>10h</td>
-  <td>IP54 - IPX2</td>
-  <td>Smart Ambient</td>
-  <td>Bluetooth 5.4</td>
+  <td>9h</td>
+  <td>IP54</td>
+  <td>Bluetooth 5.3</td>
+  <td></td>
   <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4k2QjNO" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <a class="amazon-link" href="https://amzn.to/3SldaIo" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71MOMwjikhL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="STECEi HD65"></a></td>
+  <td>STECEi HD65</td>
+  <td></td>
+  <td><span class="price-tag">25.99€</span></td>
+  <td>4,8 sur 5 étoiles</td>
+  <td>Supra-auriculaire</td>
+  <td>15h</td>
+  <td>IP7</td>
+  <td>Bluetooth 5.4</td>
+  <td></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4iQIda3" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/418RWh50VPL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="JBL Wave Flex"></a></td>
+  <td>JBL Wave Flex</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
+  <td><span class="price-tag">34.9€</span></td>
+  <td>4,3 sur 5 étoiles</td>
+  <td>Intra-auriculaire</td>
+  <td>8h</td>
+  <td>IP54 et IPX2</td>
+  <td></td>
+  <td></td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4d0tOqv" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div></td>
 
@@ -500,92 +511,92 @@
   <h2>📚 Les conseils d'Elv’yra 💬</h2>
 <div class="carousel" id="carousel">
    <div class="carousel-card" id="carte-1">
-    <img src="https://m.media-amazon.com/images/I/61CY71zEC6L.__AC_SX300_SY300_QL70_ML2_.jpg" alt="SPORTS EARBUDS Écouteurs sans Fil">
-    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="💰 Meilleur qualité/prix">
-    <span class="badge-label">💰 Meilleur qualité/prix</span>
-    <h3>SPORTS EARBUDS Écouteurs sans Fil</h3>
-    <div class="price-tag">7.99€</div>
-    <div class="meta">Intra-auriculaire / 4-5h · IPX7 Écouteurs Étanches Sportifs · Oui</div>
+    <img src="https://m.media-amazon.com/images/I/6144jN3kowL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi Buds 6 Play">
+    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas">
+    <span class="badge-label">Prix bas</span>
+    <h3>Xiaomi Redmi Buds 6 Play</h3>
+    <div class="price-tag">10.96€</div>
+    <div class="meta">Intra-auriculaire / 7,5h · IPX4 · Bluetooth 5.4</div>
     <ul>
-      <li>Petit prix</li>
-      <li>5★/€ record</li>
-      <li>ENC + IP7</li>
+      <li>Prix mini < 11 €</li>
+      <li>30 h + triple micro</li>
+      <li>Compact & fiable</li>
     </ul>
-    <p>Petit prix, grand son ! Écouteurs sans Fil Bluetooth 5.4 avec ré rebooste tes playlists sans sabrer ton budget.</p>
+    <p>Le ticket d'entrée idéal pour un premier vrai sans‑fil</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4jEyepx" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <a class="amazon-link" href="https://amzn.to/4iQDJQF" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 
   <div class="carousel-card" id="carte-2">
-    <img src="https://m.media-amazon.com/images/I/51HZvlNRUEL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Soundcore by Anker P20i">
-    <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="💎 Coup de cœur">
-    <span class="badge-label">💎 Coup de cœur</span>
+    <img src="https://m.media-amazon.com/images/I/51TUtS0sRSL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Soundcore by Anker P20i">
+    <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">
+    <span class="badge-label">Chouchou</span>
     <h3>Soundcore by Anker P20i</h3>
     <div class="price-tag">18.99€</div>
-    <div class="meta">Intra-auriculaire / 10h · IPX5 · -</div>
+    <div class="meta">Intra-auriculaire / 10h · IPX5 · Bluetooth 5.3</div>
     <ul>
-      <li>Appli EQ</li>
-      <li>10 mm driver</li>
-      <li>IPX8</li>
+      <li>Basses dynamiques 10 mm</li>
+      <li>EQ via appli Soundcore</li>
+      <li>IPX5 + 30 h d'autonomie</li>
     </ul>
-    <p>Mon crush : Soundcore by Anker P20i. Look soigné, appli fun, basses qui claquent – ça match direct !</p>
+    <p>Champion du rapport qualité‑prix sous 20 €</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4iIKrbc" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <a class="amazon-link" href="https://amzn.to/42ThDqM" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 
   <div class="carousel-card" id="carte-3">
-    <img src="https://m.media-amazon.com/images/I/61TgL72oNaL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="JBES Ecouteurs Bluetooth sans Fil">
-    <h3>JBES Ecouteurs Bluetooth sans Fil</h3>
-    <div class="price-tag">11.98€</div>
-    <div class="meta">Intra-auriculaire / 6-7h · IP5 · Oui</div>
+    <img src="https://m.media-amazon.com/images/I/613TOoqAnjL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="HUAWEI FreeBuds SE 2">
+    <h3>HUAWEI FreeBuds SE 2</h3>
+    <div class="price-tag">29.99€</div>
+    <div class="meta">Intra-auriculaire / 9h · IP54 · Bluetooth 5.3</div>
     <ul>
-      <li>Pure Bass</li>
-      <li>Smart Ambient</li>
-      <li>IP54</li>
+      <li>40 h d'écoute</li>
+      <li>Charge rapide 10 min</li>
+      <li>IP54 léger & confortable</li>
     </ul>
-    <p>JBES Ecouteurs Bluetooth sans Fil vise juste : fonctions malines, confort béton. Un challenger qui n’a pas froid aux oreilles.</p>
+    <p>Idéal pour binge‑listenings et réunions marathon</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4k3EwPl" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <a class="amazon-link" href="https://amzn.to/3SldaIo" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 
   <div class="carousel-card" id="carte-4">
-    <img src="https://a.media-amazon.com/images/I/61p1-gm4RwL._AC_SX679_.jpg" alt="JBL Wave Beam">
-    <h3>JBL Wave Beam</h3>
-    <div class="price-tag">45.5€</div>
-    <div class="meta">Intra-auriculaire / 8h · IP54 - IPX2 · Smart Ambient</div>
+    <img src="https://m.media-amazon.com/images/I/71MOMwjikhL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="STECEi HD65">
+    <h3>STECEi HD65</h3>
+    <div class="price-tag">25.99€</div>
+    <div class="meta">Supra-auriculaire / 15h · IP7 · Bluetooth 5.4</div>
     <ul>
-      <li>JBL Sound</li>
-      <li>IP7 & ENC</li>
-      <li>Marque JBL</li>
+      <li>75 h + afficheur LED</li>
+      <li>4 micros ENC</li>
+      <li>IP7 sport</li>
     </ul>
-    <p>Alliance parfaite : endurance marathon, audio clean, zéro compromis. JBL Wave Beam, le champion toutes catégories.</p>
+    <p>Endurant sportif noté 4,8 / 5 par les utilisateurs</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/3Sfvqmv" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <a class="amazon-link" href="https://amzn.to/4iQIda3" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 
   <div class="carousel-card" id="carte-5">
-    <img src="https://a.media-amazon.com/images/I/6141tPS2LKL._AC_SX679_.jpg" alt="JBL Wave Beam 2">
+    <img src="https://m.media-amazon.com/images/I/418RWh50VPL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="JBL Wave Flex">
     <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium">
-    <span class="badge-label">🔥 Haut de gamme</span>
-    <h3>JBL Wave Beam 2</h3>
-    <div class="price-tag">68.9€</div>
-    <div class="meta">Intra-auriculaire / 10h · IP54 - IPX2 · Smart Ambient</div>
+    <span class="badge-label">Premium</span>
+    <h3>JBL Wave Flex</h3>
+    <div class="price-tag">34.9€</div>
+    <div class="meta">Intra-auriculaire / 8h · IP54 et IPX2 · </div>
     <ul>
-      <li>ANC multipoint</li>
-      <li>Son Pure Bass</li>
-      <li>Marque JBL</li>
+      <li>TalkThru & AmbientAware</li>
+      <li>Pure Bass by JBL</li>
+      <li>IP54 + 32 h</li>
     </ul>
-    <p>Si tu veux le nec plus ultra, JBL Wave Beam 2 embrase la scène : ANC premium + multipoint, le luxe assumé.</p>
+    <p>Polyvalent urbain qui sait se faire discret</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4k2QjNO" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffiliéAmazon</span></a>
+  <a class="amazon-link" href="https://amzn.to/4d0tOqv" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
