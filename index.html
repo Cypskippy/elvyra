@@ -175,23 +175,42 @@
 <a href="comparatifs/comparatif_support_smartphone_voiture.html">Supports smartphone</a>
 <a href="comparatifs/comparatif_batterie_externe.html">Batteries externes</a>
 </div>
+
 <button class="menu-btn" onclick="toggleDropdown('menu-maison')">Maison</button>
-<a href="comparatifs/comparatif_robot_aspirateur.html">Ecouteurs sans fil</a>
 <div class="dropdown" id="menu-maison">
 <input oninput="filterLinks(this, 'menu-maison')" placeholder="Rechercher..." type="text"/>
+<a href="comparatifs/comparatif_robot_aspirateur.html">Robot aspirateur</a>
 </div>
+
 <button class="menu-btn" onclick="toggleDropdown('menu-sport')">Sport</button>
 <div class="dropdown" id="menu-sport">
 <input oninput="filterLinks(this, 'menu-sport')" placeholder="Rechercher..." type="text"/>
 </div>
-<button class="menu-btn" onclick="toggleDropdown('menu-ordi')">Ordinateurs portables</button><div class="dropdown" id="menu-ordi"><input oninput="filterLinks(this, 'menu-ordi')" placeholder="Rechercher..." type="text"/><a href="comparatifs/comparatif_ordinateur_portable_bureautique.html">Bureautique</a><a href="comparatifs/comparatif_ordinateur_portable_gamer.html"">Gamer</a><a href="comparatifs/comparatif_ordinateur_portable_polyvalent.html"">Polyvalent</a></div></div>
+<button class="menu-btn" onclick="toggleDropdown('menu-ordi')">Ordinateurs portables</button><div class="dropdown" id="menu-ordi"><input oninput="filterLinks(this, 'menu-ordi')" placeholder="Rechercher..." type="text"/><a href="comparatifs/comparatif_ordinateur_portable_bureautique.html">Bureautique</a><a href="comparatifs/comparatif_ordinateur_portable_gamer.html">Gamer</a><a href="comparatifs/comparatif_ordinateur_portable_polyvalent.html">Polyvalent</a></div></div>
 </div>
 <script>
 function toggleDropdown(id) {
-  const menu = document.getElementById(id);
-  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-}
+  // Ferme les autres menus pour éviter l’overdose de scroll
+  document.querySelectorAll('.dropdown').forEach(d => d.style.display = 'none');
 
+  const menu = document.getElementById(id);
+  const willOpen = (menu.style.display !== 'flex');
+  if (willOpen) {
+    menu.style.display = 'flex';
+
+    // Laisse le temps au navigateur de re‑calculer la hauteur,
+    // puis assure‑toi que tout le menu est dans la fenêtre.
+    requestAnimationFrame(() => {
+      const rect = menu.getBoundingClientRect();
+      const overflow = rect.bottom - window.innerHeight;
+      if (overflow > 0) {
+        window.scrollBy({ top: overflow + 16, behavior: 'smooth' });
+      }
+    });
+  } else {
+    menu.style.display = 'none';
+  }
+}
 function filterLinks(input, menuId) {
   const filter = input.value.toLowerCase();
   const links = document.querySelectorAll(`#${menuId} a`);
