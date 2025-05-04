@@ -1,247 +1,480 @@
 <!DOCTYPE html>
 
-<html lang="fr">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Elv'yra Compare pour Toi</title>
-<style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f1a;
-      color: #fff;
-      padding: 0;
-    }
-    header {
-      text-align: center;
-      padding: 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      margin: 0;
-      color: #ff5ec4;
-      padding-right: 3rem;
-    }
-    .elvyra-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem;
-    }
-    .elvyra-img {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-    }
-    .speech {
-      background: #1e1e2f;
-      color: #ffdfdf;
-      display: inline-block;
-      padding: 1rem;
-      border-radius: 12px;
-      margin: 1rem 0;
-      border-left: 4px solid #ff5ec4;
-      max-width: 90%;
-      text-align: center;
-    }
-    .buttons-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
-      margin-top: 1rem;
-    }
-  .menu-btn{
-  background-color:#ff5ec4;
-  border:none;
-  color:#fff;
-  padding:0.8rem 1.5rem;
-  border-radius:12px;
-  font-size:1.1rem;
-  cursor:pointer;
-  width:250px;
 
-  /* ✅ NOUVEAU : centre même hors du flex-container */
-  display:block;          /* garantit un bloc plein */
-  margin:0 auto;          /* auto à gauche & droite → centré */
-}
-    .menu-btn:hover {
-      background-color: #e64aad;
-    }
-    .dropdown {
-      display: none;
-      flex-direction: column;
-      gap: 0.5rem;
-      background-color: #1e1e2f;
-      padding: 1rem;
-      border-radius: 12px;
-      margin-top: 0.5rem;
-      width: 250px;
-    }
-    .dropdown.open {
-      display: flex;
-    }
-    .dropdown input {
-      padding: 0.5rem;
-      border-radius: 8px;
-      border: 1px solid #888;
+
+<html lang="fr">
+
+<head>
+
+<meta charset="utf-8"/>
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<title>Elv'yra Compare pour Toi</title>
+
+<style>
+
+    body {
+
+      margin: 0;
+
+      font-family: 'Segoe UI', sans-serif;
+
       background-color: #0f0f1a;
+
       color: #fff;
+
+      padding: 0;
+
     }
-    .dropdown a {
-      color: #fff;
-      text-decoration: none;
-      background-color: #333;
-      padding: 0.4rem;
-      border-radius: 6px;
-      display: block;
+
+    header {
+
+      text-align: center;
+
+      padding: 1rem;
+
     }
-    .dropdown a:hover {
-      background-color: #444;
+
+    h1 {
+
+      font-size: 2rem;
+
+      margin: 0;
+
+      color: #ff5ec4;
+
+      padding-right: 3rem;
+
     }
-    .burger-container {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      z-index: 100;
-    }
-    .burger-icon {
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #ffa8de;
-      background-color: #1f1f2f;
-      padding: 6px 10px;
-      border-radius: 8px;
-      border: 1px solid #ffa8de;
-    }
-    .main-menu {
-      display: none;
+
+    .elvyra-container {
+
+      display: flex;
+
       flex-direction: column;
-      background-color: #1f1f2f;
-      padding: 0.5rem;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-      border: 1px solid #ffa8de;
-      font-size: 0.95rem;
-      position: absolute;
-      top: 3rem;
-      right: 0;
-      min-width: 180px;
+
+      align-items: center;
+
+      padding: 1rem;
+
     }
-    .main-menu a {
-      color: #ffa8de;
-      text-decoration: none;
-      padding: 6px;
-      border-radius: 6px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+
+    .elvyra-img {
+
+      max-width: 300px;
+
+      width: 100%;
+
+      height: auto;
+
     }
-    .main-menu a:hover {
-      background-color: #ffaad4;
-      color: #0f0f1a;
+
+    .speech {
+
+      background: #1e1e2f;
+
+      color: #ffdfdf;
+
+      display: inline-block;
+
+      padding: 1rem;
+
+      border-radius: 12px;
+
+      margin: 1rem 0;
+
+      border-left: 4px solid #ff5ec4;
+
+      max-width: 90%;
+
+      text-align: center;
+
     }
-    .burger-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 99;
+
+    .buttons-container {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 1rem;
+
+      align-items: center;
+
+      margin-top: 1rem;
+
+    }
+
+    .menu-btn {
+
+      background-color: #ff5ec4;
+
+      border: none;
+
+      color: white;
+
+      padding: 0.8rem 1.5rem;
+
+      border-radius: 12px;
+
+      font-size: 1.1rem;
+
+      cursor: pointer;
+
+      width: 250px;
+
+      margin: 0.5rem auto;
+
+    }
+
+    .menu-btn:hover {
+
+      background-color: #e64aad;
+
+    }
+
+    .dropdown {
+
       display: none;
+
+      flex-direction: column;
+
+      gap: 0.5rem;
+
+      background-color: #1e1e2f;
+
+      padding: 1rem;
+
+      border-radius: 12px;
+
+      margin-top: 0.5rem;
+
+      width: 250px;
+
     }
-    .burger-container.open .main-menu {
-      display: flex !important;
+
+    .dropdown.open {
+
+      display: flex;
+
     }
-    .burger-container.open + .burger-overlay {
+
+    .dropdown input {
+
+      padding: 0.5rem;
+
+      border-radius: 8px;
+
+      border: 1px solid #888;
+
+      background-color: #0f0f1a;
+
+      color: #fff;
+
+    }
+
+    .dropdown a {
+
+      color: #fff;
+
+      text-decoration: none;
+
+      background-color: #333;
+
+      padding: 0.4rem;
+
+      border-radius: 6px;
+
       display: block;
+
     }
+
+    .dropdown a:hover {
+
+      background-color: #444;
+
+    }
+
+    .burger-container {
+
+      position: absolute;
+
+      top: 1rem;
+
+      right: 1rem;
+
+      z-index: 100;
+
+    }
+
+    .burger-icon {
+
+      font-size: 1.5rem;
+
+      cursor: pointer;
+
+      color: #ffa8de;
+
+      background-color: #1f1f2f;
+
+      padding: 6px 10px;
+
+      border-radius: 8px;
+
+      border: 1px solid #ffa8de;
+
+    }
+
+    .main-menu {
+
+      display: none;
+
+      flex-direction: column;
+
+      background-color: #1f1f2f;
+
+      padding: 0.5rem;
+
+      border-radius: 8px;
+
+      margin-top: 0.5rem;
+
+      border: 1px solid #ffa8de;
+
+      font-size: 0.95rem;
+
+      position: absolute;
+
+      top: 3rem;
+
+      right: 0;
+
+      min-width: 180px;
+
+    }
+
+    .main-menu a {
+
+      color: #ffa8de;
+
+      text-decoration: none;
+
+      padding: 6px;
+
+      border-radius: 6px;
+
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+    }
+
+    .main-menu a:hover {
+
+      background-color: #ffaad4;
+
+      color: #0f0f1a;
+
+    }
+
+    .burger-overlay {
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      height: 100vh;
+
+      width: 100vw;
+
+      background-color: rgba(0, 0, 0, 0.5);
+
+      z-index: 99;
+
+      display: none;
+
+    }
+
+    .burger-container.open .main-menu {
+
+      display: flex !important;
+
+    }
+
+    .burger-container.open + .burger-overlay {
+
+      display: block;
+
+    }
+
   </style>
+
 </head>
+
 <body>
+
 <div class="burger-container" id="burgerMenu">
+
 <div class="burger-icon" onclick="toggleMenu()">☰</div>
+
 <nav class="main-menu" id="mainMenu">
+
 <a href="comparatifs/histoire.html">Histoire d’Elv’yra</a>
+
 <a href="comparatifs/apropos.html">À propos</a>
+
 </nav>
+
 </div>
+
 <div class="burger-overlay" onclick="closeMenu()"></div>
+
 <header>
+
 <h1>Elv’Yra compare... pour toi !</h1>
+
 </header>
+
 <div class="elvyra-container">
+
 <img alt="Elv'yra" class="elvyra-img" src="assets/Elvyra_accueil.png"/>
+
 <div class="speech">Choisis une catégorie, puis un type de produit… Je travaille pour toi ✨</div>
+
 <div class="buttons-container">
-<button class="menu-btn" onclick="toggleDropdown('Univers Smartphone')">Univers Smartphone</button>
-<div class="dropdown" id="Univers Smartphone">
-<input oninput="filterLinks(this, 'Univers Smartphone')" placeholder="Rechercher..." type="text"/>
-<a href="comparatifs/comparatif_chargeur_smartphone.html">Chargeurs rapides</a>
-<a href="comparatifs/comparatif_ecouteur_sans_fil.html">Ecouteurs sans fil</a>
-<a href="comparatifs/comparatif_support_smartphone_voiture.html">Supports smartphone</a>
-<a href="comparatifs/comparatif_batterie_externe.html">Batteries externes</a>
-</div>
-<button class="menu-btn" onclick="toggleDropdown('menu-ordi')">Ordinateurs portables</button><div class="dropdown" id="menu-ordi"><input oninput="filterLinks(this, 'menu-ordi')" placeholder="Rechercher..." type="text"/><a href="comparatifs/comparatif_ordinateur_portable_bureautique.html">Bureautique</a><a href="comparatifs/comparatif_ordinateur_portable_gamer.html"">Gamer</a><a href="comparatifs/comparatif_ordinateur_portable_polyvalent.html"">Polyvalent</a></div></div>
-</div>
-<button class="menu-btn" onclick="toggleDropdown('menu-maison')">Maison</button>
-<div class="dropdown" id="menu-maison">
-<input oninput="filterLinks(this, 'menu-maison')" placeholder="Rechercher..." type="text"/>
-<a href="comparatifs/comparatif_robot_aspirateur.html">Robot aspirateur</a>
-</div>
-<button class="menu-btn" onclick="toggleDropdown('menu-sport')">Sport</button>
-<div class="dropdown" id="menu-sport">
-<input oninput="filterLinks(this, 'menu-sport')" placeholder="Rechercher..." type="text"/>
+  <!-- Univers Smartphone -->
+  <button class="menu-btn" onclick="toggleDropdown('menu-smartphone')">Univers Smartphone</button>
+  <div class="dropdown" id="menu-smartphone">
+    <input type="text" placeholder="Rechercher..." oninput="filterLinks(this,'menu-smartphone')">
+    <a href="comparatifs/comparatif_chargeur_smartphone.html">Chargeurs rapides</a>
+    <a href="comparatifs/comparatif_ecouteur_sans_fil.html">Écouteurs sans fil</a>
+    <a href="comparatifs/comparatif_support_smartphone_voiture.html">Supports smartphone</a>
+    <a href="comparatifs/comparatif_batterie_externe.html">Batteries externes</a>
+  </div>
+
+  <!-- Ordinateurs portables -->
+  <button class="menu-btn" onclick="toggleDropdown('menu-ordi')">Ordinateurs portables</button>
+  <div class="dropdown" id="menu-ordi">
+    <input type="text" placeholder="Rechercher..." oninput="filterLinks(this,'menu-ordi')">
+    <a href="comparatifs/comparatif_ordinateur_portable_gamer.html">Gamer</a>
+    <a href="comparatifs/comparatif_ordinateur_portable_polyvalent.html">Polyvalent</a>
+    <a href="comparatifs/comparatif_ordinateur_portable_bureautique.html">Bureautique</a>
+  </div>
+
+  <!-- Maison -->
+  <button class="menu-btn" onclick="toggleDropdown('menu-maison')">Maison</button>
+  <div class="dropdown" id="menu-maison">
+    <input type="text" placeholder="Rechercher..." oninput="filterLinks(this,'menu-maison')">
+    <a href="comparatifs/comparatif_robot_aspirateur.html">Robot aspirateur</a>
+  </div>
+
+  <!-- Sport -->
+  <button class="menu-btn" onclick="toggleDropdown('menu-sport')">Sport</button>
+  <div class="dropdown" id="menu-sport">
+    <input type="text" placeholder="Rechercher..." oninput="filterLinks(this,'menu-sport')">
+  </div>
 </div>
 <script>
 
+
+
 function toggleDropdown(id){
+
   const menu   = document.getElementById(id);
+
   const wasOpen = menu.classList.contains('open');   // état avant action
 
+
+
   // ferme tous les autres menus ouverts
+
   document.querySelectorAll('.dropdown.open')
+
           .forEach(d => d.classList.remove('open'));
+
+
 
   if (wasOpen) return;  // si déjà ouvert on quitte (donc on replie)
 
+
+
   // ouvre celui‑ci
+
   menu.classList.add('open');
 
+
+
   // assure la visibilité complète
+
   requestAnimationFrame(() => {
+
     const overflow = menu.getBoundingClientRect().bottom - window.innerHeight;
+
     if (overflow > 0) {
+
       window.scrollBy({ top: overflow + 16, behavior: 'smooth' });
+
     }
+
   });
+
 }
+
+
+
 
 
 function filterLinks(input, menuId) {
+
   const filter = input.value.toLowerCase();
+
   const links = document.querySelectorAll(`#${menuId} a`);
+
   links.forEach(link => {
+
     link.style.display = link.textContent.toLowerCase().includes(filter) ? 'block' : 'none';
+
   });
+
 }
+
+
 
 function toggleMenu() {
+
   const container = document.getElementById('burgerMenu');
+
   container.classList.toggle('open');
+
 }
+
+
 
 function closeMenu(e) {
+
   if (!e.target.closest('.main-menu')) {
+
     const container = document.getElementById('burgerMenu');
+
     container.classList.remove('open');
+
   }
+
 }
 
+
+
 document.querySelector('.burger-overlay').addEventListener('click', closeMenu);
+
 </script>
+
 <footer style="text-align: center; font-size: 0.85rem; color: #aaa; margin-top: 2rem; padding: 1rem;">
+
   Ce site est géré par un partenaire Amazon et utilise des liens sponsorisés pour conserver la gratuité de son accès ainsi que l'absence de publicités.
+
 </footer>
+
 </body>
+
 </html>
