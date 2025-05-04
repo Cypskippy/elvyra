@@ -52,16 +52,20 @@
       align-items: center;
       margin-top: 1rem;
     }
-    .menu-btn {
-      background-color: #ff5ec4;
-      border: none;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      width: 250px;
-    }
+  .menu-btn{
+  background-color:#ff5ec4;
+  border:none;
+  color:#fff;
+  padding:0.8rem 1.5rem;
+  border-radius:12px;
+  font-size:1.1rem;
+  cursor:pointer;
+  width:250px;
+
+  /* ✅ NOUVEAU : centre même hors du flex-container */
+  display:block;          /* garantit un bloc plein */
+  margin:0 auto;          /* auto à gauche & droite → centré */
+}
     .menu-btn:hover {
       background-color: #e64aad;
     }
