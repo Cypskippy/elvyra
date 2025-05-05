@@ -265,6 +265,11 @@
 /* Bulle électrique d’annonce */
 .announcement-bubble{
   position:absolute;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;   /* garde quand même text-align pour IE/legacy */
   /* --- placement --- */
   top:2%;                 /* mi-hauteur du container */
   left:-1rem;              /* mord légèrement sur la bordure gauche */
