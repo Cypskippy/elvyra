@@ -266,7 +266,7 @@
 .announcement-bubble{
   position:absolute;
   /* --- placement --- */
-  top:50%;                 /* mi-hauteur du container */
+  top:30%;                 /* mi-hauteur du container */
   left:-1rem;              /* mord légèrement sur la bordure gauche */
   transform:translateY(-50%) rotate(-10deg);  /* rotation plus marquée */
 
@@ -297,10 +297,10 @@
 /* --- Responsive : on réduit un peu la bulle sur smartphone --- */
 @media (max-width:600px){
   .announcement-bubble{
-    left:-0.5rem;          /* moins de débord */
+    left:0.5rem;          /* moins de débord */
     font-size:0.85rem;
     padding:0.6rem 1.2rem;
-    transform:translateY(-50%) rotate(-8deg);
+    transform:translateY(-50%) rotate(-10deg);
   }
 }
   </style>
