@@ -243,12 +243,13 @@
 .scroll-table table th:nth-child(2),
 .scroll-table table td:nth-child(2) {
 }
-/* cible le wrapper “clamp” que vous avez mis en HTML */
+/* on cible bien votre <div class="clamp">…</div> */
 .scroll-table table td:nth-child(2) .clamp {
-  display: inline-block;       /* autorise width/max-width */
-  max-width: 40ch;              /* 2 lignes de ~20 caractères chacune */
-  white-space: normal;          /* wrap normal aux espaces */
-  overflow-wrap: break-word;    /* casse au mot si trop long */
+  display: inline-block;    /* pour que width/max-width soient prises en compte */
+  width: 75vw;              /* prend 75% de la largeur de l’écran mobile */
+  max-width: 40ch;          /* plafonne à 40 caractères de large en desktop */
+  white-space: normal;      /* retour à la ligne aux espaces */
+  overflow-wrap: break-word;
 }
 
 </style>
