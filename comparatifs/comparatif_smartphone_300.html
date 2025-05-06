@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top 5 des Smartphone - 300€ - Elv'yra</title>
+  <title>Top 5 des Smartphones - Elv'yra</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* ─── 1. Global & Reset ─── */
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -20,7 +21,6 @@
       max-width: 220px;
       border-radius: 12px;
     }
-    
     h1, h2 {
       text-align: center;
       color: #ff71c3;
@@ -32,45 +32,44 @@
       font-size: 1rem;
       color: #ccccdd;
     }
+
+    /* ─── 2. Table & Thumbnails ─── */
     .scroll-table {
       overflow-x: auto;
       margin-top: 2rem;
       padding-bottom: 1rem;
     }
-    .scroll-table::-webkit-scrollbar {
-      height: 8px;
-    }
-    .scroll-table::-webkit-scrollbar-thumb {
-      background: #444;
-      border-radius: 4px;
-    }
+    .scroll-table::-webkit-scrollbar { height: 8px; }
+    .scroll-table::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
     .scroll-table table {
-      min-width: 900px;
-      width: 100%;
       border-collapse: collapse;
       font-size: 0.95rem;
+      table-layout: auto; /* colonnes auto ajustées */
+      width: auto;
     }
-    table th, table td {
+    table th {
       border: 1px solid #444;
       padding: 0.8rem;
       text-align: center;
       white-space: nowrap;
-    }
-    table th {
       background-color: #2c2c44;
       color: #ffa8de;
     }
-    table tr:nth-child(even) {
-      background-color: #1f1f2f;
+    table td {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: normal;
+      word-break: break-word;
+      /* Aucun max-width pour que la colonne s'ajuste au contenu */
     }
-    .badge {
-      font-size: 1.2rem;
-      animation: badge-glow 2s infinite alternate;
+    table tr:nth-child(even) { background-color: #1f1f2f; }
+    img.thumbnail {
+      width: 60px;
+      border-radius: 6px;
     }
-    @keyframes badge-glow {
-      from { text-shadow: 0 0 5px #ffaad4; }
-      to { text-shadow: 0 0 12px #ffaad4; }
-    }
+
+    /* ─── 3. Prix & Boutons Amazon/Retour ─── */
     .price-tag {
       background: #ffd700;
       color: #1f1f1f;
@@ -79,8 +78,7 @@
       border-radius: 6px;
       display: inline-block;
     }
-    /* Boutons Amazon et Retour */
-     a.amazon-link,
+    a.amazon-link,
     a.back-to-top {
       display: inline-block;
       padding: 0.6rem 1rem;
@@ -91,7 +89,6 @@
       font-weight: 600;
       box-shadow: 0 2px 8px rgba(255, 170, 212, 0.4);
       transition: background 0.3s ease, color 0.3s ease;
-      /* position static to follow content flow */
       position: static;
       margin: 1rem;
     }
@@ -100,22 +97,36 @@
       background: #ffaad4;
       color: #0f0f1a;
     }
-    /* Positionnement des boutons retour */
-    .back-to-top {
-      position: fixed;
-      right: 1rem;
+    .back-to-top { position: fixed; right: 1rem; z-index: 100; }
+    .back-to-top.top { top: 1rem; }
+    .back-to-top.bottom { bottom: 1rem; }
+    .amazon-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: nowrap;
     }
-    .back-to-top.top {
-      top: 1rem;
+    .affiliate-tag {
+      font-size: 0.8rem;
+      color: #ffa8de;
+      background: #2a2a3a;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 6px;
     }
-    .back-to-top.bottom {
-      bottom: 1rem;
+    .info-btn {
+      background: none;
+      border: 1px solid #ffa8de;
+      border-radius: 50%;
+      color: #ffa8de;
+      width: 24px;
+      height: 24px;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
     }
 
-    img.thumbnail {
-      width: 60px;
-      border-radius: 6px;
-    }
+    /* ─── 4. Carousel ─── */
     .carousel {
       margin-top: 3rem;
       display: flex;
@@ -135,7 +146,7 @@
     }
     .carousel-card img {
       width: 100%;
-	max-width : 200px;
+      max-width: 200px;
       border-radius: 10px;
       margin-bottom: 0.5rem;
     }
@@ -148,391 +159,183 @@
       color: #aaa;
       margin-bottom: 0.5rem;
     }
-    .carousel-card .badge-icon {
-      width: 24px;
-      vertical-align: middle;
-      margin-right: 6px;
-    }
     .carousel-card p {
       font-size: 0.9rem;
       color: #ccc;
     }
-    .carousel-card .price-tag {
+    .carousel-card ul li:empty { display: none; }
+
+    /* ─── 5. Badges (animations + variantes) ─── */
+    @keyframes halo-glow {
+      0%,100% { box-shadow: 0 0 6px 2px rgba(255,172,255,0.3); }
+      50%     { box-shadow: 0 0 12px 4px rgba(255,172,255,0.6); }
+    }
+    @keyframes badge-bounce {
+      0%,100% { transform: scale(1); }
+      50%     { transform: scale(1.15); }
+    }
+    .badge-icon {
+      display: block;
+      width: 56px;
+      margin: 0 auto;
+      animation: badge-bounce 2s infinite alternate, halo-glow 3s infinite;
+      filter: drop-shadow(0 0 6px #ffb3e6);
+    }
+    .scroll-table .badge-icon {
       display: inline-block;
-      margin-bottom: 0.5rem;
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 6px;
+      animation: none;
+      filter: none;
     }
-    .carousel-card .amazon-link {
-      margin-top: 0.8rem;
-    }
-     @keyframes arrow-blink {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 0.8; }
-    }
-  .menu {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      z-index: 1000;
-    }
-    .menu-icon {
-      font-size: 1.8rem;
-      color: #ffaad4;
-      cursor: pointer;
-    }
-    #menu-toggle {
-      display: none;
-    }
-    .menu-items {
-      display: none;
-      list-style: none;
-      background: #1f1f2f;
-      padding: 0.5rem 1rem;
-      margin-top: 0.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
-    }
-    .menu-items li {
-      margin: 0.3rem 0;
-    }
-    .menu-items a {
-      text-decoration: none;
-      color: #ffa8de;
-      font-weight: 500;
-    }
-    #menu-toggle:checked + .menu-icon + .menu-items {
-      display: block;
-    }  
-  .burger-container {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 100;
-}
-.burger-icon {
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #ffa8de;
-  background-color: #1f1f2f;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid #ffa8de;
-}
-.burger-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 99;
-  display: none;
-}
-.burger-container.open .main-menu {
-  display: flex !important;
-}
-.burger-container.open .burger-overlay {
-  display: block;
-}
-.main-menu {
-  display: none;
-  flex-direction: column;
-  background-color: #1f1f2f;
-  padding: 0.5rem;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  border: 1px solid #ffa8de;
-  min-width: 180px;
-  position: absolute;
-  top: 2.5rem;
-  right: 0;
-  z-index: 101;
-}
-.main-menu a {
-  color: #ffa8de;
-  text-decoration: none;
-  padding: 6px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-.main-menu a:hover {
-  background-color: #ffaad4;
-  color: #0f0f1a;
-}
-@keyframes halo-glow {
-  0%, 100% {
-    box-shadow: 0 0 6px 2px rgba(255, 172, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 12px 4px rgba(255, 172, 255, 0.6);
-  }
-}
-@keyframes badge-bounce {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
-}
-.badge-wrap{
-  text-align: center;
-  margin: .6rem 0 0;        /* petit espace au-dessus */
-}
-.badge-icon{
-  display: block;           /* 👉 casse la ligne */
-  width: 56px;              /* plus voyante */
-  margin: 0 auto;
-  animation: badge-bounce 2s infinite, halo-glow 3s infinite;
-  filter: drop-shadow(0 0 6px #ffb3e6);
-}
-.badge-label{
-  display: block;           /* 👉 en dessous de l’icône */
-  margin-top: 4px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #ffaad4;
-  text-shadow: 0 0 4px rgba(255, 170, 212, .6);
-}
-.affiliate-tag {
-      font-size: 0.8rem;
-      color: #ffa8de;
-      background: #2a2a3a;
-      padding: 2px 6px;
-      border-radius: 6px;
-      margin-left: 6px;
-    }
-    .popup-affiliate {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #1f1f2f;
-      padding: 1.5rem;
-      border-radius: 12px;
-      color: #ffa8de;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-      z-index: 1000;
-      width: 90%;
-      max-width: 320px;
+    .carousel-card .badge-wrap .badge-icon { }
+    .badge-wrap {
       text-align: center;
-      position: fixed;
+      margin: 0.6rem 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .popup-affiliate.show {
+    .badge-label {
       display: block;
-      animation: fadeIn 0.3s ease-in-out;
+      margin-top: 4px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffaad4;
+      text-shadow: 0 0 4px rgba(255,170,212,0.6);
     }
-    .popup-affiliate button.close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      color: #ffa8de;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    .popup-affiliate button.action-btn {
-      margin-top: 1rem;
-      background: #ffaad4;
-      color: #1f1f1f;
-      border: none;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translate(-50%, -60%); }
-      to { opacity: 1; transform: translate(-50%, -50%); }
-    }
-    @media (max-width: 480px) {
-      .popup-affiliate {
-        padding: 1rem;
-        font-size: 0.9rem;
-      }
-      .popup-affiliate button.action-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-      }
-    }
-.amazon-container {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  flex-wrap: nowrap;
-}
-.info-btn {
-  background: none;
-  border: 1px solid #ffa8de;
-  border-radius: 50%;
-  color: #ffa8de;
-  width: 24px;
-  height: 24px;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
-}
-.back-to-top { position: fixed; right: 1rem; z-index: 100;
-}
-/* on laisse le lien rétrécir au besoin */
-.amazon-link{
-  flex:1 1 auto;    /* le lien peut rapetisser */
-  min-width:0;      /* …même plus petit que son contenu */
-  white-space:normal;/* le texte peut retourner à la ligne dans le lien */
-}
 
-/* le “?” garde sa taille fixe */
-.info-btn{
-  flex:0 0 24px;    /* 24 px et basta */
-}
-/* ─── Badge placé SOUS l’image et parfaitement centré ─── */
-.carousel-card .badge-wrap{
-  width:100%;                  /* prend toute la largeur de la carte   */
-  margin-top:.6rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;          /* ← centre horizontalement             */
-}
+    /* ─── 6. Popup affilié ─── */
+    .popup-affiliate { display: none; position: fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1f1f2f; padding:1.5rem; border-radius:12px; color:#ffa8de; box-shadow:0 0 12px rgba(255,255,255,0.2); z-index:1000; width:90%; max-width:320px; text-align:center; }
+    .popup-affiliate.show { display: block; animation: fadeIn 0.3s ease-in-out; }
+    .popup-affiliate button.close-btn { position:absolute; top:10px; right:10px; background:none; border:none; color:#ffa8de; font-size:1.5rem; cursor:pointer; }
+    .popup-affiliate button.action-btn { margin-top:1rem; background:#ffaad4; color:#1f1f1f; border:none; padding:0.6rem 1rem; border-radius:6px; cursor:pointer; font-size:1rem; }
+    @keyframes fadeIn { from { opacity:0; transform:translate(-50%,-60%);} to { opacity:1; transform:translate(-50%,-50%);} }
+    @media (max-width:480px) { .popup-affiliate { padding:1rem; font-size:0.9rem;} .popup-affiliate button.action-btn { padding:0.5rem 1rem; font-size:0.9rem;} }
 
-.carousel-card .badge-icon{
-  width:56px;                  /* icône plus grande                    */
-  margin:0;                    /* supprime l'ancien margin-right       */
-  animation:badge-bounce 2s infinite, halo-glow 3s infinite;
-  filter:drop-shadow(0 0 6px #ffb3e6);
-}
-
-.carousel-card .badge-label{
-  margin-top:4px;
-  font-size:1.05rem;
-  font-weight:600;
-  color:#ffaad4;
-  text-shadow:0 0 4px rgba(255,170,212,.6);
-}
-/* cache les puces vides */
-.carousel-card ul li:empty{
-  display:none;
-  list-style-type:none;
-  margin:0;
-  padding:0;
-}
-/* on neutralise proprement l’ancienne règle gênante */
-.carousel-card .badge-icon{ vertical-align:baseline; }
-</style>
+    /* ─── 7. Menu & Burger ─── */
+    .menu { position: fixed; top:1rem; left:1rem; z-index:1000; }
+    .menu-icon { font-size:1.8rem; color:#ffaad4; cursor:pointer; }
+    #menu-toggle { display:none; }
+    .menu-items { display:none; list-style:none; background:#1f1f2f; padding:0.5rem 1rem; margin-top:0.5rem; border-radius:8px; box-shadow:0 0 8px rgba(255,255,255,0.05); }
+    .menu-items li { margin:0.3rem 0; }
+    .menu-items a { text-decoration:none; color:#ffa8de; font-weight:500; }
+    #menu-toggle:checked + .menu-icon + .menu-items { display:block; }
+    .burger-container { position:absolute; top:1rem; right:1rem; z-index:100; }
+    .burger-icon { font-size:1.5rem; cursor:pointer; color:#ffa8de; background:#1f1f2f; padding:6px 10px; border-radius:8px; border:1px solid #ffa8de; }
+    .burger-overlay { position:fixed; top:0; left:0; height:100vh; width:100vw; background:rgba(0,0,0,0.5); z-index:99; display:none; }
+    .burger-container.open .main-menu { display:flex !important; }
+    .burger-container.open .burger-overlay { display:block; }
+    .main-menu { display:none; flex-direction:column; background:#1f1f2f; padding:0.5rem; border-radius:8px; margin-top:0.5rem; border:1px solid #ffa8de; min-width:180px; position:absolute; top:2.5rem; right:0; z-index:101; }
+    .main-menu a { color:#ffa8de; text-decoration:none; padding:6px; border-radius:6px; transition:background 0.3s ease, color 0.3s ease; }
+    .main-menu a:hover { background:#ffaad4; color:#0f0f1a; }
+  </style>
 </head>
 <body>
-<a href="../index.html" class="back-to-top" style="top:1rem;">← Retour à l'accueil</a>
+  <a href="../index.html" class="back-to-top top">← Retour à l'accueil</a>
   <div class="burger-container">
-  <div class="burger-overlay" onclick="closeMenu()"></div>
-  <div class="burger-icon" onclick="toggleMenu()">☰</div>
-  <nav class="main-menu" id="mainMenu">
-    <a href="../index.html">Accueil</a>
-    <a href="histoire.html">Histoire d’Elv’yra</a>
-    <a href="apropos.html">À propos</a>
-  </nav>
-</div>
+    <div class="burger-overlay" onclick="closeMenu()"></div>
+    <div class="burger-icon" onclick="toggleMenu()">☰</div>
+    <nav class="main-menu" id="mainMenu">
+      <a href="../index.html">Accueil</a>
+      <a href="histoire.html">Histoire d’Elv’yra</a>
+      <a href="apropos.html">À propos</a>
+    </nav>
+  </div>
   <img src="/elvyra/assets/Elvyra_smartphone.png" alt="Elv’yra" class="header-image">
-  <h1>💻 Top 5 des Smartphone - 300€ 2025</h1>
-  <p class="intro">✨ “Mission 300 €” : les pépites qui claquent sans trouer ton compte en banque</p>
-  <p class="intro">Tu veux la fluidité 120 Hz, la 5 G et des photos qui buzzent… sans passer la barre psychologique des 300 € ? Bonne pioche ! Voici cinq smartphones qui prouvent qu’en 2025 le haut de gamme a clairement glissé sous la barre des trois billets,</p>
+  <h1>💻 Top 5 des Smartphones 2025</h1>
+  <p class="intro">Ici, c’est Elv’yra aux commandes : je décortique chaque fiche technique, traque les promos planquées en pixel 8, et j’enrobe tout ça d’une bonne dose de paillettes et de franc-parler.</p>
+  <p class="intro">Mon objectif ? Que tu trouves LE smartphone qui claque sans claquer ton PEL, le tout saupoudré de conseils maison (et de gifs de chats, si tu insistes ✨). Prêt·e à scroller ? Alors hissons les voiles numériques et partons pêcher la pépite ! 🚀📱</p>
+
   <div class="scroll-table">
     <table>
       <thead>
         <tr>
-        <th>Image</th>
-        <th>Nom</th>
-        <th>Badge</th>
-        <th>Prix</th>
-        <th>Note</th>
-        <th>Ecran</th>
-        <th>Batterie</th>
-        <th>Caméra</th>
-        <th>Connection</th>
-        <th>RAM/Stockage</th>
-        <th>Amazon</th>
+          <th>Image</th><th>Nom</th><th>Badge</th><th>Prix</th><th>Note</th><th>Autonomie</th><th>Stockage</th><th>Processeur</th><th>Ecran</th><th>Appareil photo</th><th>Amazon</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61YoGG7k5bL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="HONOR X6B"></a></td>
-  <td>HONOR X6B</td>
-  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas"></td>
-  <td><span class="price-tag">94.9€</span></td>
-  <td>5,0</td>
-  <td>6,56 pouces 90Hz</td>
-  <td>5200mAh</td>
-  <td>50Mp Ultra HD x3</td>
-  <td>4G</td>
-  <td>4Go / 128Go</td>
+  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/81zOFekYzAL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="OUKITEL C1 Android 15 (4/128 Go)"></a></td>
+  <td>OUKITEL C1 Android 15 (4/128 Go)</td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Bas prix"></td>
+  <td><span class="price-tag">89.99€</span></td>
+  <td>4.9</td>
+  <td>5150 mAh</td>
+  <td>128 Go</td>
+  <td>Octa-core</td>
+  <td>6,52″ HD+</td>
+  <td>13 MP</td>
   <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4iRRMW9" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/OUKITEL-C1-Smartphone-Telephone-Fingerprint/dp/B0DXKQ2J3M/ref=sr_1_44" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div></td>
 </tr>
 <tr>
-  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61v8fYwaI+L._AC_SY300_SX300_.jpg" alt="POCO M7 Pro"></a></td>
-  <td>POCO M7 Pro</td>
+  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61ktZoXGiDL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi 14C NFC (8/256 Go)"></a></td>
+  <td>Xiaomi Redmi 14C NFC (8/256 Go)</td>
   <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou"></td>
-  <td><span class="price-tag">233€</span></td>
-  <td>4,4</td>
-  <td>6,67 pouces 120Hz</td>
-  <td>5110mAh</td>
-  <td>50Mp</td>
-  <td>5G</td>
-  <td>12Go / 256Go</td>
+  <td><span class="price-tag">106€</span></td>
+  <td>5</td>
+  <td>5160 mAh</td>
+  <td>256 Go</td>
+  <td>Helio G81 Ultra</td>
+  <td>6,88″ 120 Hz</td>
+  <td>50 MP</td>
   <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4d5j6ir" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/Xiaomi-Redmi-14C-Smartphone-chargeur/dp/B0F4K9RV6N/ref=sr_1_3" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div></td>
 
 </tr>
 <tr>
-  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71b08QoLjZL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="HONOR 200 Lite"></a></td>
-  <td>HONOR 200 Lite</td>
-  <td></td>
-  <td><span class="price-tag">199.9€</span></td>
-  <td>4,4</td>
-  <td>6,7 pouces 90Hz</td>
-  <td>4500mAh</td>
-  <td>108Mp / 50Mp</td>
-  <td></td>
-  <td>8Go / 256Go</td>
-  <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/3SkuRrC" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
-  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
-</div></td>
-
-</tr>
-<tr>
-  <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61v8fYwaI+L._AC_SY300_SX300_.jpg" alt="POCO M7 Pro"></a></td>
-  <td>POCO M7 Pro</td>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61v8fYwaI+L._AC_SY300_SX300_.jpg" alt="POCO M7 Pro 5G (12/256 Go)"></a></td>
+  <td>POCO M7 Pro 5G (12/256 Go)</td>
   <td></td>
   <td><span class="price-tag">233€</span></td>
-  <td>4,4</td>
-  <td>6,67 pouces 120Hz</td>
-  <td>5110mAh</td>
-  <td>50Mp</td>
-  <td>5G</td>
-  <td>12Go / 256Go</td>
+  <td>4.4</td>
+  <td>5110 mAh</td>
+  <td>256 Go</td>
+  <td>Dimensity 7200</td>
+  <td>6,67″ AMOLED 120 Hz</td>
+  <td>50 MP OIS</td>
   <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4d5j6ir" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/Smartphone-Appareil-Batterie-5110mAh-Chargeur/dp/B0DSG219VZ/ref=sr_1_45" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div></td>
 
 </tr>
 <tr>
-  <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61Iz6WCb0yL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi Note 14 Pro"></a></td>
-  <td>Xiaomi Redmi Note 14 Pro</td>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71hQ+hSbZiL._AC_SY300_SX300_.jpg" alt="Motorola G24 Power (8/256 Go)"></a></td>
+  <td>Motorola G24 Power (8/256 Go)</td>
+  <td></td>
+  <td><span class="price-tag">159.99€</span></td>
+  <td>4.4</td>
+  <td>6000 mAh</td>
+  <td>256 Go</td>
+  <td>Helio G85</td>
+  <td>6,6″ 90 Hz</td>
+  <td>50 MP</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://www.amazon.fr/MOTOROLA-smartphone-d%C3%A9bloqu%C3%A9-batterie-protection/dp/B0CTHX8WYP/ref=cs_sr_dp_2" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61Iz6WCb0yL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi Note 14 Pro (8/256 Go)"></a></td>
+  <td>Xiaomi Redmi Note 14 Pro (8/256 Go)</td>
   <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
   <td><span class="price-tag">293€</span></td>
-  <td>4,4</td>
-  <td>6,67 pouces 120Hz</td>
-  <td>5500mAh</td>
-  <td>32Mp / 200Mp</td>
-  <td>5G</td>
-  <td>8Go / 256Go</td>
+  <td>4.4</td>
+  <td>5500 mAh</td>
+  <td>256 Go</td>
+  <td>Snapdragon 7-Gen</td>
+  <td>6,67″ AMOLED 120 Hz</td>
+  <td>200 MP</td>
   <td><div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/450McNI" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/Xiaomi-Smartphone-Note-14-fonctionnalit%C3%A9s/dp/B0DKT7LG4F/ref=cs_sr_dp_4" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div></td>
 
@@ -547,102 +350,101 @@
   <h2>📚 Les conseils d'Elv’yra 💬</h2>
 <div class="carousel" id="carousel">
    <div class="carousel-card" id="carte-1">
-    <img src="https://m.media-amazon.com/images/I/61YoGG7k5bL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="HONOR X6B" class="product-img">
+    <img src="https://m.media-amazon.com/images/I/81zOFekYzAL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="OUKITEL C1 Android 15 (4/128 Go)" class="product-img">
 <div class="badge-wrap">
-    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas">
-    <span class="badge-label">Prix bas</span>
+    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Bas prix">
+    <span class="badge-label">Bas prix</span>
   </div>
-    <h3>HONOR X6B
-    <div class="price-tag">94.9€</div></h3>
-    <div class="meta">6,56 pouces 90Hz / 5200mAh · 50Mp Ultra HD x3 · 4G</div>
+    <h3>OUKITEL C1 Android 15 (4/128 Go)
+    <div class="price-tag">89.99€</div></h3>
+    <div class="meta">5150 mAh / 128 Go · Octa-core · 6,52″ HD+</div>
     <ul>
-      <li>Capteur 50 MP</li>
-      <li>Batterie 5200 mAh</li>
-      <li></li>
+      <li>Petit prix</li>
+      <li>Android 15 stock</li>
+      <li>Triple SIM</li>
     </ul>
-    <p>Moins de 100 € et une batterie de chameau : le premier smartphone qui ne craint rien.</p>
+    <p>Le compagnon d’appoint qui épargne votre banquier.</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4iRRMW9" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/OUKITEL-C1-Smartphone-Telephone-Fingerprint/dp/B0DXKQ2J3M/ref=sr_1_44" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 
   <div class="carousel-card" id="carte-2">
-    <img src="https://m.media-amazon.com/images/I/61v8fYwaI+L._AC_SY300_SX300_.jpg" alt="POCO M7 Pro" class="product-img">
+    <img src="https://m.media-amazon.com/images/I/61ktZoXGiDL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi 14C NFC (8/256 Go)" class="product-img">
 <div class="badge-wrap">
     <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">
     <span class="badge-label">Chouchou</span>
-  </div>    <h3>POCO M7 Pro
-    <div class="price-tag">233€</div></h3>
-    <div class="meta">6,67 pouces 120Hz / 5110mAh · 50Mp · 5G</div>
+  </div>    <h3>Xiaomi Redmi 14C NFC (8/256 Go)
+    <div class="price-tag">106€</div></h3>
+    <div class="meta">5160 mAh / 256 Go · Helio G81 Ultra · 6,88″ 120 Hz</div>
     <ul>
-      <li>Capteur 50 MP</li>
-      <li>Écran 120 Hz</li>
-      <li>Dalle AMOLED</li>
+      <li>Écran 120 Hz fluide</li>
+      <li>Prix imbattable</li>
+      <li>Grosse batterie</li>
     </ul>
-    <p>120 Hz, Dimensity & 12 Go RAM : ready pour le gaming en mode turbo, même dans le bus.</p>
+    <p>Le meilleur rapport performances/prix de la sélection.</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4d5j6ir" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/Xiaomi-Redmi-14C-Smartphone-chargeur/dp/B0F4K9RV6N/ref=sr_1_3" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 
   <div class="carousel-card" id="carte-3">
-    <img src="https://m.media-amazon.com/images/I/71b08QoLjZL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="HONOR 200 Lite">
-    <h3>HONOR 200 Lite
-    <div class="price-tag">199.9€</div></h3>
-    <div class="meta">6,7 pouces 90Hz / 4500mAh · 108Mp / 50Mp · </div>
+    <img src="https://m.media-amazon.com/images/I/61v8fYwaI+L._AC_SY300_SX300_.jpg" alt="POCO M7 Pro 5G (12/256 Go)">
+    <h3>POCO M7 Pro 5G (12/256 Go)
+    <div class="price-tag">233€</div></h3>
+    <div class="meta">5110 mAh / 256 Go · Dimensity 7200 · 6,67″ AMOLED 120 Hz</div>
     <ul>
-      <li>Capteur 108 MP</li>
-      <li>Dalle AMOLED</li>
-      <li>Connectivité 5G</li>
+      <li>5G + Wi-Fi 6</li>
+      <li>AMOLED 120 Hz</li>
+      <li>Charge 45 W</li>
     </ul>
-    <p>Fin, lumineux et selfie‑friendly : ton feed Insta va rayonner sans vider ton PEL.</p>
+    <p>La vitesse 5 G au prix doux.</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/3SkuRrC" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/Smartphone-Appareil-Batterie-5110mAh-Chargeur/dp/B0DSG219VZ/ref=sr_1_45" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 
   <div class="carousel-card" id="carte-4">
-    <img src="https://m.media-amazon.com/images/I/61v8fYwaI+L._AC_SY300_SX300_.jpg" alt="POCO M7 Pro">
-    <h3>POCO M7 Pro
-    <div class="price-tag">233€</div></h3>
-    <div class="meta">6,67 pouces 120Hz / 5110mAh · 50Mp · 5G</div>
+    <img src="https://m.media-amazon.com/images/I/71hQ+hSbZiL._AC_SY300_SX300_.jpg" alt="Motorola G24 Power (8/256 Go)">
+    <h3>Motorola G24 Power (8/256 Go)
+    <div class="price-tag">159.99€</div></h3>
+    <div class="meta">6000 mAh / 256 Go · Helio G85 · 6,6″ 90 Hz</div>
     <ul>
-      <li>Capteur 50 MP</li>
-      <li>Écran 120 Hz</li>
-      <li>Dalle AMOLED</li>
+      <li>Batterie 6000 mAh</li>
+      <li>Charge 33 W</li>
+      <li>Android quasi stock</li>
     </ul>
-    <p>120 Hz, Dimensity & 12 Go RAM : ready pour le gaming en mode turbo, même dans le bus.</p>
+    <p>Tiendra deux jours sans broncher.</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/4d5j6ir" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/MOTOROLA-smartphone-d%C3%A9bloqu%C3%A9-batterie-protection/dp/B0CTHX8WYP/ref=cs_sr_dp_2" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 
   <div class="carousel-card" id="carte-5">
-    <img src="https://m.media-amazon.com/images/I/61Iz6WCb0yL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi Note 14 Pro" class="product-img">
+    <img src="https://m.media-amazon.com/images/I/61Iz6WCb0yL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi Note 14 Pro (8/256 Go)" class="product-img">
  <div class="badge-wrap">
-    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="">
+    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="5G turbo">
     <span class="badge-label">Premium</span>
-  </div>    <h3>Xiaomi Redmi Note 14 Pro
+  </div>    <h3>Xiaomi Redmi Note 14 Pro (8/256 Go)
     <div class="price-tag">293€</div></h3>
-    <div class="meta">6,67 pouces 120Hz / 5500mAh · 32Mp / 200Mp · 5G</div>
+    <div class="meta">5500 mAh / 256 Go · Snapdragon 7-Gen · 6,67″ AMOLED 120 Hz</div>
     <ul>
-      <li>Capteur 200 MP</li>
-      <li>Batterie 5500 mAh</li>
-      <li>8/256GB</li>
+      <li>Capteur 200 MP</li>
+      <li>AMOLED 120 Hz</li>
+      <li>Charge rapide</li>
     </ul>
-    <p>200 MP pour immortaliser tes tacos + grosse batterie 5500 mAh : la star photo abordable.</p>
+    <p>Pour des photos qui claquent.</p>
     <div class="amazon-container">
-  <a class="amazon-link" href="https://amzn.to/450McNI" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <a class="amazon-link" href="https://www.amazon.fr/Xiaomi-Smartphone-Note-14-fonctionnalit%C3%A9s/dp/B0DKT7LG4F/ref=cs_sr_dp_4" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
   <button onclick="openAffiliatePopup()" class="info-btn">?</button>
 </div>
   </div>
 </div>
-  </div>
-<script>
+ <script>
 function openAffiliatePopup() {
   document.getElementById('popupAffiliate').classList.add('show');
 }
