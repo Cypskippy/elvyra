@@ -246,7 +246,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+/* ─── Colonne « Nom » au plus petit, avec wrap ─── */
+.scroll-table table th:nth-child(2),
+.scroll-table table td:nth-child(2) {
+  width: 1%;           /* → donne la largeur la plus petite possible */
+  white-space: normal; /* → permet le retour à la ligne sur les espaces */
+  word-break: break-word;
+}
   </style>
 </head>
 <body>
