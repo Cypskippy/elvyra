@@ -7,6 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     /* ─── 1. Global & Reset ─── */
+:root{
+  --badge-size-carousel: 48px;  /* ← modifie ici si tu veux plus grand / plus petit */
+  --badge-size-table:    32px;
+}
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -174,21 +178,25 @@
       0%,100% { transform: scale(1); }
       50%     { transform: scale(1.15); }
     }
-    .badge-icon {
-      display: block;
-      width: 56px;
-      margin: 0 auto;
-      animation: badge-bounce 2s infinite alternate, halo-glow 3s infinite;
-      filter: drop-shadow(0 0 6px #ffb3e6);
-    }
-    .scroll-table .badge-icon {
-      display: inline-block;
-      width: 24px;
-      vertical-align: middle;
-      margin-right: 6px;
-      animation: none;
-      filter: none;
-    }
+   /* ─── Base (carousel) ─── */
+.badge-icon{
+  display:block;
+  width: var(--badge-size-carousel);
+  margin:0 auto;
+  animation: badge-bounce 2s infinite alternate, halo-glow 3s infinite;
+  filter: drop-shadow(0 0 6px #ffb3e6);
+}
+
+/* ─── Variante tableau ─── */
+.scroll-table .badge-icon{
+  display:inline-block;
+  width: var(--badge-size-table);
+  vertical-align:middle;
+  margin-right:6px;
+  animation:none;
+  filter:none;
+}
+
     .carousel-card .badge-wrap .badge-icon { }
     .badge-wrap {
       text-align: center;
