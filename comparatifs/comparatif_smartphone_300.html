@@ -245,7 +245,6 @@
   white-space: normal;          /* wrap normal aux espaces */
   overflow-wrap: break-word;    /* casse le mot si vraiment nécessaire */
 }
-
 /* 2) Prix & Amazon → jamais wrap, toujours sur une ligne */
 .scroll-table .price-tag,
 .scroll-table .amazon-container {
@@ -504,34 +503,34 @@ document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
     });
   });
    document.addEventListener('DOMContentLoaded', function() {
-      // on récupère tous les wrappers de nom
-      const clamps = document.querySelectorAll('.scroll-table td:nth-child(2) .clamp');
-      // on trouve la longueur du nom le plus long
-      let maxLen = 0;
-      clamps.forEach(el => {
-        const len = el.textContent.trim().length;
-        if (len > maxLen) maxLen = len;
-      });
-      // on veut la moitié de cette longueur, arrondie au supérieur
-      const half = Math.ceil(maxLen / 2);
-
-      // on mesure la largeur en pixels de '0' répété half fois
-      const tester = document.createElement('span');
-      tester.style.visibility   = 'hidden';
-      tester.style.whiteSpace   = 'nowrap';
-      tester.textContent        = '0'.repeat(half);
-      document.body.appendChild(tester);
-      const targetWidth = tester.getBoundingClientRect().width;
-      document.body.removeChild(tester);
-
-      // on applique la max-width mesurée à chaque .clamp
-      clamps.forEach(el => {
-        el.style.display   = 'inline-block';
-        el.style.maxWidth  = targetWidth + 'px';
-        el.style.whiteSpace      = 'normal';
-        el.style.overflowWrap    = 'break-word';
-      });
+    // On récupère tous les wrappers de nom
+    const clamps = document.querySelectorAll('.scroll-table td:nth-child(2) .clamp');
+    // On trouve la longueur du nom le plus long
+    let maxLen = 0;
+    clamps.forEach(el => {
+      const len = el.textContent.trim().length;
+      if (len > maxLen) maxLen = len;
     });
+    // On veut la moitié de cette longueur, arrondie au supérieur
+    const half = Math.ceil(maxLen / 2);
+
+    // On mesure la largeur en pixels de '0' répété half fois
+    const tester = document.createElement('span');
+    tester.style.visibility = 'hidden';
+    tester.style.whiteSpace = 'nowrap';
+    tester.textContent = '0'.repeat(half);
+    document.body.appendChild(tester);
+    const targetWidth = tester.getBoundingClientRect().width;
+    document.body.removeChild(tester);
+
+    // On applique la max-width mesurée à chaque .clamp
+    clamps.forEach(el => {
+      el.style.display  = 'inline-block';
+      el.style.maxWidth = targetWidth + 'px';
+      el.style.whiteSpace = 'normal';
+      el.style.overflowWrap = 'break-word';
+    });
+  });
 </script>
 <a href="../index.html" class="back-to-top" style="bottom:1rem;">← Retour à l'accueil</a>
 <div id="popupAffiliate" class="popup-affiliate">
