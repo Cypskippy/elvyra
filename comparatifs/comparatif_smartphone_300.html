@@ -239,19 +239,19 @@
     .main-menu a { color:#ffa8de; text-decoration:none; padding:6px; border-radius:6px; transition:background 0.3s ease, color 0.3s ease; }
     .main-menu a:hover { background:#ffaad4; color:#0f0f1a; }
  
-/* ─── Colonne « Nom » au plus petit, avec wrap ─── */
-.scroll-table table th:nth-child(2),
-.scroll-table table td:nth-child(2) {
-}
-/* on cible bien votre <div class="clamp">…</div> */
-.scroll-table table td:nth-child(2) .clamp {
-  display: inline-block;    /* pour que width/max-width soient prises en compte */
-  width: 35vw;              /* prend 75% de la largeur de l’écran mobile */
-  max-width: 30ch;          /* plafonne à 40 caractères de large en desktop */
-  white-space: normal;      /* retour à la ligne aux espaces */
-  overflow-wrap: break-word;
+/* 1) Nom en exactement 2 lignes max sur desktop */
+.scroll-table td:nth-child(2) .clamp {
+  display: inline-block;        /* autorise max-width */
+  max-width: 19ch;              /* ½ de la longueur du plus long titre (~38 caractères) */
+  white-space: normal;          /* wrap normal aux espaces */
+  overflow-wrap: break-word;    /* casse le mot si vraiment nécessaire */
 }
 
+/* 2) Prix & Amazon → jamais wrap, toujours sur une ligne */
+.scroll-table .price-tag,
+.scroll-table .amazon-container {
+  white-space: nowrap;
+}
 </style>
 </head>
 <body>
