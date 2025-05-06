@@ -511,5 +511,14 @@ document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
   <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
   <button class="action-btn" onclick="closeAffiliatePopup()">Fermer</button>
 </div>
+  // Pseudo-code
+const textes = Array.from(document.querySelectorAll('.clamp'))
+  .map(el => el.textContent);
+const plusLong = textes.reduce((a,b) => a.length>b.length?a:b);
+const moitie = Math.ceil(plusLong.length/2);
+// mesure la largeur de '0' et calcule pixel width
+const zeroW = measureTextWidth('0');
+document.querySelectorAll('td:nth-child(2) .clamp')
+  .forEach(el => el.style.maxWidth = `${moitie * zeroW}px`);
 </body>
 </html>
