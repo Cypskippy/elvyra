@@ -9,7 +9,7 @@
     /* ─── 1. Global & Reset ─── */
 :root{
   --badge-size-carousel: 48px;  /* ← modifie ici si tu veux plus grand / plus petit */
-  --badge-size-table:    48px;
+  --badge-size-table:    32px;
 }
     body {
       margin: 0;
@@ -242,10 +242,15 @@
 /* ─── Colonne « Nom » au plus petit, avec wrap ─── */
 .scroll-table table th:nth-child(2),
 .scroll-table table td:nth-child(2) {
-  width: 10%;           /* → donne la largeur la plus petite possible */
-  white-space: normal; /* → permet le retour à la ligne sur les espaces */
-  word-break: break-word;
 }
+/* cible le wrapper “clamp” que vous avez mis en HTML */
+.scroll-table table td:nth-child(2) .clamp {
+  display: inline-block;       /* autorise width/max-width */
+  max-width: 20ch;              /* 2 lignes de ~20 caractères chacune */
+  white-space: normal;          /* wrap normal aux espaces */
+  overflow-wrap: break-word;    /* casse au mot si trop long */
+}
+
 </style>
 </head>
 <body>
