@@ -238,6 +238,15 @@
     .main-menu { display:none; flex-direction:column; background:#1f1f2f; padding:0.5rem; border-radius:8px; margin-top:0.5rem; border:1px solid #ffa8de; min-width:180px; position:absolute; top:2.5rem; right:0; z-index:101; }
     .main-menu a { color:#ffa8de; text-decoration:none; padding:6px; border-radius:6px; transition:background 0.3s ease, color 0.3s ease; }
     .main-menu a:hover { background:#ffaad4; color:#0f0f1a; }
+    /* ─── Clamp 2 lignes dans le tableau ─── */
+.scroll-table td > .clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
   </style>
 </head>
 <body>
@@ -282,7 +291,7 @@
 </tr>
 <tr>
   <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61ktZoXGiDL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi 14C NFC (8/256 Go)"></a></td>
-  <td>Xiaomi Redmi 14C NFC (8/256 Go)</td>
+  <td><div class="clamp">Xiaomi Redmi 14C NFC (8/256 Go)</div></td>
   <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou"></td>
   <td><span class="price-tag">106€</span></td>
   <td>5</td>
@@ -299,7 +308,7 @@
 </tr>
 <tr>
   <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61v8fYwaI+L._AC_SY300_SX300_.jpg" alt="POCO M7 Pro 5G (12/256 Go)"></a></td>
-  <td>POCO M7 Pro 5G (12/256 Go)</td>
+  <td><div class="clamp">POCO M7 Pro 5G (12/256 Go)</div></td>
   <td></td>
   <td><span class="price-tag">233€</span></td>
   <td>4.4</td>
@@ -316,7 +325,7 @@
 </tr>
 <tr>
   <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71hQ+hSbZiL._AC_SY300_SX300_.jpg" alt="Motorola G24 Power (8/256 Go)"></a></td>
-  <td>Motorola G24 Power (8/256 Go)</td>
+  <td><div class="clamp">Motorola G24 Power (8/256 Go)</div></td>
   <td></td>
   <td><span class="price-tag">159.99€</span></td>
   <td>4.4</td>
@@ -333,7 +342,7 @@
 </tr>
 <tr>
   <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61Iz6WCb0yL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Xiaomi Redmi Note 14 Pro (8/256 Go)"></a></td>
-  <td>Xiaomi Redmi Note 14 Pro (8/256 Go)</td>
+  <td><div class="clamp">Xiaomi Redmi Note 14 Pro (8/256 Go)</div></td>
   <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
   <td><span class="price-tag">293€</span></td>
   <td>4.4</td>
