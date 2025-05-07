@@ -239,11 +239,12 @@
     .main-menu a { color:#ffa8de; text-decoration:none; padding:6px; border-radius:6px; transition:background 0.3s ease, color 0.3s ease; }
     .main-menu a:hover { background:#ffaad4; color:#0f0f1a; }
  
-/* 1) Nom en exactement 2 lignes max sur desktop */
+/* 1) Limiter le nom à 2 lignes, sans JS et sans toucher au menu */
 .scroll-table td:nth-child(2) .clamp {
-  display: inline-block;        /* autorise max-width */
-  white-space: normal;          /* wrap normal aux espaces */
-  overflow-wrap: break-word;    /* casse le mot si vraiment nécessaire */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 /* 2) Prix & Amazon → jamais wrap, toujours sur une ligne */
 .scroll-table .price-tag,
