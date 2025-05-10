@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 des Smartphones - Elv'yra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── 1. Global & Reset ─── */
+:root{
+  --badge-size-carousel: 48px;  /* ← modifie ici si tu veux plus grand / plus petit */
+  --badge-size-table:    32px;
+}
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
+      color: #e8e8f5;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+    .header-image {
+      display: block;
+      margin: 0 auto 1.5rem;
+      max-width: 220px;
+      border-radius: 12px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #ff71c3;
+    }
+    .intro {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 1rem;
+      color: #ccccdd;
+    }
+
+    /* ─── 2. Table & Thumbnails ─── */
+    .scroll-table {
+      overflow-x: auto;
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+    }
+    .scroll-table::-webkit-scrollbar { height: 8px; }
+    .scroll-table::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+    .scroll-table table {
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      table-layout: auto; /* colonnes auto ajustées */
+      width: auto;
+    }
+    table th {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: nowrap;
+      background-color: #2c2c44;
+      color: #ffa8de;
+    }
+    table td {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: normal;
+      word-break: break-word;
+      /* Aucun max-width pour que la colonne s'ajuste au contenu */
+    }
+    table tr:nth-child(even) { background-color: #1f1f2f; }
+    img.thumbnail {
+      width: 60px;
+      border-radius: 6px;
+    }
+
+    /* ─── 3. Prix & Boutons Amazon/Retour ─── */
+    .price-tag {
+      background: #ffd700;
+      color: #1f1f1f;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    a.amazon-link,
+    a.back-to-top {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: #2a2a3a;
+      color: #ffc2e6;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 170, 212, 0.4);
+      transition: background 0.3s ease, color 0.3s ease;
+      position: static;
+      margin: 1rem;
+    }
+    a.amazon-link:hover,
+    a.back-to-top:hover {
+      background: #ffaad4;
+      color: #0f0f1a;
+    }
+    .back-to-top { position: fixed; right: 1rem; z-index: 100; }
+    .back-to-top.top { top: 1rem; }
+    .back-to-top.bottom { bottom: 1rem; }
+    .amazon-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: nowrap;
+    }
+    .affiliate-tag {
+      font-size: 0.8rem;
+      color: #ffa8de;
+      background: #2a2a3a;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 6px;
+    }
+    .info-btn {
+      background: none;
+      border: 1px solid #ffa8de;
+      border-radius: 50%;
+      color: #ffa8de;
+      width: 24px;
+      height: 24px;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* ─── 4. Carousel ─── */
+    .carousel {
+      margin-top: 3rem;
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem;
+      scroll-snap-type: x mandatory;
+      position: relative;
+    }
+    .carousel-card {
+      flex: 0 0 300px;
+      background-color: #1c1c2e;
+      border-radius: 12px;
+      padding: 1rem;
+      scroll-snap-align: center;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+    .carousel-card img.product-img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+    .carousel-card h3 {
+      margin: 0.5rem 0 0;
+      color: #ffb3e6;
+    }
+    .carousel-card .meta {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .carousel-card ul li:empty { display: none; }
+
+    /* ─── 5. Badges (animations + variantes) ─── */
+    @keyframes halo-glow {
+      0%,100% { box-shadow: 0 0 6px 2px rgba(255,172,255,0.3); }
+      50%     { box-shadow: 0 0 12px 4px rgba(255,172,255,0.6); }
+    }
+    @keyframes badge-bounce {
+      0%,100% { transform: scale(1); }
+      50%     { transform: scale(1.15); }
+    }
+   /* ─── Base (carousel) ─── */
+.badge-icon{
+  display:block;
+  width: var(--badge-size-carousel);
+  margin:0 auto;
+  animation: badge-bounce 2s infinite alternate, halo-glow 3s infinite;
+  filter: drop-shadow(0 0 6px #ffb3e6);
+}
+
+/* ─── Variante tableau ─── */
+.scroll-table .badge-icon{
+  display:inline-block;
+  width: var(--badge-size-table);
+  vertical-align:middle;
+  margin-right:6px;
+  animation:none;
+  filter:none;
+}
+
+    .carousel-card .badge-wrap .badge-icon { }
+    .badge-wrap {
+      text-align: center;
+      margin: 0.6rem 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .badge-label {
+      display: block;
+      margin-top: 4px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffaad4;
+      text-shadow: 0 0 4px rgba(255,170,212,0.6);
+    }
+
+    /* ─── 6. Popup affilié ─── */
+    .popup-affiliate { display: none; position: fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1f1f2f; padding:1.5rem; border-radius:12px; color:#ffa8de; box-shadow:0 0 12px rgba(255,255,255,0.2); z-index:1000; width:90%; max-width:320px; text-align:center; }
+    .popup-affiliate.show { display: block; animation: fadeIn 0.3s ease-in-out; }
+    .popup-affiliate button.close-btn { position:absolute; top:10px; right:10px; background:none; border:none; color:#ffa8de; font-size:1.5rem; cursor:pointer; }
+    .popup-affiliate button.action-btn { margin-top:1rem; background:#ffaad4; color:#1f1f1f; border:none; padding:0.6rem 1rem; border-radius:6px; cursor:pointer; font-size:1rem; }
+    @keyframes fadeIn { from { opacity:0; transform:translate(-50%,-60%);} to { opacity:1; transform:translate(-50%,-50%);} }
+    @media (max-width:480px) { .popup-affiliate { padding:1rem; font-size:0.9rem;} .popup-affiliate button.action-btn { padding:0.5rem 1rem; font-size:0.9rem;} }
+
+    /* ─── 7. Menu & Burger ─── */
+    .menu { position: fixed; top:1rem; left:1rem; z-index:1000; }
+    .menu-icon { font-size:1.8rem; color:#ffaad4; cursor:pointer; }
+    #menu-toggle { display:none; }
+    .menu-items { display:none; list-style:none; background:#1f1f2f; padding:0.5rem 1rem; margin-top:0.5rem; border-radius:8px; box-shadow:0 0 8px rgba(255,255,255,0.05); }
+    .menu-items li { margin:0.3rem 0; }
+    .menu-items a { text-decoration:none; color:#ffa8de; font-weight:500; }
+    #menu-toggle:checked + .menu-icon + .menu-items { display:block; }
+    .burger-container { position:absolute; top:1rem; right:1rem; z-index:100; }
+    .burger-icon { font-size:1.5rem; cursor:pointer; color:#ffa8de; background:#1f1f2f; padding:6px 10px; border-radius:8px; border:1px solid #ffa8de; }
+    .burger-overlay { position:fixed; top:0; left:0; height:100vh; width:100vw; background:rgba(0,0,0,0.5); z-index:99; display:none; }
+    .burger-container.open .main-menu { display:flex !important; }
+    .burger-container.open .burger-overlay { display:block; }
+    .main-menu { display:none; flex-direction:column; background:#1f1f2f; padding:0.5rem; border-radius:8px; margin-top:0.5rem; border:1px solid #ffa8de; min-width:180px; position:absolute; top:2.5rem; right:0; z-index:101; }
+    .main-menu a { color:#ffa8de; text-decoration:none; padding:6px; border-radius:6px; transition:background 0.3s ease, color 0.3s ease; }
+    .main-menu a:hover { background:#ffaad4; color:#0f0f1a; }
+ 
+/* 1) Limiter le nom à 2 lignes, sans JS et sans toucher au menu */
+.scroll-table td:nth-child(2) .clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+   width: 19ch;
+}
+/* 2) Prix & Amazon → jamais wrap, toujours sur une ligne */
+.scroll-table .price-tag,
+.scroll-table .amazon-container {
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+  <a href="../index.html" class="back-to-top top">← Retour à l'accueil</a>
+  <div class="burger-container">
+    <div class="burger-overlay" onclick="closeMenu()"></div>
+    <div class="burger-icon" onclick="toggleMenu()">☰</div>
+    <nav class="main-menu" id="mainMenu">
+      <a href="../index.html">Accueil</a>
+      <a href="histoire.html">Histoire d’Elv’yra</a>
+      <a href="apropos.html">À propos</a>
+    </nav>
+  </div>
+  <img src="/elvyra/assets/Elvyra_tele.png" alt="Elv’yra" class="header-image">
+  <h1>💻 Top 5 des Téléviseur 2025</h1>
+  <p class="intro">Mesdames, messieurs, installez-vous, ajustez votre boa de pixels : voici la crème du phosphore, le gratin de la luminance, l’opéra-bouffe de la haute définition ! Dans l’arène de vos salons, cinq gladiateurs d’images affûtent leurs mini-LED et dégainent leurs Dolby Vision pour flatter vos pupilles sans crucifier votre budget.</p>
+  <p class="intro">Bas-prix rusé, coup de cœur flamboyant, premium impérial – et deux compétiteurs affûtés comme la lame d’un ouvre-lettre corporate – se tiennent prêts à transformer chaque soirée Netflix ou FIFA en feu d’artifice visuel. 🥂 Branchez le popcorn, et que la fête du quantum dot commence !</p>
+
+  <div class="scroll-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th><th>Nom</th><th>Badge</th><th>Prix</th><th>Note</th><th>Type de dalle</th><th>Luminosité & contraste</th><th>Résolution</th><th>HDR & formats</th><th>Sonorisation</th><th>Amazon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71nJKuPlZtL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="RCA TV 40'' Full HD"></a></td>
+  <td><div class="clamp">RCA TV 40'' Full HD</div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Abordable"></td>
+  <td><span class="price-tag">189€</span></td>
+  <td>4.3</td>
+  <td>LED (Edge-lit)</td>
+  <td>≈250 nits, contraste 3000:1</td>
+  <td>1920×1080 (FHD)</td>
+  <td>—</td>
+  <td>2×8 W Dolby Audio</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/43fwjAR" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+</tr>
+<tr>
+  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71pdHnj9UDL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="TCL TV QLED 4K HDR Pro 43’’"></a></td>
+  <td><div class="clamp">TCL TV QLED 4K HDR Pro 43’’</div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Coup de cœur"></td>
+  <td><span class="price-tag">279€</span></td>
+  <td>4.1</td>
+  <td>QLED VA</td>
+  <td>≈450 nits, contraste élevé</td>
+  <td>3840×2160 (4K)</td>
+  <td>Dolby Vision, HDR10+, HLG</td>
+  <td>2×10 W Dolby Atmos</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3F6E8R9" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/81GswFylVZL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Hisense Smart TV 50''"></a></td>
+  <td><div class="clamp">Hisense Smart TV 50''</div></td>
+  <td></td>
+  <td><span class="price-tag">329€</span></td>
+  <td>4.4</td>
+  <td>LED VA</td>
+  <td>≈350 nits, contraste 4000:1</td>
+  <td>3840×2160 (4K)</td>
+  <td>Dolby Vision, HDR10, HLG</td>
+  <td>DTS Virtual‑X 20 W</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3GQPmcZ" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/51a3Fcm4PSL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="LG TV LED 2024  43''"></a></td>
+  <td><div class="clamp">LG TV LED 2024  43''</div></td>
+  <td></td>
+  <td><span class="price-tag">249€</span></td>
+  <td>4</td>
+  <td>IPS LED</td>
+  <td>≈280 nits, contraste 1200:1</td>
+  <td>3840×2160 (4K)</td>
+  <td>HDR10, HLG</td>
+  <td>AI Sound Pro 2×10 W</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jOTHfh" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71t+BrC2WvL._AC_SY300_SX300_.jpg" alt="Samsung Téléviseur 75""></a></td>
+  <td><div class="clamp">Samsung Téléviseur 75"</div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Haut de gamme"></td>
+  <td><span class="price-tag">1368.6€</span></td>
+  <td>4.4</td>
+  <td>Neo QLED Mini‑LED</td>
+  <td>≥1 500 nits, contraste quasi‑infini local dimming</td>
+  <td>3840×2160 (4K)</td>
+  <td>HDR10+ Adaptive, HLG</td>
+  <td>OTS+ Dolby Atmos 60 W</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3ZeFJuW" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+      </tbody>
+    </table>
+  </div>
+<div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
+💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
+</div>
+
+  <h2>📚 Les conseils d'Elv’yra 💬</h2>
+<div class="carousel" id="carousel">
+   <div class="carousel-card" id="carte-1">
+    <img src="https://m.media-amazon.com/images/I/71nJKuPlZtL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="RCA TV 40'' Full HD" class="product-img">
+<div class="badge-wrap">
+    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Abordable">
+    <span class="badge-label">Abordable</span>
+  </div>
+    <h3>RCA TV 40'' Full HD
+    <div class="price-tag">189€</div></h3>
+    <div class="meta">LED (Edge-lit) / ≈250 nits, contraste 3000:1 · 1920×1080 (FHD) · —</div>
+    <ul>
+      <li>Triple tuner DVB-T2/C/S2 intégré</li>
+      <li>Design sans bord compact</li>
+      <li>Mode Hôtel et ports HDMI/USB complets</li>
+    </ul>
+    <p>Le meilleur ticket d’entrée pour une TV d’appoint, image FHD propre à prix plancher.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/43fwjAR" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-2">
+    <img src="https://m.media-amazon.com/images/I/71pdHnj9UDL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="TCL TV QLED 4K HDR Pro 43’’" class="product-img">
+<div class="badge-wrap">
+    <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Coup de cœur">
+    <span class="badge-label">Coup de cœur</span>
+  </div>    <h3>TCL TV QLED 4K HDR Pro 43’’
+    <div class="price-tag">279€</div></h3>
+    <div class="meta">QLED VA / ≈450 nits, contraste élevé · 3840×2160 (4K) · Dolby Vision, HDR10+, HLG</div>
+    <ul>
+      <li>Couleurs QLED vibrantes</li>
+      <li>Google TV fluide & complet</li>
+      <li>Dolby Vision + Atmos pour films</li>
+    </ul>
+    <p>Une 43” qui coche toutes les cases streaming avec des couleurs qui claquent et un prix doux.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3F6E8R9" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-3">
+    <img src="https://m.media-amazon.com/images/I/81GswFylVZL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Hisense Smart TV 50''" class="product-img">
+    <h3>Hisense Smart TV 50''
+    <div class="price-tag">329€</div></h3>
+    <div class="meta">LED VA / ≈350 nits, contraste 4000:1 · 3840×2160 (4K) · Dolby Vision, HDR10, HLG</div>
+    <ul>
+      <li>Taille 50” idéale salon</li>
+      <li>VIDAA U7 rapide & sans pubs</li>
+      <li>Deux HDMI 2.1 pour consoles</li>
+    </ul>
+    <p>Polyvalente et prête pour le sport ou la PS5 sans se ruiner.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3GQPmcZ" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-4">
+    <img src="https://m.media-amazon.com/images/I/51a3Fcm4PSL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="LG TV LED 2024  43''" class="product-img">
+    <h3>LG TV LED 2024  43''
+    <div class="price-tag">249€</div></h3>
+    <div class="meta">IPS LED / ≈280 nits, contraste 1200:1 · 3840×2160 (4K) · HDR10, HLG</div>
+    <ul>
+      <li>Processeur α5 Gen7 upscaling</li>
+      <li>webOS 24 + ThinQ AI domotique</li>
+      <li>Compatibilité assistants vocaux</li>
+    </ul>
+    <p>Un 43” équilibré pour l’éco‑système LG et la maison connectée.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4jOTHfh" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-5">
+    <img src="https://m.media-amazon.com/images/I/71t+BrC2WvL._AC_SY300_SX300_.jpg" alt="Samsung Téléviseur 75"" class="product-img">
+ <div class="badge-wrap">
+    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Compétitif">
+    <span class="badge-label">Haut de gamme</span>
+  </div>    <h3>Samsung Téléviseur 75"
+    <div class="price-tag">1368.6€</div></h3>
+    <div class="meta">Neo QLED Mini‑LED / ≥1 500 nits, contraste quasi‑infini local dimming · 3840×2160 (4K) · HDR10+ Adaptive, HLG</div>
+    <ul>
+      <li>Mini‑LED pour pics de lumineux</li>
+      <li>HDMI 2.1 ×4, 4K 120 Hz VRR</li>
+      <li>Gaming Hub & cloud gaming intégrés</li>
+    </ul>
+    <p>Le blockbuster 75” qui transforme le salon en cinéma et en arène e‑sport.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3ZeFJuW" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+</div>
+ <script>
+function openAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.add('show');
+}
+function closeAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.remove('show');
+}
+  function toggleMenu() {
+    const container = document.querySelector('.burger-container');
+    if (container.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+  function openMenu() {
+    document.querySelector('.burger-container').classList.add('open');
+    document.querySelector('.burger-overlay').style.display = 'block';
+  }
+  function closeMenu() {
+    document.querySelector('.burger-container').classList.remove('open');
+    document.querySelector('.burger-overlay').style.display = 'none';
+  }
+function scrollCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const cardWidth = carousel.querySelector('.carousel-card').offsetWidth + 16;
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      const carousel = document.querySelector('.carousel');
+      const offsetLeft = target.offsetLeft;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      carousel.scrollTo({ left: offsetLeft - 20, behavior: 'smooth' });
+    });
+  });
+   document.addEventListener('DOMContentLoaded', function() {
+    // On récupère tous les wrappers de nom
+    const clamps = document.querySelectorAll('.scroll-table td:nth-child(2) .clamp');
+    // On trouve la longueur du nom le plus long
+    let maxLen = 0;
+    clamps.forEach(el => {
+      const len = el.textContent.trim().length;
+      if (len > maxLen) maxLen = len;
+    });
+    // On veut la moitié de cette longueur, arrondie au supérieur
+    const half = Math.ceil(maxLen / 2);
+
+    // On mesure la largeur en pixels de '0' répété half fois
+    const tester = document.createElement('span');
+    tester.style.visibility = 'hidden';
+    tester.style.whiteSpace = 'nowrap';
+    tester.textContent = '0'.repeat(half);
+    document.body.appendChild(tester);
+    const targetWidth = tester.getBoundingClientRect().width;
+    document.body.removeChild(tester);
+
+    // On applique la max-width mesurée à chaque .clamp
+    clamps.forEach(el => {
+      el.style.display  = 'inline-block';
+      el.style.maxWidth = targetWidth + 'px';
+      el.style.whiteSpace = 'normal';
+      el.style.overflowWrap = 'break-word';
+    });
+  });
+</script>
+<a href="../index.html" class="back-to-top" style="bottom:1rem;">← Retour à l'accueil</a>
+<div id="popupAffiliate" class="popup-affiliate">
+  <button class="close-btn" onclick="closeAffiliatePopup()">✖</button>
+  <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
+  <button class="action-btn" onclick="closeAffiliatePopup()">Fermer</button>
+</div>
+</body>
+</html>
