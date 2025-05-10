@@ -1,35 +1,105 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="De nouveaux comparatifs impartial chaque semaine. Gagnez du temps et de l’argent.">
-<title>Comparatifs high-tech 2025 – Elv’Yra</title>
-<style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f1a;
-      color: #fff;
-      padding: 0;
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="De nouveaux comparatifs impartiaux chaque semaine. Gagnez du temps et de l’argent."/>
+  <title>Comparatifs high‑tech 2025 – Elv’Yra</title>
+  <style>
+    /* -------------------- Variables de couleurs -------------------- */
+    :root {
+      --bg-dark: #0f0f1a;
+      --pink: #ff5ec4;
+      --pink-light: #ffa8de;
+      --blue: #24e0ff;
+      --text-light: #ffffff;
     }
+
+    /* -------------------- Base -------------------- */
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    /* -------------------- Header / Titre -------------------- */
     header {
-      position: relative; /* permet de positionner l'encadré en absolu */
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3.5rem 1rem 2rem;
       text-align: center;
-      padding: 1rem;
     }
     header h1 {
-      font-size: 1.0rem; /* taille réduite */
-      font-weight: 600;
       margin: 0;
+      font-size: 1.6rem;            /* mobile */
+      font-weight: 700;
+      color: var(--pink);
       line-height: 1.25;
     }
     @media (min-width: 768px) {
-      header h1 {
-        font-size: 2rem; /* toujours plus petit que l’ancien 2.5rem */
+      header h1 { font-size: 2rem; }  /* desktop */
+    }
+
+    /* -------------------- Bulle d’annonce néon -------------------- */
+    .announcement-bubble {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 18px 18px 18px 6px;
+      background: linear-gradient(135deg,var(--pink) 0%,var(--blue) 100%);
+      color: var(--text-light);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      box-shadow: 0 0 6px var(--pink), 0 0 12px var(--blue);
+      transform: rotate(-8deg);
+      animation: flicker 2.5s infinite alternate;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 0.95; }
+      50%      { opacity: 1;     }
+    }
+    @media (max-width:600px){
+      .announcement-bubble{
+        font-size: .7rem;
+        padding: .5rem 1rem;
+        transform: rotate(-12deg);
       }
+    }
 
+    /* -------------------- Conteneur principal -------------------- */
+    .elvyra-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 1rem 3rem;
+      position: relative;
+    }
 
+    /* -------------------- Avatar Elvyra -------------------- */
+    .elvyra-img {
+      width: 100%;          /* occupe toute la largeur dispo */
+      max-width: 280px;     /* mais pas plus que 280 px sur mobile */
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 0 12px rgba(255, 94, 196, 0.4);
+    }
+    @media (min-width: 768px) {
+      .elvyra-img { max-width: 320px; }   /* un peu plus grand sur écran large */
+    }
+    @media (max-width: 380px) {
+      .elvyra-img { max-width: 70vw; }    /* rétrécit encore pour très petits écrans */
+    }
+    
     /* Encadré en haut à gauche */
     .weekly-box {
       background: #1e1e2f;
@@ -192,48 +262,8 @@
     }
 
     /* ---------- Header / titre --------- */
-    header {
-      position: relative; /* pour positionner la bulle en absolu */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 4rem;
-      padding-bottom: 2rem;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--pink);
-      text-align: center;
-    }
-
-    /* ---------- BULLE ELECTRIQUE --------- */
-    .announcement-bubble {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 3rem;
-      background: linear-gradient(135deg, var(--pink) 0%, var(--blue) 100%);
-      color: var(--text-light);
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      white-space: nowrap;
-      transform: rotate(-6deg);
-      box-shadow: 0 0 8px var(--pink), 0 0 16px var(--blue);
-      animation: flicker 2.2s infinite alternate;
-    }
-
-    @keyframes flicker {
-      0%   {filter: drop-shadow(0 0 4px var(--pink)); opacity: 0.95;}
-      50%  {filter: drop-shadow(0 0 10px var(--pink)) drop-shadow(0 0 6px var(--blue)); opacity: 1;}
-      100% {filter: drop-shadow(0 0 4px var(--blue)); opacity: 0.9;}
-    }
-
-    /* ---------- Contenu principal --------- */
+  
+     /* ---------- Contenu principal --------- */
     main {
       display: flex;
       flex-direction: column;
@@ -269,35 +299,6 @@
 }
 
 /* Bulle électrique d’annonce */
-.announcement-bubble{
-  position:absolute;
-  display:inline-flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;   /* garde quand même text-align pour IE/legacy */
-  /* --- placement --- */
-  top:2%;                 /* mi-hauteur du container */
-  left:-1rem;              /* mord légèrement sur la bordure gauche */
-  transform:translateY(-50%) rotate(-10deg);  /* rotation plus marquée */
-
-  /* --- look néon --- */
-  background:linear-gradient(135deg,#ff5ec4 0%,#ffa8de 100%);
-  color:#0f0f1a;
-  padding:0.8rem 1.6rem;
-  border-radius:18px 18px 18px 6px;
-  font-weight:700;
-  font-size:1rem;
-  text-transform:uppercase;
-  line-height:1.1;
-  box-shadow:
-    0 0 6px   #ff5ec4,
-    0 0 12px  #ff5ec4,
-    0 0 20px  #ffa8de;
-  z-index:200;
-  pointer-events:none;
-  animation:spark 3s infinite;
-}
 
 /* Micro-étincelle */
 @keyframes spark{
