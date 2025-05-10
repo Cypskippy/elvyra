@@ -47,9 +47,8 @@
 
     /* -------------------- Bulle d’annonce néon -------------------- */
     .announcement-bubble {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
+      display: inline-block;
+      margin-top: .75rem;
       padding: 0.6rem 1.2rem;
       border-radius: 18px 18px 18px 6px;
       background: linear-gradient(135deg,var(--pink) 0%,var(--blue) 100%);
@@ -58,7 +57,7 @@
       font-size: 0.85rem;
       text-transform: uppercase;
       box-shadow: 0 0 6px var(--pink), 0 0 12px var(--blue);
-      transform: rotate(-8deg);
+      transform: rotate(-4deg);
       animation: flicker 2.5s infinite alternate;
       white-space: nowrap;
       pointer-events: none;
@@ -73,10 +72,11 @@
       .announcement-bubble{
         font-size: .6rem;
         padding: .4rem .8rem;
-        transform: rotate(-12deg);
+        transform: rotate(-8deg);
         white-space: normal; /* autorise le retour à la ligne pour réduire la largeur */
-        max-width: 30%;      /* ne dépasse pas 70 % de l’écran */
+        max-width: 30%;      /* ne dépasse pas 80 % de l’écran */
         line-height: 1.15;
+        margin-top: .5rem;
       }
     }
 
