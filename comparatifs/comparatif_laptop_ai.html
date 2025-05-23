@@ -3,261 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top 5 des Smartphones - Elv'yra</title>
+  <title>Top 5 des Laptop AI 2025 - Elv'yra</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* ─── 1. Global & Reset ─── */
-:root{
-  --badge-size-carousel: 48px;  /* ← modifie ici si tu veux plus grand / plus petit */
-  --badge-size-table:    32px;
-}
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
-      color: #e8e8f5;
-      padding: 1rem;
-      overflow-x: hidden;
+    /* ───────────────────────────────────────────────
+       1. Variables & reset global                 
+    ───────────────────────────────────────────────*/
+    :root{
+      --badge-size-carousel: 48px; /* icône dans le carrousel */
+      --badge-size-table:    32px; /* icône dans le tableau */
     }
-    .header-image {
-      display: block;
-      margin: 0 auto 1.5rem;
-      max-width: 220px;
-      border-radius: 12px;
+    *{box-sizing:border-box; margin:0; padding:0;}
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#0c0c1a 0%,#1a1a2f 100%);
+      color:#e8e8f5; padding:1rem; overflow-x:hidden;
     }
-    h1, h2 {
-      text-align: center;
-      color: #ff71c3;
-    }
-    .intro {
-      max-width: 700px;
-      margin: auto;
-      text-align: center;
-      font-size: 1rem;
-      color: #ccccdd;
-    }
+    a{text-decoration:none; color:inherit;}
 
-    /* ─── 2. Table & Thumbnails ─── */
-    .scroll-table {
-      overflow-x: auto;
-      margin-top: 2rem;
-      padding-bottom: 1rem;
-      position: relative; /* nécessaire pour la bulle absolue */
+    /* ───────────────────────────────────────────────
+       2. Header                                     
+    ───────────────────────────────────────────────*/
+   .header-image{display:block; margin:0 auto 1.5rem; max-width:220px; border-radius:12px;}
+    h1,h2{text-align:center; color:#ff71c3; margin:0.5rem 0 1rem;}
+    .intro{max-width:700px; margin:0.25rem auto; text-align:center; font-size:1rem; color:#ccccdd;}
+    .back-to-top{
+      display:inline-block;
+      padding:0.6rem 1rem;
+      background:#2a2a3a;
+      color:#ffc2e6;
+      border-radius:8px;
+      font-weight:600;
+      white-space:nowrap;
+      position:fixed;
+      left:1rem;
+      top:1rem;
+      z-index:100;
     }
-    .scroll-table::-webkit-scrollbar { height: 8px; }
-    .scroll-table::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
-    .scroll-table table {
-      border-collapse: collapse;
-      font-size: 0.95rem;
-      table-layout: auto; /* colonnes auto ajustées */
-      width: auto;
-    }
-    table th {
-      border: 1px solid #444;
-      padding: 0.8rem;
-      text-align: center;
-      white-space: nowrap;
-      background-color: #2c2c44;
-      color: #ffa8de;
-    }
-    table td {
-      border: 1px solid #444;
-      padding: 0.8rem;
-      text-align: center;
-      white-space: normal;
-      word-break: break-word;
-      /* Aucun max-width pour que la colonne s'ajuste au contenu */
-    }
-    table tr:nth-child(even) { background-color: #1f1f2f; }
-    img.thumbnail {
-      width: 60px;
-      border-radius: 6px;
-    }
+    .back-to-top:hover{background:#ffaad4; color:#0f0f1a;}
 
-    /* ─── 3. Prix & Boutons Amazon/Retour ─── */
-    .price-tag {
-      background: #ffd700;
-      color: #1f1f1f;
-      font-weight: bold;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      display: inline-block;
-    }
-    a.amazon-link,
-    a.back-to-top {
-      display: inline-block;
-      padding: 0.6rem 1rem;
-      background: #2a2a3a;
-      color: #ffc2e6;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(255, 170, 212, 0.4);
-      transition: background 0.3s ease, color 0.3s ease;
-      position: static;
-      margin: 1rem;
-    }
-    a.amazon-link:hover,
-    a.back-to-top:hover {
-      background: #ffaad4;
-      color: #0f0f1a;
-    }
-    .back-to-top { position: fixed; right: 1rem; z-index: 100; }
-    .back-to-top.top { top: 1rem; }
-    .back-to-top.bottom { bottom: 1rem; }
-    .amazon-container {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-wrap: nowrap;
-    }
-    .affiliate-tag {
-      font-size: 0.8rem;
-      color: #ffa8de;
-      background: #2a2a3a;
-      padding: 2px 6px;
-      border-radius: 6px;
-      margin-left: 6px;
-    }
-    .info-btn {
-      background: none;
-      border: 1px solid #ffa8de;
-      border-radius: 50%;
-      color: #ffa8de;
-      width: 24px;
-      height: 24px;
-      font-size: 16px;
-      text-align: center;
-      cursor: pointer;
-    }
+    /* ───────────────────────────────────────────────
+       3. Tableau comparatif                         
+    ───────────────────────────────────────────────*/
+    .scroll-table{margin-top:2rem; overflow-x:auto; padding-bottom:1rem; position:relative;}
+    .scroll-table::-webkit-scrollbar{height:8px;} .scroll-table::-webkit-scrollbar-thumb{background:#444; border-radius:4px;}
+    table{border-collapse:collapse; font-size:0.95rem; width:auto;}
+    th,td{border:1px solid #444; padding:0.8rem; text-align:center;}
+    th{background:#2c2c44; color:#ffa8de; white-space:nowrap;}
+    tr:nth-child(even){background:#1f1f2f;}
+    img.thumbnail{width:60px; border-radius:6px;}
 
-    /* ─── 4. Carousel ─── */
-    .carousel {
-      margin-top: 3rem;
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 1rem;
-      scroll-snap-type: x mandatory;
-      position: relative;
-    }
-    .carousel-card {
-      flex: 0 0 300px;
-      background-color: #1c1c2e;
-      border-radius: 12px;
-      padding: 1rem;
-      scroll-snap-align: center;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-    }
-    .carousel-card img.product-img {
-  width: 100%;
-  max-width: 200px;
-  border-radius: 10px;
-  margin-bottom: 0.5rem;
-}
-    .carousel-card h3 {
-      margin: 0.5rem 0 0;
-      color: #ffb3e6;
-    }
-    .carousel-card .meta {
-      font-size: 0.85rem;
-      color: #aaa;
-      margin-bottom: 0.5rem;
-    }
-    .carousel-card p {
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-    .carousel-card ul li:empty { display: none; }
+    /* ───────────────────────────────────────────────
+       4. Prix & boutons                             
+    ───────────────────────────────────────────────*/
+    .price-tag{background:#ffd700; color:#1f1f1f; font-weight:bold; padding:0.2rem 0.5rem; border-radius:6px; display:inline-block;}
+    .amazon-link{display:inline-block; padding:0.6rem 1rem; background:#2a2a3a; color:#ffc2e6; border-radius:8px; font-weight:600; box-shadow:0 2px 8px rgba(255,170,212,0.4); transition:background 0.3s,color 0.3s;}
+    .amazon-link:hover{background:#ffaad4; color:#0f0f1a;}
+    .amazon-container{display:flex; align-items:center; gap:6px;}
+    .affiliate-tag{font-size:0.75rem; color:#ffa8de; background:#2a2a3a; padding:2px 6px; border-radius:6px; user-select:none;}
+    .info-btn{background:none; border:1px solid #ffa8de; border-radius:50%; width:22px; height:22px; color:#ffa8de; font-size:14px; line-height:20px; cursor:pointer;}
 
-    /* ─── 5. Badges (animations + variantes) ─── */
-    @keyframes halo-glow {
-      0%,100% { box-shadow: 0 0 6px 2px rgba(255,172,255,0.3); }
-      50%     { box-shadow: 0 0 12px 4px rgba(255,172,255,0.6); }
+    /* ───────────────────────────────────────────────
+       5. Carousel cartes produit                    
+    ───────────────────────────────────────────────*/
+    .carousel{margin-top:3rem; display:flex; overflow-x:auto; gap:1rem; padding:1rem; scroll-snap-type:x mandatory;}
+    .carousel-card{flex:0 0 300px; background:#1c1c2e; border-radius:12px; padding:1rem; scroll-snap-align:center; box-shadow:0 0 12px rgba(255,255,255,0.05);} 
+    .carousel-card img.product-img{width:100%; max-width:200px; border-radius:10px; margin-bottom:0.5rem;}
+    .carousel-card h3{margin:0.5rem 0; color:#ffb3e6;}
+    .carousel-card .meta{font-size:0.85rem; color:#aaa; margin-bottom:0.5rem;}
+    .carousel-card p{font-size:0.9rem; color:#ccc;}
+
+    /* ───────────────────────────────────────────────
+       6. Badges – HALO + couleur + tilt 3D          
+    ───────────────────────────────────────────────*/
+    /* wrapper obligatoire autour de l’icône + label */
+    .badge-wrap{position:relative; display:inline-flex; flex-direction:column; align-items:center; gap:4px; animation:tilt 8s ease-in-out infinite; transform-style:preserve-3d;}
+    .badge-wrap::before{content:""; position:absolute; inset:-6px; border-radius:50%; background:conic-gradient(from 0deg,var(--g),transparent 60%); filter:blur(6px) brightness(1.3); opacity:.85; animation:spin 10s linear infinite; z-index:-1;}
+    @keyframes spin{to{transform:rotate(1turn);}}
+    @keyframes tilt{0%{transform:rotateX(0deg) rotateY(0deg);}50%{transform:rotateX(4deg) rotateY(-4deg);}100%{transform:rotateX(0) rotateY(0);}}
+    /* palettes par catégorie */
+    .badge-wrap.prix   {--g:#ffd700;}
+    .badge-wrap.chou   {--g:#ff5fa0;}
+    .badge-wrap.premium{--g:#4bf7ff;}
+    /* icône + label colorés */
+    .badge-icon{width:var(--badge-size-carousel); filter:drop-shadow(0 0 6px var(--g));}
+    .scroll-table .badge-icon{width:var(--badge-size-table);} /* version compacte dans tableau */
+    .badge-label{color:var(--g); font-weight:700; font-size:0.9rem; text-shadow:0 0 4px rgba(0,0,0,0.4);} 
+
+    /* ───────────────────────────────────────────────
+       7. Bulle "Faites glisser"                    
+    ───────────────────────────────────────────────*/
+    .scroll-hint{display:none;}
+    @media (max-width:480px){
+      .scroll-hint{display:flex; align-items:center; position:absolute; top:-2.2rem; right:0; background:rgba(255,255,255,0.1); color:#ffa8de; padding:0.4rem 0.6rem; border-radius:6px; font-size:0.9rem; backdrop-filter:blur(5px); z-index:50; animation:pulse 3s infinite;}
+      .scroll-hint .arrow{margin-right:0.4rem; animation:wiggleX 1.4s ease-in-out infinite;}
     }
-    @keyframes badge-bounce {
-      0%,100% { transform: scale(1); }
-      50%     { transform: scale(1.15); }
-    }
-   /* ─── Base (carousel) ─── */
-.badge-icon{
-  display:block;
-  width: var(--badge-size-carousel);
-  margin:0 auto;
-  animation: badge-bounce 2s infinite alternate, halo-glow 3s infinite;
-  filter: drop-shadow(0 0 6px #ffb3e6);
-}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.6;}}
+    @keyframes wiggleX{0%{transform:translateX(0);}50%{transform:translateX(6px);}100%{transform:translateX(0);}}
 
-/* ─── Variante tableau ─── */
-.scroll-table .badge-icon{
-  display:inline-block;
-  width: var(--badge-size-table);
-  vertical-align:middle;
-  margin-right:6px;
-  animation:none;
-  filter:none;
-}
-
-    .carousel-card .badge-wrap .badge-icon { }
-    .badge-wrap {
-      text-align: center;
-      margin: 0.6rem 0 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .badge-label {
-      display: block;
-      margin-top: 4px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #ffaad4;
-      text-shadow: 0 0 4px rgba(255,170,212,0.6);
-    }
-
-      @media (max-width: 480px) {
-      /* → Sur mobile uniquement */
-        .scroll-hint {
-        display: flex;
-        align-items: center;
-        position: absolute;   /* positionnée au-dessus du tableau */
-        top: -2.2rem;
-        right: 1rem;
-        background: rgba(255,255,255,0.1);
-        color: #ffa8de;
-        padding: 0.4rem 0.6rem;
-        border-radius: 6px;
-        font-size: 0.9rem;
-        backdrop-filter: blur(5px);
-        z-index: 50;
-        animation: pulse 3s infinite;
-   }
-             .scroll-hint .arrow {
-        margin-right: 0.4rem;
-        animation: wiggleX 1.4s ease-in-out infinite; /* petit wiggle horizontal */
-      }
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 1; }
-      50%     { opacity: 0.6; }
-    }
-     /* wiggle gauche ↔ droite pour simuler le scroll */
-    @keyframes wiggleX {
-      0%   { transform: translateX(0); }
-      50%  { transform: translateX(6px); }
-      100% { transform: translateX(0); }
-   }
-
-
-    /* ─── 6. Popup affilié ─── */
-    .popup-affiliate { display: none; position: fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1f1f2f; padding:1.5rem; border-radius:12px; color:#ffa8de; box-shadow:0 0 12px rgba(255,255,255,0.2); z-index:1000; width:90%; max-width:320px; text-align:center; }
-    .popup-affiliate.show { display: block; animation: fadeIn 0.3s ease-in-out; }
-    .popup-affiliate button.close-btn { position:absolute; top:10px; right:10px; background:none; border:none; color:#ffa8de; font-size:1.5rem; cursor:pointer; }
-    .popup-affiliate button.action-btn { margin-top:1rem; background:#ffaad4; color:#1f1f1f; border:none; padding:0.6rem 1rem; border-radius:6px; cursor:pointer; font-size:1rem; }
-    @keyframes fadeIn { from { opacity:0; transform:translate(-50%,-60%);} to { opacity:1; transform:translate(-50%,-50%);} }
-    @media (max-width:480px) { .popup-affiliate { padding:1rem; font-size:0.9rem;} .popup-affiliate button.action-btn { padding:0.5rem 1rem; font-size:0.9rem;} }
-
-
+    /* ───────────────────────────────────────────────
+       8. Popup affilié                              
+    ───────────────────────────────────────────────*/
+    .popup-affiliate{display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1f1f2f; padding:1.5rem; border-radius:12px; color:#ffa8de; box-shadow:0 0 12px rgba(255,255,255,0.2); z-index:1000; width:90%; max-width:320px; text-align:center;}
+    .popup-affiliate.show{display:block; animation:fadeIn 0.3s ease-in-out;}
+    .popup-affiliate button.close-btn{position:absolute; top:10px; right:10px; background:none; border:none; color:#ffa8de; font-size:1.5rem; cursor:pointer;}
+    .popup-affiliate button.action-btn{margin-top:1rem; background:#ffaad4; color:#1f1f1f; border:none; padding:0.6rem 1rem; border-radius:6px; cursor:pointer; font-size:1rem;}
+    @keyframes fadeIn{from{opacity:0; transform:translate(-50%,-60%);} to{opacity:1; transform:translate(-50%,-50%);} }
+ 
     /* ─── 7. Menu & Burger ─── */
     .menu { position: fixed; top:1rem; left:1rem; z-index:1000; }
     .menu-icon { font-size:1.8rem; color:#ffaad4; cursor:pointer; }
@@ -288,10 +140,11 @@
 .scroll-table .amazon-container {
   white-space: nowrap;
 }
+
 </style>
 </head>
 <body>
-  <a href="../index.html" class="back-to-top top">← Retour à l'accueil</a>
+  <a href="../index.html" class="back-to-top">← Retour à l'accueil</a>
   <div class="burger-container">
     <div class="burger-overlay" onclick="closeMenu()"></div>
     <div class="burger-icon" onclick="toggleMenu()">☰</div>
@@ -415,7 +268,7 @@
 <div class="carousel" id="carousel">
    <div class="carousel-card" id="carte-1">
     <img src="https://m.media-amazon.com/images/I/71eKbbkuGRL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="AOC AI Gaming 16.1″" class="product-img">
-<div class="badge-wrap">
+<div class="badge-wrap prix">
     <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas">
     <span class="badge-label">Prix bas</span>
   </div>
@@ -436,7 +289,7 @@
 
   <div class="carousel-card" id="carte-2">
     <img src="https://m.media-amazon.com/images/I/71zZEqQp8EL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="Lenovo Yoga 7 14AHP9 OLED" class="product-img">
-<div class="badge-wrap">
+<div class="badge-wrap chou">
     <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">
     <span class="badge-label">Chouchou</span>
   </div>    <h3>Lenovo Yoga 7 14AHP9 OLED
@@ -490,7 +343,7 @@
 
   <div class="carousel-card" id="carte-5">
     <img src="https://m.media-amazon.com/images/I/71DQsJYm8EL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="MSI Cyborg 15 AI (RTX 4060)" class="product-img">
- <div class="badge-wrap">
+ <div class="badge-wrap premium">
     <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="">
     <span class="badge-label">Premium</span>
   </div>    <h3>MSI Cyborg 15 AI (RTX 4060)
@@ -590,7 +443,6 @@ document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
     });
   });
 </script>
-<a href="../index.html" class="back-to-top" style="bottom:1rem;">← Retour à l'accueil</a>
 <div id="popupAffiliate" class="popup-affiliate">
   <button class="close-btn" onclick="closeAffiliatePopup()">✖</button>
   <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
