@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 des Smartphones - Elv'yra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── 1. Global & Reset ─── */
+:root{
+  --badge-size-carousel: 48px;  /* ← modifie ici si tu veux plus grand / plus petit */
+  --badge-size-table:    32px;
+}
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c1a, #1a1a2f);
+      color: #e8e8f5;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+    .header-image {
+      display: block;
+      margin: 0 auto 1.5rem;
+      max-width: 220px;
+      border-radius: 12px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #ff71c3;
+    }
+    .intro {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 1rem;
+      color: #ccccdd;
+    }
+
+    /* ─── 2. Table & Thumbnails ─── */
+    .scroll-table {
+      overflow-x: auto;
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+    }
+    .scroll-table::-webkit-scrollbar { height: 8px; }
+    .scroll-table::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+    .scroll-table table {
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      table-layout: auto; /* colonnes auto ajustées */
+      width: auto;
+    }
+    table th {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: nowrap;
+      background-color: #2c2c44;
+      color: #ffa8de;
+    }
+    table td {
+      border: 1px solid #444;
+      padding: 0.8rem;
+      text-align: center;
+      white-space: normal;
+      word-break: break-word;
+      /* Aucun max-width pour que la colonne s'ajuste au contenu */
+    }
+    table tr:nth-child(even) { background-color: #1f1f2f; }
+    img.thumbnail {
+      width: 60px;
+      border-radius: 6px;
+    }
+
+    /* ─── 3. Prix & Boutons Amazon/Retour ─── */
+    .price-tag {
+      background: #ffd700;
+      color: #1f1f1f;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    a.amazon-link,
+    a.back-to-top {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: #2a2a3a;
+      color: #ffc2e6;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 170, 212, 0.4);
+      transition: background 0.3s ease, color 0.3s ease;
+      position: static;
+      margin: 1rem;
+    }
+    a.amazon-link:hover,
+    a.back-to-top:hover {
+      background: #ffaad4;
+      color: #0f0f1a;
+    }
+    .back-to-top { position: fixed; right: 1rem; z-index: 100; }
+    .back-to-top.top { top: 1rem; }
+    .back-to-top.bottom { bottom: 1rem; }
+    .amazon-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: nowrap;
+    }
+    .affiliate-tag {
+      font-size: 0.8rem;
+      color: #ffa8de;
+      background: #2a2a3a;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 6px;
+    }
+    .info-btn {
+      background: none;
+      border: 1px solid #ffa8de;
+      border-radius: 50%;
+      color: #ffa8de;
+      width: 24px;
+      height: 24px;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* ─── 4. Carousel ─── */
+    .carousel {
+      margin-top: 3rem;
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem;
+      scroll-snap-type: x mandatory;
+      position: relative;
+    }
+    .carousel-card {
+      flex: 0 0 300px;
+      background-color: #1c1c2e;
+      border-radius: 12px;
+      padding: 1rem;
+      scroll-snap-align: center;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+    .carousel-card img.product-img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+    .carousel-card h3 {
+      margin: 0.5rem 0 0;
+      color: #ffb3e6;
+    }
+    .carousel-card .meta {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .carousel-card ul li:empty { display: none; }
+
+    /* ─── 5. Badges (animations + variantes) ─── */
+    @keyframes halo-glow {
+      0%,100% { box-shadow: 0 0 6px 2px rgba(255,172,255,0.3); }
+      50%     { box-shadow: 0 0 12px 4px rgba(255,172,255,0.6); }
+    }
+    @keyframes badge-bounce {
+      0%,100% { transform: scale(1); }
+      50%     { transform: scale(1.15); }
+    }
+   /* ─── Base (carousel) ─── */
+.badge-icon{
+  display:block;
+  width: var(--badge-size-carousel);
+  margin:0 auto;
+  animation: badge-bounce 2s infinite alternate, halo-glow 3s infinite;
+  filter: drop-shadow(0 0 6px #ffb3e6);
+}
+
+/* ─── Variante tableau ─── */
+.scroll-table .badge-icon{
+  display:inline-block;
+  width: var(--badge-size-table);
+  vertical-align:middle;
+  margin-right:6px;
+  animation:none;
+  filter:none;
+}
+
+    .carousel-card .badge-wrap .badge-icon { }
+    .badge-wrap {
+      text-align: center;
+      margin: 0.6rem 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .badge-label {
+      display: block;
+      margin-top: 4px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffaad4;
+      text-shadow: 0 0 4px rgba(255,170,212,0.6);
+    }
+
+@media (max-width: 480px) {
+      .scroll-hint {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        right: 1rem;
+        background: rgba(255,255,255,0.1);
+        color: #ffa8de;
+        padding: 0.4rem 0.6rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        backdrop-filter: blur(5px);
+        z-index: 150;
+        animation: pulse 2s infinite;
+      }
+      .scroll-hint .arrow {
+        margin-right: 0.4rem;
+      }
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50%     { opacity: 0.6; }
+    }
+
+
+
+
+
+    /* ─── 6. Popup affilié ─── */
+    .popup-affiliate { display: none; position: fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1f1f2f; padding:1.5rem; border-radius:12px; color:#ffa8de; box-shadow:0 0 12px rgba(255,255,255,0.2); z-index:1000; width:90%; max-width:320px; text-align:center; }
+    .popup-affiliate.show { display: block; animation: fadeIn 0.3s ease-in-out; }
+    .popup-affiliate button.close-btn { position:absolute; top:10px; right:10px; background:none; border:none; color:#ffa8de; font-size:1.5rem; cursor:pointer; }
+    .popup-affiliate button.action-btn { margin-top:1rem; background:#ffaad4; color:#1f1f1f; border:none; padding:0.6rem 1rem; border-radius:6px; cursor:pointer; font-size:1rem; }
+    @keyframes fadeIn { from { opacity:0; transform:translate(-50%,-60%);} to { opacity:1; transform:translate(-50%,-50%);} }
+    @media (max-width:480px) { .popup-affiliate { padding:1rem; font-size:0.9rem;} .popup-affiliate button.action-btn { padding:0.5rem 1rem; font-size:0.9rem;} }
+
+    /* ─── 7. Menu & Burger ─── */
+    .menu { position: fixed; top:1rem; left:1rem; z-index:1000; }
+    .menu-icon { font-size:1.8rem; color:#ffaad4; cursor:pointer; }
+    #menu-toggle { display:none; }
+    .menu-items { display:none; list-style:none; background:#1f1f2f; padding:0.5rem 1rem; margin-top:0.5rem; border-radius:8px; box-shadow:0 0 8px rgba(255,255,255,0.05); }
+    .menu-items li { margin:0.3rem 0; }
+    .menu-items a { text-decoration:none; color:#ffa8de; font-weight:500; }
+    #menu-toggle:checked + .menu-icon + .menu-items { display:block; }
+    .burger-container { position:absolute; top:1rem; right:1rem; z-index:100; }
+    .burger-icon { font-size:1.5rem; cursor:pointer; color:#ffa8de; background:#1f1f2f; padding:6px 10px; border-radius:8px; border:1px solid #ffa8de; }
+    .burger-overlay { position:fixed; top:0; left:0; height:100vh; width:100vw; background:rgba(0,0,0,0.5); z-index:99; display:none; }
+    .burger-container.open .main-menu { display:flex !important; }
+    .burger-container.open .burger-overlay { display:block; }
+    .main-menu { display:none; flex-direction:column; background:#1f1f2f; padding:0.5rem; border-radius:8px; margin-top:0.5rem; border:1px solid #ffa8de; min-width:180px; position:absolute; top:2.5rem; right:0; z-index:101; }
+    .main-menu a { color:#ffa8de; text-decoration:none; padding:6px; border-radius:6px; transition:background 0.3s ease, color 0.3s ease; }
+    .main-menu a:hover { background:#ffaad4; color:#0f0f1a; }
+ 
+/* 1) Limiter le nom à 2 lignes, sans JS et sans toucher au menu */
+.scroll-table td:nth-child(2) .clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+   width: 19ch;
+}
+/* 2) Prix & Amazon → jamais wrap, toujours sur une ligne */
+.scroll-table .price-tag,
+.scroll-table .amazon-container {
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+  <a href="../index.html" class="back-to-top top">← Retour à l'accueil</a>
+  <div class="burger-container">
+    <div class="burger-overlay" onclick="closeMenu()"></div>
+    <div class="burger-icon" onclick="toggleMenu()">☰</div>
+    <nav class="main-menu" id="mainMenu">
+      <a href="../index.html">Accueil</a>
+      <a href="histoire.html">Histoire d’Elv’yra</a>
+      <a href="apropos.html">À propos</a>
+    </nav>
+  </div>
+  <img src="/elvyra/assets/Elvyra _pcportable.png" alt="Elv’yra" class="header-image">
+  <h1>💻 Top 5 des Laptop AI 2025</h1>
+  <p class="intro">Vous rêvez d’un laptop qui fait tourner Copilot, Stable Diffusion et vos 120 onglets Chrome sans suer à grosses gouttes ? On a traqué les nouvelles machines ‘AI‑ready’ dans la jungle 2025, pour dégoter la bonne affaire, le chouchou polyvalent, le monstre premium et deux outsiders pleins de panache. Installez‑vous, ouvrez l’esprit : voici nos 5 cerveaux portables préférés !</p>
+  <p class="intro"></p>
+
+<!-- Hint animation for mobile -->
+  <div class="scroll-hint">
+    <span class="arrow">↔︎</span>
+    <span class="hint-text">Faites glisser</span>
+  </div>
+
+  <div class="scroll-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th><th>Nom</th><th>Badge</th><th>Prix</th><th>Note</th><th>NPU / Moteur AI</th><th>CPU & GPU</th><th>RAM</th><th>Stockage</th><th>Autonomie</th><th>Amazon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71eKbbkuGRL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="AOC AI Gaming 16.1″"></a></td>
+  <td><div class="clamp">AOC AI Gaming 16.1″</div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas"></td>
+  <td><span class="price-tag">699 €€</span></td>
+  <td>4,0/5</td>
+  <td>Intel NPU (Core Ultra) ~34 TOPS</td>
+  <td>Intel Core Ultra 5 125U<br>iGPU Arc Xe-LPG</td>
+  <td>16 Go DDR5</td>
+  <td>SSD 1 To PCIe 4.0</td>
+  <td>≈7 h usage mixte IA</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4dPRyy5" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+</tr>
+<tr>
+  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71zZEqQp8EL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="Lenovo Yoga 7 14AHP9 OLED"></a></td>
+  <td><div class="clamp">Lenovo Yoga 7 14AHP9 OLED</div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou"></td>
+  <td><span class="price-tag">899 €€</span></td>
+  <td>4,1/5</td>
+  <td>Ryzen AI (XDNA 2) 16 TOPS</td>
+  <td>AMD Ryzen 5 8640HS<br>Radeon 760M</td>
+  <td>16 Go LPDDR5X</td>
+  <td>SSD 512 Go PCIe 4.0</td>
+  <td>8‑10 h bureau/OLED</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3YYW5Ih" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T1/images/I/71DOwNb8BBL._AC_SX425_.jpg" alt="Dell Inspiron 16 2‑en‑1"></a></td>
+  <td><div class="clamp">Dell Inspiron 16 2‑en‑1</div></td>
+  <td></td>
+  <td><span class="price-tag">949 €€</span></td>
+  <td>4,3/5</td>
+  <td>Intel NPU (Core Ultra) ~34 TOPS</td>
+  <td>Intel Core Ultra 5 125U<br>iGPU Arc</td>
+  <td>16 Go LPDDR5X</td>
+  <td>SSD 512 Go PCIe 4.0</td>
+  <td>≈9 h FHD+</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3SQGtCY" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71CADXfowNL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Asus Zenbook 14 OLED (8840HS)"></a></td>
+  <td><div class="clamp">Asus Zenbook 14 OLED (8840HS)</div></td>
+  <td></td>
+  <td><span class="price-tag">880 €€</span></td>
+  <td>4,0/5</td>
+  <td>Ryzen AI (XDNA 2) 16 TOPS</td>
+  <td>AMD Ryzen 7 8840HS<br>Radeon 780M</td>
+  <td>16 Go LPDDR5X</td>
+  <td>SSD 512 Go PCIe 4.0</td>
+  <td>≈10 h</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4dCcXL0" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71DQsJYm8EL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="MSI Cyborg 15 AI (RTX 4060)"></a></td>
+  <td><div class="clamp">MSI Cyborg 15 AI (RTX 4060)</div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
+  <td><span class="price-tag">1 499 €€</span></td>
+  <td>5,0/5</td>
+  <td>Intel NPU + RTX Tensor</td>
+  <td>Intel Core Ultra 7 155H<br>NVIDIA RTX 4060 8 Go</td>
+  <td>16 Go DDR5</td>
+  <td>SSD 512 Go PCIe 4.0</td>
+  <td>≈6‑7 h travail léger</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4kBwY6x" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+      </tbody>
+    </table>
+  </div>
+<div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
+💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
+</div>
+
+  <h2>📚 Les conseils d'Elv’yra 💬</h2>
+<div class="carousel" id="carousel">
+   <div class="carousel-card" id="carte-1">
+    <img src="https://m.media-amazon.com/images/I/71eKbbkuGRL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="AOC AI Gaming 16.1″" class="product-img">
+<div class="badge-wrap">
+    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas">
+    <span class="badge-label">Prix bas</span>
+  </div>
+    <h3>AOC AI Gaming 16.1″
+    <div class="price-tag">699 €€</div></h3>
+    <div class="meta">Intel NPU (Core Ultra) ~34 TOPS / Intel Core Ultra 5 125U<br>iGPU Arc Xe-LPG · 16 Go DDR5 · SSD 1 To PCIe 4.0</div>
+    <ul>
+      <li>Core Ultra 5 + NPU</li>
+      <li>SSD 1 To à ce prix</li>
+      <li>Châssis métal 16,1″</li>
+    </ul>
+    <p>Petite facture, gros cerveau : l’étudiant fauché qui code des LLM au coffee‑shop.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4dPRyy5" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-2">
+    <img src="https://m.media-amazon.com/images/I/71zZEqQp8EL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="Lenovo Yoga 7 14AHP9 OLED" class="product-img">
+<div class="badge-wrap">
+    <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">
+    <span class="badge-label">Chouchou</span>
+  </div>    <h3>Lenovo Yoga 7 14AHP9 OLED
+    <div class="price-tag">899 €€</div></h3>
+    <div class="meta">Ryzen AI (XDNA 2) 16 TOPS / AMD Ryzen 5 8640HS<br>Radeon 760M · 16 Go LPDDR5X · SSD 512 Go PCIe 4.0</div>
+    <ul>
+      <li>Écran OLED tactile 2‑en‑1</li>
+      <li>8‑10 h d’autonomie IA</li>
+      <li>Charnière 360° stylus ready</li>
+    </ul>
+    <p>Il fait le grand écart entre prise de notes arty et compil’ Copilot – le Yogi du laptop !</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3YYW5Ih" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-3">
+    <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T1/images/I/71DOwNb8BBL._AC_SX425_.jpg" alt="Dell Inspiron 16 2‑en‑1" class="product-img">
+    <h3>Dell Inspiron 16 2‑en‑1
+    <div class="price-tag">949 €€</div></h3>
+    <div class="meta">Intel NPU (Core Ultra) ~34 TOPS / Intel Core Ultra 5 125U<br>iGPU Arc · 16 Go LPDDR5X · SSD 512 Go PCIe 4.0</div>
+    <ul>
+      <li>Grand écran 16:10 tactile</li>
+      <li>Charnière 360° convertible</li>
+      <li>Thunderbolt 4 + Wi‑Fi 6E</li>
+    </ul>
+    <p>Le transformiste : portable la journée, tablette canapé le soir. Créativité illimitée.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3SQGtCY" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-4">
+    <img src="https://m.media-amazon.com/images/I/71CADXfowNL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Asus Zenbook 14 OLED (8840HS)" class="product-img">
+    <h3>Asus Zenbook 14 OLED (8840HS)
+    <div class="price-tag">880 €€</div></h3>
+    <div class="meta">Ryzen AI (XDNA 2) 16 TOPS / AMD Ryzen 7 8840HS<br>Radeon 780M · 16 Go LPDDR5X · SSD 512 Go PCIe 4.0</div>
+    <ul>
+      <li>OLED WUXGA 14″ ultra‑léger</li>
+      <li>1,2 kg seulement</li>
+      <li>Charge USB‑C universelle</li>
+    </ul>
+    <p>Le minimaliste stylé : aussi fin qu’une feuille Excel… mais drôlement plus fun !</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4dCcXL0" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-5">
+    <img src="https://m.media-amazon.com/images/I/71DQsJYm8EL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="MSI Cyborg 15 AI (RTX 4060)" class="product-img">
+ <div class="badge-wrap">
+    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="">
+    <span class="badge-label">Premium</span>
+  </div>    <h3>MSI Cyborg 15 AI (RTX 4060)
+    <div class="price-tag">1 499 €€</div></h3>
+    <div class="meta">Intel NPU + RTX Tensor / Intel Core Ultra 7 155H<br>NVIDIA RTX 4060 8 Go · 16 Go DDR5 · SSD 512 Go PCIe 4.0</div>
+    <ul>
+      <li>CPU Ultra 7 + RTX 4060</li>
+      <li>Écran 144 Hz gaming</li>
+      <li>Design translucide futuriste</li>
+    </ul>
+    <p>Le cyborg qui run Stable Diffusion *et* Cyberpunk en ultra… sans ruiner votre PEL.</p>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4kBwY6x" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+</div>
+ <script>
+// reposition the scroll hint above the table on load and scroll
+    function updateHintPosition() {
+      const hint = document.querySelector('.scroll-hint');
+      const table = document.querySelector('.scroll-table');
+      if (!hint || !table) return;
+      const rect = table.getBoundingClientRect();
+      hint.style.top = Math.max(8, rect.top + window.scrollY - hint.offsetHeight - 8) + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateHintPosition();
+      window.addEventListener('scroll', updateHintPosition);
+      window.addEventListener('resize', updateHintPosition);
+    });
+
+function openAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.add('show');
+}
+function closeAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.remove('show');
+}
+  function toggleMenu() {
+    const container = document.querySelector('.burger-container');
+    if (container.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+  function openMenu() {
+    document.querySelector('.burger-container').classList.add('open');
+    document.querySelector('.burger-overlay').style.display = 'block';
+  }
+  function closeMenu() {
+    document.querySelector('.burger-container').classList.remove('open');
+    document.querySelector('.burger-overlay').style.display = 'none';
+  }
+function scrollCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const cardWidth = carousel.querySelector('.carousel-card').offsetWidth + 16;
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      const carousel = document.querySelector('.carousel');
+      const offsetLeft = target.offsetLeft;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      carousel.scrollTo({ left: offsetLeft - 20, behavior: 'smooth' });
+    });
+  });
+   document.addEventListener('DOMContentLoaded', function() {
+    // On récupère tous les wrappers de nom
+    const clamps = document.querySelectorAll('.scroll-table td:nth-child(2) .clamp');
+    // On trouve la longueur du nom le plus long
+    let maxLen = 0;
+    clamps.forEach(el => {
+      const len = el.textContent.trim().length;
+      if (len > maxLen) maxLen = len;
+    });
+    // On veut la moitié de cette longueur, arrondie au supérieur
+    const half = Math.ceil(maxLen / 2);
+
+    // On mesure la largeur en pixels de '0' répété half fois
+    const tester = document.createElement('span');
+    tester.style.visibility = 'hidden';
+    tester.style.whiteSpace = 'nowrap';
+    tester.textContent = '0'.repeat(half);
+    document.body.appendChild(tester);
+    const targetWidth = tester.getBoundingClientRect().width;
+    document.body.removeChild(tester);
+
+    // On applique la max-width mesurée à chaque .clamp
+    clamps.forEach(el => {
+      el.style.display  = 'inline-block';
+      el.style.maxWidth = targetWidth + 'px';
+      el.style.whiteSpace = 'normal';
+      el.style.overflowWrap = 'break-word';
+    });
+  });
+</script>
+<a href="../index.html" class="back-to-top" style="bottom:1rem;">← Retour à l'accueil</a>
+<div id="popupAffiliate" class="popup-affiliate">
+  <button class="close-btn" onclick="closeAffiliatePopup()">✖</button>
+  <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
+  <button class="action-btn" onclick="closeAffiliatePopup()">Fermer</button>
+</div>
+</body>
+</html>
