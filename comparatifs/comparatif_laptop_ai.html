@@ -42,6 +42,7 @@
       overflow-x: auto;
       margin-top: 2rem;
       padding-bottom: 1rem;
+      position: relative; /* nécessaire pour la bulle absolue */
     }
     .scroll-table::-webkit-scrollbar { height: 8px; }
     .scroll-table::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
@@ -214,11 +215,13 @@
       text-shadow: 0 0 4px rgba(255,170,212,0.6);
     }
 
-@media (max-width: 480px) {
-      .scroll-hint {
+      @media (max-width: 480px) {
+      /* → Sur mobile uniquement */
+        .scroll-hint {
         display: flex;
         align-items: center;
-        position: fixed;
+        position: absolute;   /* positionnée au-dessus du tableau */
+        top: -2.2rem;
         right: 1rem;
         background: rgba(255,255,255,0.1);
         color: #ffa8de;
@@ -226,20 +229,24 @@
         border-radius: 6px;
         font-size: 0.9rem;
         backdrop-filter: blur(5px);
-        z-index: 150;
-        animation: pulse 2s infinite;
-      }
-      .scroll-hint .arrow {
+        z-index: 50;
+        animation: pulse 3s infinite;
+   }
+             .scroll-hint .arrow {
         margin-right: 0.4rem;
+        animation: wiggleX 1.4s ease-in-out infinite; /* petit wiggle horizontal */
       }
     }
     @keyframes pulse {
       0%,100% { opacity: 1; }
       50%     { opacity: 0.6; }
     }
-
-
-
+     /* wiggle gauche ↔ droite pour simuler le scroll */
+    @keyframes wiggleX {
+      0%   { transform: translateX(0); }
+      50%  { transform: translateX(6px); }
+      100% { transform: translateX(0); }
+   }
 
 
     /* ─── 6. Popup affilié ─── */
@@ -249,6 +256,7 @@
     .popup-affiliate button.action-btn { margin-top:1rem; background:#ffaad4; color:#1f1f1f; border:none; padding:0.6rem 1rem; border-radius:6px; cursor:pointer; font-size:1rem; }
     @keyframes fadeIn { from { opacity:0; transform:translate(-50%,-60%);} to { opacity:1; transform:translate(-50%,-50%);} }
     @media (max-width:480px) { .popup-affiliate { padding:1rem; font-size:0.9rem;} .popup-affiliate button.action-btn { padding:0.5rem 1rem; font-size:0.9rem;} }
+
 
     /* ─── 7. Menu & Burger ─── */
     .menu { position: fixed; top:1rem; left:1rem; z-index:1000; }
