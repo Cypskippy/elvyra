@@ -131,7 +131,27 @@ a.back-to-top {
     .badge-wrap.chou   {--g:#ff5fa0;}
     .badge-wrap.premium{--g:#4bf7ff;}
     /* icône + label colorés */
-    .badge-icon{width:var(--badge-size-carousel); filter:drop-shadow(0 0 6px var(--g));}
+    .badge-icon {
+  width: var(--badge-size-carousel);
+  display: block;
+  margin-bottom: 0.3rem;
+  /* un halo qui suit parfaitement le contour de l’icône */
+  filter:
+    drop-shadow(0 0 4px rgba(255, 172, 255, 0.3));
+  animation: halo-glow 3s infinite alternate;
+}
+
+@keyframes halo-glow {
+  /* début/fin : petit glow discret */
+  0%, 100% {
+    box-shadow: 0 0 4px 1px rgba(255, 172, 255, 0.2);
+  }
+  /* milieu : un peu plus visible, sans excès */
+  50% {
+    box-shadow: 0 0 8px 2px rgba(255, 172, 255, 0.3);
+  }
+}
+
     .scroll-table .badge-icon{width:var(--badge-size-table);} /* version compacte dans tableau */
     .badge-label{color:var(--g); font-weight:700; font-size:0.9rem; text-shadow:0 0 4px rgba(0,0,0,0.4);} 
 
@@ -346,7 +366,7 @@ a.back-to-top {
           <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Abordable">
           <span class="badge-label">Abordable</span>
         </div>
-        <p class="legend-desc">Meilleur rapport qualité-prix</p>
+        <p class="legend-desc">Le moins cher</p>
       </li>
       <li>
         <div class="badge-wrap chou">
