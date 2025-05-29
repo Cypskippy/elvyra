@@ -24,23 +24,25 @@
     /* ───────────────────────────────────────────────
        2. Header                                     
     ───────────────────────────────────────────────*/
-   .header-image{display:block; margin:0 auto 1.5rem; max-width:220px; border-radius:12px;}
+  .header-image{display:block; margin:0 auto 1.5rem; max-width:220px; border-radius:12px;}
     h1,h2{text-align:center; color:#ff71c3; margin:0.5rem 0 1rem;}
     .intro{max-width:700px; margin:0.25rem auto; text-align:center; font-size:1rem; color:#ccccdd;}
     .back-to-top{
-      display:inline-block;
+      position:fixed;
+      left:1rem;  /* coin en haut à gauche */
+      top:1rem;
+      z-index:1200;
       padding:0.6rem 1rem;
       background:#2a2a3a;
       color:#ffc2e6;
       border-radius:8px;
       font-weight:600;
       white-space:nowrap;
-      position:fixed;
-      left:1rem;
-      top:1rem;
-      z-index:100;
-    }
+      max-width:max-content;
+     }
     .back-to-top:hover{background:#ffaad4; color:#0f0f1a;}
+
+
 
     /* ───────────────────────────────────────────────
        3. Tableau comparatif                         
@@ -63,6 +65,34 @@
     .affiliate-tag{font-size:0.75rem; color:#ffa8de; background:#2a2a3a; padding:2px 6px; border-radius:6px; user-select:none;}
     .info-btn{background:none; border:1px solid #ffa8de; border-radius:50%; width:22px; height:22px; color:#ffa8de; font-size:14px; line-height:20px; cursor:pointer;}
 
+a.back-to-top {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: #2a2a3a;
+      color: #ffc2e6;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 170, 212, 0.4);
+      transition: background 0.3s ease, color 0.3s ease;
+      position: static;
+      margin: 1rem;
+    }
+    a.amazon-link:hover,
+    a.back-to-top:hover {
+      background: #ffaad4;
+      color: #0f0f1a;
+    }
+    .back-to-top { position: fixed; right: 1rem; z-index: 100; }
+    .back-to-top.top { top: 1rem; }
+    .back-to-top.bottom { bottom: 1rem; }
+    .amazon-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: nowrap;
+    }
+
     /* ───────────────────────────────────────────────
        5. Carousel cartes produit                    
     ───────────────────────────────────────────────*/
@@ -72,6 +102,21 @@
     .carousel-card h3{margin:0.5rem 0; color:#ffb3e6;}
     .carousel-card .meta{font-size:0.85rem; color:#aaa; margin-bottom:0.5rem;}
     .carousel-card p{font-size:0.9rem; color:#ccc;}
+    .carousel-card { text-align: center;}  /* centre toutes les boîtes inline (badges, liens, etc.) */
+
+    .carousel-card img.product-img {
+  display: block;           /* passe l’image en block-level */
+  margin: 0 auto 0.5rem;    /* la centre et ajoute un espace dessous */
+}
+
+.carousel-card .badge-wrap {
+  display: inline-flex;        /* pour que margin: auto fonctionne en inline */
+  flex-direction: column;      
+  align-items: center;         /* centre l’icône ET le label */
+  margin: 0.6rem auto 0;       /* auto sur les côtés => centré sous l’image */
+  position: relative;          /* restaure le contexte pour le ::before (le halo) */
+}
+
 
     /* ───────────────────────────────────────────────
        6. Badges – HALO + couleur + tilt 3D          
@@ -140,6 +185,34 @@
 .scroll-table .amazon-container {
   white-space: nowrap;
 }
+
+/* ───────────────────────────────────────────────
+   Légende des badges                            
+───────────────────────────────────────────────*/
+.badge-legend {
+  max-width: 800px;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background: rgba(42, 42, 58, 0.4);
+  border-radius: 12px;
+}
+.legend-list {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  gap: 2rem;
+}
+.legend-list li {
+  text-align: center;
+  max-width: 180px;
+}
+.legend-desc {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #ccccdd;
+}
+
+
 
 </style>
 </head>
@@ -265,6 +338,33 @@
 </div>
 
   <h2>📚 Les conseils d'Elv’yra 💬</h2>
+  <!-- Légende des badges -->
+  <div class="badge-legend">
+    <ul class="legend-list">
+      <li>
+        <div class="badge-wrap prix">
+          <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Abordable">
+          <span class="badge-label">Abordable</span>
+        </div>
+        <p class="legend-desc">Meilleur rapport qualité-prix</p>
+      </li>
+      <li>
+        <div class="badge-wrap chou">
+          <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">
+          <span class="badge-label">Chouchou</span>
+        </div>
+        <p class="legend-desc">Notre coup de cœur</p>
+      </li>
+      <li>
+        <div class="badge-wrap premium">
+          <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Haut de gamme">
+          <span class="badge-label">Premium</span>
+        </div>
+        <p class="legend-desc">Le nec plus ultra</p>
+      </li>
+    </ul>
+  </div>
+
 <div class="carousel" id="carousel">
    <div class="carousel-card" id="carte-1">
     <img src="https://m.media-amazon.com/images/I/71eKbbkuGRL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="AOC AI Gaming 16.1″" class="product-img">
