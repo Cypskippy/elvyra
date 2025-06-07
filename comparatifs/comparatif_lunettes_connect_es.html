@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 des Lunettes connectées 2025 - Elv'yra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ───────────────────────────────────────────────
+       1. Variables & reset global                 
+    ───────────────────────────────────────────────*/
+    :root{
+      --badge-size-carousel: 48px; /* icône dans le carrousel */
+      --badge-size-table:    32px; /* icône dans le tableau */
+    }
+    *{box-sizing:border-box; margin:0; padding:0;}
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#0c0c1a 0%,#1a1a2f 100%);
+      color:#e8e8f5; padding:1rem; overflow-x:hidden;
+    }
+    a{text-decoration:none; color:inherit;}
+
+    /* ───────────────────────────────────────────────
+       2. Header                                     
+    ───────────────────────────────────────────────*/
+  .header-image{display:block; margin:0 auto 1.5rem; max-width:220px; border-radius:12px;}
+    h1,h2{text-align:center; color:#ff71c3; margin:0.5rem 0 1rem;}
+    .intro{max-width:700px; margin:0.25rem auto; text-align:center; font-size:1rem; color:#ccccdd;}
+    .back-to-top{
+      position:fixed;
+      left:1rem;  /* coin en haut à gauche */
+      top:1rem;
+      z-index:1200;
+      padding:0.6rem 1rem;
+      background:#2a2a3a;
+      color:#ffc2e6;
+      border-radius:8px;
+      font-weight:600;
+      white-space:nowrap;
+      max-width:max-content;
+     }
+    .back-to-top:hover{background:#ffaad4; color:#0f0f1a;}
+
+
+
+    /* ───────────────────────────────────────────────
+       3. Tableau comparatif                         
+    ───────────────────────────────────────────────*/
+    .scroll-table{margin-top:2rem; overflow-x:auto; padding-bottom:1rem; position:relative;}
+    .scroll-table::-webkit-scrollbar{height:8px;} .scroll-table::-webkit-scrollbar-thumb{background:#444; border-radius:4px;}
+    table{border-collapse:collapse; font-size:0.95rem; width:auto;}
+    th,td{border:1px solid #444; padding:0.8rem; text-align:center;}
+    th{background:#2c2c44; color:#ffa8de; white-space:nowrap;}
+    tr:nth-child(even){background:#1f1f2f;}
+    img.thumbnail{width:60px; border-radius:6px;}
+
+    /* ───────────────────────────────────────────────
+       4. Prix & boutons                             
+    ───────────────────────────────────────────────*/
+    .price-tag{background:#ffd700; color:#1f1f1f; font-weight:bold; padding:0.2rem 0.5rem; border-radius:6px; display:inline-block;}
+    .amazon-link{display:inline-block; padding:0.6rem 1rem; background:#2a2a3a; color:#ffc2e6; border-radius:8px; font-weight:600; box-shadow:0 2px 8px rgba(255,170,212,0.4); transition:background 0.3s,color 0.3s;}
+    .amazon-link:hover{background:#ffaad4; color:#0f0f1a;}
+    .amazon-container{display:flex; align-items:center; gap:6px;}
+    .affiliate-tag{font-size:0.75rem; color:#ffa8de; background:#2a2a3a; padding:2px 6px; border-radius:6px; user-select:none;}
+    .info-btn{background:none; border:1px solid #ffa8de; border-radius:50%; width:22px; height:22px; color:#ffa8de; font-size:14px; line-height:20px; cursor:pointer;}
+
+a.back-to-top {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: #2a2a3a;
+      color: #ffc2e6;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 170, 212, 0.4);
+      transition: background 0.3s ease, color 0.3s ease;
+      position: static;
+      margin: 1rem;
+    }
+    a.amazon-link:hover,
+    a.back-to-top:hover {
+      background: #ffaad4;
+      color: #0f0f1a;
+    }
+    .back-to-top { position: fixed; right: 1rem; z-index: 100; }
+    .back-to-top.top { top: 1rem; }
+    .back-to-top.bottom { bottom: 1rem; }
+    .amazon-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: nowrap;
+    }
+
+    /* ───────────────────────────────────────────────
+       5. Carousel cartes produit                    
+    ───────────────────────────────────────────────*/
+    .carousel{margin-top:3rem; display:flex; overflow-x:auto; gap:1rem; padding:1rem; scroll-snap-type:x mandatory;}
+    .carousel-card{flex:0 0 300px; background:#1c1c2e; border-radius:12px; padding:1rem; scroll-snap-align:center; box-shadow:0 0 12px rgba(255,255,255,0.05);} 
+    .carousel-card img.product-img{width:100%; max-width:200px; border-radius:10px; margin-bottom:0.5rem;}
+    .carousel-card h3{margin:0.5rem 0; color:#ffb3e6;}
+    .carousel-card .meta{font-size:0.85rem; color:#aaa; margin-bottom:0.5rem;}
+    .carousel-card p{font-size:0.9rem; color:#ccc;}
+    .carousel-card { text-align: center;}  /* centre toutes les boîtes inline (badges, liens, etc.) */
+
+    .carousel-card img.product-img {
+  display: block;           /* passe l’image en block-level */
+  margin: 0 auto 0.5rem;    /* la centre et ajoute un espace dessous */
+}
+
+.carousel-card .badge-wrap {
+  display: inline-flex;        /* pour que margin: auto fonctionne en inline */
+  flex-direction: column;      
+  align-items: center;         /* centre l’icône ET le label */
+  margin: 0.6rem auto 0;       /* auto sur les côtés => centré sous l’image */
+  position: relative;          /* restaure le contexte pour le ::before (le halo) */
+}
+
+
+    /* ───────────────────────────────────────────────
+       6. Badges – HALO + couleur + tilt 3D          
+    ───────────────────────────────────────────────*/
+    /* wrapper obligatoire autour de l’icône + label */
+    .badge-wrap{position:relative; display:inline-flex; flex-direction:column; align-items:center; gap:4px; animation:tilt 8s ease-in-out infinite; transform-style:preserve-3d;}
+    .badge-wrap::before{content:""; position:absolute; inset:-6px; border-radius:50%; background:conic-gradient(from 0deg,var(--g),transparent 60%); filter:blur(6px) brightness(1.3); opacity:.85; animation:spin 10s linear infinite; z-index:-1;}
+    @keyframes spin{to{transform:rotate(1turn);}}
+    @keyframes tilt{0%{transform:rotateX(0deg) rotateY(0deg);}50%{transform:rotateX(4deg) rotateY(-4deg);}100%{transform:rotateX(0) rotateY(0);}}
+    /* palettes par catégorie */
+    .badge-wrap.prix   {--g:#ffd700;}
+    .badge-wrap.chou   {--g:#ff5fa0;}
+    .badge-wrap.premium{--g:#4bf7ff;}
+    /* icône + label colorés */
+    .badge-icon {
+  width: var(--badge-size-carousel);
+  display: block;
+  margin-bottom: 0.3rem;
+  /* un halo qui suit parfaitement le contour de l’icône */
+  filter:
+    drop-shadow(0 0 4px rgba(255, 172, 255, 0.3));
+  animation: halo-glow 3s infinite alternate;
+}
+
+@keyframes halo-glow {
+  /* début/fin : petit glow discret */
+  0%, 100% {
+    drop-shadow: 0 0 4px 1px rgba(255, 172, 255, 0.2);
+  }
+  /* milieu : un peu plus visible, sans excès */
+  50% {
+    drop-shadow: 0 0 8px 2px rgba(255, 172, 255, 0.3);
+  }
+}
+
+    .scroll-table .badge-icon{width:var(--badge-size-table);} /* version compacte dans tableau */
+    .badge-label{color:var(--g); font-weight:700; font-size:0.9rem; text-shadow:0 0 4px rgba(0,0,0,0.4);} 
+
+    /* ───────────────────────────────────────────────
+       7. Bulle "Faites glisser"                    
+    ───────────────────────────────────────────────*/
+    .scroll-hint{display:none;}
+    @media (max-width:480px){
+      .scroll-hint{display:flex; align-items:center; position:absolute; top:-2.2rem; right:0; background:rgba(255,255,255,0.1); color:#ffa8de; padding:0.4rem 0.6rem; border-radius:6px; font-size:0.9rem; backdrop-filter:blur(5px); z-index:50; animation:pulse 3s infinite;}
+      .scroll-hint .arrow{margin-right:0.4rem; animation:wiggleX 1.4s ease-in-out infinite;}
+    }
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.6;}}
+    @keyframes wiggleX{0%{transform:translateX(0);}50%{transform:translateX(6px);}100%{transform:translateX(0);}}
+
+    /* ───────────────────────────────────────────────
+       8. Popup affilié                              
+    ───────────────────────────────────────────────*/
+    .popup-affiliate{display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1f1f2f; padding:1.5rem; border-radius:12px; color:#ffa8de; box-shadow:0 0 12px rgba(255,255,255,0.2); z-index:1000; width:90%; max-width:320px; text-align:center;}
+    .popup-affiliate.show{display:block; animation:fadeIn 0.3s ease-in-out;}
+    .popup-affiliate button.close-btn{position:absolute; top:10px; right:10px; background:none; border:none; color:#ffa8de; font-size:1.5rem; cursor:pointer;}
+    .popup-affiliate button.action-btn{margin-top:1rem; background:#ffaad4; color:#1f1f1f; border:none; padding:0.6rem 1rem; border-radius:6px; cursor:pointer; font-size:1rem;}
+    @keyframes fadeIn{from{opacity:0; transform:translate(-50%,-60%);} to{opacity:1; transform:translate(-50%,-50%);} }
+ 
+    /* ─── 7. Menu & Burger ─── */
+    .menu { position: fixed; top:1rem; left:1rem; z-index:1000; }
+    .menu-icon { font-size:1.8rem; color:#ffaad4; cursor:pointer; }
+    #menu-toggle { display:none; }
+    .menu-items { display:none; list-style:none; background:#1f1f2f; padding:0.5rem 1rem; margin-top:0.5rem; border-radius:8px; box-shadow:0 0 8px rgba(255,255,255,0.05); }
+    .menu-items li { margin:0.3rem 0; }
+    .menu-items a { text-decoration:none; color:#ffa8de; font-weight:500; }
+    #menu-toggle:checked + .menu-icon + .menu-items { display:block; }
+    .burger-container { position:absolute; top:1rem; right:1rem; z-index:100; }
+    .burger-icon { font-size:1.5rem; cursor:pointer; color:#ffa8de; background:#1f1f2f; padding:6px 10px; border-radius:8px; border:1px solid #ffa8de; }
+    .burger-overlay { position:fixed; top:0; left:0; height:100vh; width:100vw; background:rgba(0,0,0,0.5); z-index:99; display:none; }
+    .burger-container.open .main-menu { display:flex !important; }
+    .burger-container.open .burger-overlay { display:block; }
+    .main-menu { display:none; flex-direction:column; background:#1f1f2f; padding:0.5rem; border-radius:8px; margin-top:0.5rem; border:1px solid #ffa8de; min-width:180px; position:absolute; top:2.5rem; right:0; z-index:101; }
+    .main-menu a { color:#ffa8de; text-decoration:none; padding:6px; border-radius:6px; transition:background 0.3s ease, color 0.3s ease; }
+    .main-menu a:hover { background:#ffaad4; color:#0f0f1a; }
+ 
+/* 1) Limiter le nom à 2 lignes, sans JS et sans toucher au menu */
+.scroll-table td:nth-child(2) .clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+   width: 19ch;
+}
+/* 2) Prix & Amazon → jamais wrap, toujours sur une ligne */
+.scroll-table .price-tag,
+.scroll-table .amazon-container {
+  white-space: nowrap;
+}
+
+/* ───────────────────────────────────────────────
+   Légende des badges                            
+───────────────────────────────────────────────*/
+.badge-legend {
+  max-width: 800px;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background: rgba(42, 42, 58, 0.4);
+  border-radius: 12px;
+}
+.legend-list {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  gap: 2rem;
+}
+.legend-list li {
+  text-align: center;
+  max-width: 180px;
+}
+.legend-desc {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #ccccdd;
+}
+
+/* Points forts de la carte ----------------------------------------------*/
+.carousel-card .features{
+  list-style: disc inside;
+  margin: 0 0 .4rem 0;          /* petit espace sous la liste */
+  padding-left: 1.2rem;         /* aligne joliment les puces */
+}
+
+/* Commentaire Elv’yra -----------------------------------------------------*/
+.carousel-card .commentaire{
+  margin: .2rem 0 1rem 1.2rem;  /* TOP • RIGHT • BOTTOM • LEFT  */
+  font-size: .9rem;
+  color: #ccc;
+  line-height: 1.45;
+  font-style: italic;           /* touche espiègle */
+}
+@media(max-width:480px){
+  .carousel-card .commentaire{margin-left:.8rem;}
+}
+
+
+</style>
+</head>
+<body>
+  <a href="../index.html" class="back-to-top">← Retour à l'accueil</a>
+  <div class="burger-container">
+    <div class="burger-overlay" onclick="closeMenu()"></div>
+    <div class="burger-icon" onclick="toggleMenu()">☰</div>
+    <nav class="main-menu" id="mainMenu">
+      <a href="../index.html">Accueil</a>
+      <a href="histoire.html">Histoire d’Elv’yra</a>
+      <a href="apropos.html">À propos</a>
+    </nav>
+  </div>
+  <img src="/elvyra/assets/Elvyra_lunettes.jpg" alt="Elv’yra" class="header-image">
+  <h1>💻 Top 5 des Lunettes connectées 2025</h1>
+  <p class="intro">Prêt·e à troquer votre écran de poche contre un pare‑brise numérique ? Laissez Elv’Yra vous guider parmi cinq lunettes intelligentes triées sur le volet : de la bonne affaire à la salle VIP, il y a forcément une monture pour votre nez curieux.</p>
+  <p class="intro">Moi, Elv’Yra, je t'emmène tester la crème des lunettes AI : captures mains libres, écrans virtuels XXL, et un soupçon de science-fiction au quotidien. On enfile la monture, on ajuste le nez – c’est parti !</p>
+
+<!-- Hint animation for mobile -->
+  <div class="scroll-hint">
+        <span class="hint-text">Scroll</span>
+        <span class="arrow">↔︎</span>
+  </div>
+
+  <div class="scroll-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th><th>Nom</th><th>Badge</th><th>Prix</th><th>Note</th><th>Poids</th><th>Autonomie</th><th>Caméra</th><th>Fonction</th><th>Champ de vision (AR)</th><th>Amazon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+  <td><a href="#carte-1"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61z207S7SUL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="SOCLING Smart Glasses"></a></td>
+  <td><div class="clamp">SOCLING Smart Glasses</div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas"></td>
+  <td><span class="price-tag">9,99€</span></td>
+  <td>5.0</td>
+  <td>35g</td>
+  <td>4h / 80 mAh</td>
+  <td>-</td>
+  <td>Audio</td>
+  <td>-</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4kSMNWq" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+</tr>
+<tr>
+  <td><a href="#carte-2"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61Hs+o7m94L._AC_SX342_SY445_.jpg" alt="OBEST Lunettes de soleil"></a></td>
+  <td><div class="clamp">OBEST Lunettes de soleil</div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou"></td>
+  <td><span class="price-tag">39,99€</span></td>
+  <td>4.8</td>
+  <td>190g</td>
+  <td>8</td>
+  <td>-</td>
+  <td>Audio</td>
+  <td>-</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4dVUw3Z" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-3"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61I+PNSyN5L._AC_SY300_SX300_.jpg" alt="Pudet Luo Lunette Camera"></a></td>
+  <td><div class="clamp">Pudet Luo Lunette Camera</div></td>
+  <td></td>
+  <td><span class="price-tag">119,98€</span></td>
+  <td>4.2</td>
+  <td>69g</td>
+  <td>1h40</td>
+  <td>4K</td>
+  <td>Vidéo</td>
+  <td>-</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/443B7L0" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-4"><img class="thumbnail" src="https://m.media-amazon.com/images/I/71bQFAdZ1KL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="SUZLAZYR Lunettes nocturne"></a></td>
+  <td><div class="clamp">SUZLAZYR Lunettes nocturne</div></td>
+  <td></td>
+  <td><span class="price-tag">141,99€</span></td>
+  <td>5.0</td>
+  <td>558g</td>
+  <td>4</td>
+  <td>Nuit / 8x</td>
+  <td>Vidéo</td>
+  <td>-</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/45fPD3y" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+<tr>
+  <td><a href="#carte-5"><img class="thumbnail" src="https://m.media-amazon.com/images/I/61mdpjO+6BL._AC_SY300_SX300_.jpg" alt="Lunettes VITURE One Lite XR "></a></td>
+  <td><div class="clamp">Lunettes VITURE One Lite XR </div></td>
+  <td><img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Premium"></td>
+  <td><span class="price-tag">208,05€</span></td>
+  <td>4.0</td>
+  <td>78g</td>
+  <td></td>
+  <td>XR</td>
+  <td>micro‑OLED</td>
+  <td>120°</td>
+  <td><div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3FNWI0J" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div></td>
+
+</tr>
+      </tbody>
+    </table>
+  </div>
+<div style="max-width: 320px; margin: 1.5rem auto; background: #fff8a9; color: #1a1a1a; padding: 0.6rem; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); font-size: 0.95rem; font-style: italic; text-align: center; transform: rotate(-1deg);">
+💬 Les prix affichés sont ceux relevés au moment de la création du comparatif. Ils peuvent évoluer selon les offres Amazon.
+</div>
+
+  <h2>📚 Les conseils d'Elv’yra 💬</h2>
+  <!-- Légende des badges -->
+  <div class="badge-legend">
+    <ul class="legend-list">
+      <li>
+        <div class="badge-wrap prix">
+          <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Abordable">
+          <span class="badge-label">Abordable</span>
+        </div>
+        <p class="legend-desc">Le moins cher</p>
+      </li>
+      <li>
+        <div class="badge-wrap chou">
+          <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">
+          <span class="badge-label">Chouchou</span>
+        </div>
+        <p class="legend-desc">Notre coup de cœur</p>
+      </li>
+      <li>
+        <div class="badge-wrap premium">
+          <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Haut de gamme">
+          <span class="badge-label">Premium</span>
+        </div>
+        <p class="legend-desc">Le nec plus ultra</p>
+      </li>
+    </ul>
+  </div>
+
+<div class="carousel" id="carousel">
+   <div class="carousel-card" id="carte-1">
+    <img src="https://m.media-amazon.com/images/I/61z207S7SUL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="SOCLING Smart Glasses" class="product-img">
+<div class="badge-wrap prix">
+    <img class="badge-icon" src="/elvyra/assets/icon_abordable.png" alt="Prix bas">
+    <span class="badge-label">Prix bas</span>
+  </div>
+    <h3>SOCLING Smart Glasses
+    <div class="price-tag">9,99€</div></h3>
+    <div class="meta">35g / 4h / 80 mAh · - · Audio</div>
+    <ul class="features">
+      <li>Ticket d’entrée mini</li>
+      <li>UV400 + polarisées</li>
+      <li>Bluetooth 5 & tactile</li>
+    </ul>
+<br><hr><br>
+    <p class="commentaire">Pour le prix d’un kebab, tu branches la tech sur tes tempes !</p>
+<br>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4kSMNWq" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-2">
+    <img src="https://m.media-amazon.com/images/I/61Hs+o7m94L._AC_SX342_SY445_.jpg" alt="OBEST Lunettes de soleil" class="product-img">
+<div class="badge-wrap chou">
+    <img class="badge-icon" src="/elvyra/assets/icon_chouchou.png" alt="Chouchou">
+    <span class="badge-label">Chouchou</span>
+  </div>    <h3>OBEST Lunettes de soleil
+    <div class="price-tag">39,99€</div></h3>
+    <div class="meta">190g / 8 · - · Audio</div>
+    <ul class="features">
+      <li>Note 5★ des utilisateurs</li>
+      <li>Open‑ear + guidage vocal</li>
+      <li>IPX4 & verres UV</li>
+    </ul>
+<br><hr><br>
+    <p class="commentaire">Polyvalentes comme un couteau suisse… sans lame.</p>
+<br>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/4dVUw3Z" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-3">
+    <img src="https://m.media-amazon.com/images/I/61I+PNSyN5L._AC_SY300_SX300_.jpg" alt="Pudet Luo Lunette Camera" class="product-img">
+    <h3>Pudet Luo Lunette Camera
+    <div class="price-tag">119,98€</div></h3>
+    <div class="meta">69g / 1h40 · 4K · Vidéo</div>
+    <ul class="features">
+      <li>Caméra 4K grand‑angle</li>
+      <li>Wi‑Fi direct & DV</li>
+      <li>100 min d’autonomie</li>
+    </ul>
+<br><hr><br>
+    <p class="commentaire">La GoPro qui se visse sur ton nez, prête pour l’action.</p>
+<br>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/443B7L0" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-4">
+    <img src="https://m.media-amazon.com/images/I/71bQFAdZ1KL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="SUZLAZYR Lunettes nocturne" class="product-img">
+    <h3>SUZLAZYR Lunettes nocturne
+    <div class="price-tag">141,99€</div></h3>
+    <div class="meta">558g / 4 · Nuit / 8x · Vidéo</div>
+    <ul class="features">
+      <li>Vision nocturne 2.5 K</li>
+      <li>Photo/vidéo + GPS</li>
+      <li>Batterie 2600 mAh</li>
+    </ul>
+<br><hr><br>
+    <p class="commentaire">Allume le mode chat‑noir : vois dans la nuit comme un félin.</p>
+<br>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/45fPD3y" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+
+  <div class="carousel-card" id="carte-5">
+    <img src="https://m.media-amazon.com/images/I/61mdpjO+6BL._AC_SY300_SX300_.jpg" alt="Lunettes VITURE One Lite XR " class="product-img">
+ <div class="badge-wrap premium">
+    <img class="badge-icon" src="/elvyra/assets/icon_hautdegamme.png" alt="Caméra 4K">
+    <span class="badge-label">Premium</span>
+  </div>    <h3>Lunettes VITURE One Lite XR 
+    <div class="price-tag">208,05€</div></h3>
+    <div class="meta">78g /  · XR · micro‑OLED</div>
+    <ul class="features">
+      <li>Écran 120″ Full HD 120 Hz</li>
+      <li>Audio Harman certifié</li>
+      <li>Poids plume 78 g</li>
+    </ul>
+<br><hr><br>
+    <p class="commentaire">Ton Netflix perso flotte devant tes yeux ; le pop‑corn est à toi.</p>
+<br>
+    <div class="amazon-container">
+  <a class="amazon-link" href="https://amzn.to/3FNWI0J" target="_blank">Voir sur Amazon <span class="affiliate-tag">#LienAffilié</span></a>
+  <button onclick="openAffiliatePopup()" class="info-btn">?</button>
+</div>
+  </div>
+</div>
+ <script>
+// reposition the scroll hint above the table on load and scroll
+    function updateHintPosition() {
+      const hint = document.querySelector('.scroll-hint');
+      const table = document.querySelector('.scroll-table');
+      if (!hint || !table) return;
+      const rect = table.getBoundingClientRect();
+      hint.style.top = Math.max(8, rect.top + window.scrollY - hint.offsetHeight - 8) + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateHintPosition();
+      window.addEventListener('scroll', updateHintPosition);
+      window.addEventListener('resize', updateHintPosition);
+    });
+
+function openAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.add('show');
+}
+function closeAffiliatePopup() {
+  document.getElementById('popupAffiliate').classList.remove('show');
+}
+  function toggleMenu() {
+    const container = document.querySelector('.burger-container');
+    if (container.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+  function openMenu() {
+    document.querySelector('.burger-container').classList.add('open');
+    document.querySelector('.burger-overlay').style.display = 'block';
+  }
+  function closeMenu() {
+    document.querySelector('.burger-container').classList.remove('open');
+    document.querySelector('.burger-overlay').style.display = 'none';
+  }
+function scrollCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const cardWidth = carousel.querySelector('.carousel-card').offsetWidth + 16;
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+document.querySelectorAll('a[href^="#carte-"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      const carousel = document.querySelector('.carousel');
+      const offsetLeft = target.offsetLeft;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      carousel.scrollTo({ left: offsetLeft - 20, behavior: 'smooth' });
+    });
+  });
+   document.addEventListener('DOMContentLoaded', function() {
+    // On récupère tous les wrappers de nom
+    const clamps = document.querySelectorAll('.scroll-table td:nth-child(2) .clamp');
+    // On trouve la longueur du nom le plus long
+    let maxLen = 0;
+    clamps.forEach(el => {
+      const len = el.textContent.trim().length;
+      if (len > maxLen) maxLen = len;
+    });
+    // On veut la moitié de cette longueur, arrondie au supérieur
+    const half = Math.ceil(maxLen / 2);
+
+    // On mesure la largeur en pixels de '0' répété half fois
+    const tester = document.createElement('span');
+    tester.style.visibility = 'hidden';
+    tester.style.whiteSpace = 'nowrap';
+    tester.textContent = '0'.repeat(half);
+    document.body.appendChild(tester);
+    const targetWidth = tester.getBoundingClientRect().width;
+    document.body.removeChild(tester);
+
+    // On applique la max-width mesurée à chaque .clamp
+    clamps.forEach(el => {
+      el.style.display  = 'inline-block';
+      el.style.maxWidth = targetWidth + 'px';
+      el.style.whiteSpace = 'normal';
+      el.style.overflowWrap = 'break-word';
+    });
+  });
+</script>
+<div id="popupAffiliate" class="popup-affiliate">
+  <button class="close-btn" onclick="closeAffiliatePopup()">✖</button>
+  <p>Ce lien affilié ne change pas le prix de vente mais permet de conserver la gratuité de ce site, et finance les aller-retour d'Elv'Yra dans l'espace 🚀</p>
+  <button class="action-btn" onclick="closeAffiliatePopup()">Fermer</button>
+</div>
+</body>
+</html>
